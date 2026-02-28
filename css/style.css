@@ -1,0 +1,375 @@
+@font-face {
+	font-family: TitilliumWeb;
+	src: url("../fonts/Titillium_Web/TitilliumWeb-Regular.ttf") format("truetype");
+}
+@font-face {
+	font-family: TitilliumWeb;
+	font-weight: bold;
+	src: url("../fonts/Titillium_Web/TitilliumWeb-Bold.ttf") format("truetype");
+}
+@font-face {
+	font-family: TitilliumWeb;
+	font-weight: 100;
+	src: url("../fonts/Titillium_Web/TitilliumWeb-Light.ttf") format("truetype");
+}
+
+/* Generic Styles */
+
+body {
+	background: #ece9e6;
+	padding-top: 60px;
+	padding-bottom: 60px;
+	font-size: 16px;
+	line-height: 1.42857143;
+	color: #2F323A;
+	font-family: TitilliumWeb,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+/* Link color */
+a { color: #18bc9c; }
+a:hover, a:focus { color: #128f76; }
+
+/* Paragraph spacing: BS3 was 10px, BS5 is 1rem (16px) */
+p { margin-bottom: 10px; }
+
+/* HR: BS5 has opacity 0.25, BS3 was solid */
+hr { margin: 20px 0; border-top: 1px solid #eee; opacity: 1; }
+
+/* Blockquote: BS3 had a left border, BS5 is unstyled */
+blockquote {
+	padding: 10px 20px;
+	margin: 0 0 20px;
+	font-size: 17.5px;
+	border-left: 5px solid #eee;
+}
+
+/* Navbar: dark theme matching custom BS3 bootstrap */
+.navbar {
+	background-color: #2F323A;
+	border-color: transparent;
+}
+.navbar-dark .navbar-brand { color: #fff; }
+.navbar-dark .navbar-brand:hover,
+.navbar-dark .navbar-brand:focus { color: #fff; opacity: 0.8; }
+.navbar-dark .navbar-nav .nav-link { color: #ccccd5; }
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus { color: #fff; background-color: transparent; }
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .show > .nav-link { color: #fff; background-color: #1a242f; }
+.navbar-dark .navbar-toggler { border-color: #1a242f; }
+.navbar-dark .navbar-toggler:hover,
+.navbar-dark .navbar-toggler:focus { background-color: #1a242f; }
+
+/* Dropdown: match BS3 custom theme */
+.dropdown-menu {
+	border-radius: 4px;
+	box-shadow: 0 6px 12px rgba(0,0,0,.175);
+	font-size: 14px;
+}
+.dropdown-item { padding: 3px 20px; color: #333; }
+.dropdown-item:hover,
+.dropdown-item:focus { background-color: #2F323A; color: #fff; }
+.dropdown-item.active,
+.dropdown-item:active { background-color: #2F323A; color: #fff; }
+.dropdown-divider { margin: 9px 0; }
+
+/* btn-primary: custom dark charcoal */
+.btn-primary { background-color: #3c3f47; border-color: #42454d; color: #ccccd5; }
+.btn-primary:hover,
+.btn-primary:focus { background-color: #3c3f47; border-color: #000; color: #fff; }
+.btn-primary:active,
+.btn-primary.active { background-color: #1a242f; border-color: #161f29; color: #fff; }
+
+/* btn-success: custom golden yellow */
+.btn-success { background-color: #f5be15; border-color: #e9b209; color: #955e02; }
+.btn-success:hover,
+.btn-success:focus { background-color: #f5be15; border-color: #f5be15; color: #7c5a00; }
+.btn-success:active,
+.btn-success.active { background-color: #e0a900; border-color: #e0a900; color: #000; }
+
+/* btn-outline-secondary replaces BS3 btn-default (custom gray) */
+.btn-outline-secondary { background-color: #868a92; border-color: #868a92; color: #fff; }
+.btn-outline-secondary:hover,
+.btn-outline-secondary:focus,
+.btn-outline-secondary:active,
+.btn-outline-secondary.active { background-color: #63676f; border-color: #63676f; color: #fff; }
+
+@media (max-width: 768px) {
+	.githubRibbon {
+		display: none;
+	}
+}
+
+/* BS5 .card uses display:flex which makes inline children (a, b, code, etc.) into flex items.
+   Override to display:block to match BS3 .panel behaviour. */
+.card {
+	display: block;
+}
+
+.jumbotron {
+	padding: 110px 60px 40px 60px;
+}
+.jumbotron p {
+	margin-bottom: 15px;
+	font-size: 21px;
+	font-weight: 200;
+}
+.jumbotron > hr {
+	border-top-color: #d5d5d5;
+}
+
+ul, ol {
+	padding-left: 16px;
+}
+
+.row li {
+	margin-bottom: 10px;
+}
+
+/* Override BS5 accordion-button chevron with custom triangle arrow */
+.accordion-button::after {
+	background-image: none;
+	width: 0;
+	height: 0;
+	margin-top: 4px;
+	margin-right: 4px;
+	border-top: 6px solid transparent;
+	border-right: 6px solid #7c7f87;
+	border-bottom: 6px solid transparent;
+	transform: none;
+}
+
+/* Override BS5 expanded state (blue bg/text) — keep original look */
+.accordion-button:not(.collapsed) {
+	color: inherit;
+	background-color: inherit;
+	box-shadow: none;
+	font-weight: bold;
+}
+
+.accordion-button:not(.collapsed)::after {
+	display: none;
+}
+
+.accordion-button:not(.collapsed)::before {
+	float: right;
+	content: "";
+	width: 0;
+	height: 0;
+	margin-top: 8px;
+	border-top: 6px solid #2F323A;
+	border-right: 6px solid transparent;
+	border-left: 6px solid transparent;
+}
+
+.accordion-button:focus {
+	box-shadow: none;
+}
+
+.teaserButtons {
+	margin-top: 20px;
+}
+
+#featureLists {
+	padding-top: 40px;
+}
+
+#featureLists ul {
+	padding: 0px;
+	margin-top: 6px;
+	list-style: none;
+}
+
+#featureLists ul > ul {
+	padding-left: 30px;
+	margin-top: 0px;
+}
+
+#featureLists li {
+	background: #d4d7d9;
+	padding: 4px 6px;
+	margin-bottom: 3px;
+}
+
+#featureLists ul > ul li {
+	padding: 2px 6px;
+}
+
+#featureLists h4 {
+	line-height: 24px;
+}
+
+#featureLists #featureDetails a {
+	text-decoration: underline;
+	color: #000;
+}
+
+#featureLists a[aria-expanded]:focus {
+	outline: none;
+}
+
+#featureLists a[aria-expanded="true"] {
+	background-color: #2F323A;
+	color: #fff;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+#featureLists a[aria-expanded="true"]:after {
+	display: inline-block;
+	content: "";
+	width: 0;
+	height: 0;
+	margin-left: 8px;
+	vertical-align: middle;
+	border-top: 6px solid #fff;
+	border-right: 6px solid transparent;
+	border-left: 6px solid transparent;
+}
+
+#featureLists a[aria-expanded].collapsed:after {
+	display: inline-block;
+	content: "";
+	width: 0;
+	height: 0;
+	margin-left: 11px;
+	vertical-align: middle;
+	border-top: 6px solid transparent;
+	border-left: 6px solid #fff;
+	border-bottom: 6px solid transparent;
+}
+
+#featureDetails {
+	padding: 10px;
+	border: 3px solid #2F323A;
+}
+
+#logo {
+  float: right;
+  width: 220px;
+  margin: -20px 0 0px 30px;
+}
+
+@media (max-width: 1200px) {
+	#logo {
+		width: 200px;
+	}
+}
+
+@media (max-width: 992px) {
+	#logo {
+		margin-top: 0px;
+		width: 200px;
+	}
+}
+
+@media (max-width: 530px) {
+	#logo {
+		margin-top: 0px;
+		margin-bottom: 10px;
+		width: 140px;
+	}
+}
+
+@media (max-width: 480px) {
+	#logo {
+		margin-top: -6px;
+		margin-bottom: 0px;
+		width: 140px;
+	}
+}
+
+.logoHeadline {
+	padding-left: 60px;
+	background-image: url("../images/open-hypervideo-symbol.png");
+	background-size: auto 35px;
+	background-repeat: no-repeat;
+	background-position: 2px 0px;
+}
+
+.teaserBackground {
+	box-shadow: 0 0 1px 1px #94979f inset;
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGUlEQVQImWO4f//+f3TMcP/+/f8M6IAyQQB6jiB98TkSjQAAAABJRU5ErkJggg==") repeat scroll -1px -1px;
+	margin-top: 50px;
+	padding-top: 0px;
+	padding-bottom: 30px;
+	background-color: #d7cfc3;
+}
+
+.invertedBackground {
+	/*
+	box-shadow: 0 0 3px 2px #adb0b8 inset;
+	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGUlEQVQImWO4f//+f3TMcP/+/f8M6IAyQQB6jiB98TkSjQAAAABJRU5ErkJggg==") repeat scroll -1px -1px;
+	*/
+	margin-top: 60px;
+	padding-top: 30px;
+	padding-bottom: 60px;
+	background: #2F323A;
+	color: #ccccd5;
+}
+
+img.full-width {
+	width: 100%;
+}
+
+@media (max-width: 992px) {
+	img.full-width {
+		margin-bottom: 26px;
+	}
+}
+
+.featureCircle {
+	position: relative;
+	width: 100%;
+	padding-bottom: 100%;
+	overflow: hidden;
+}
+
+.featureCircle .featureContent {
+	position: absolute;
+	border-radius: 50%;
+	border: 0px solid #2F323A;
+    height: 90%;
+    width: 90%;
+    padding: 5%;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+#tutorials .featureCircle .featureContent {
+	box-sizing: border-box;
+	border: 4px solid #9FA3AB;
+	text-decoration: none;
+	color: #2F323A;
+}
+
+#tutorials .featureCircle .featureContent:hover {
+	border-color: #2F323A;
+}
+
+#tutorials .featureCircle.active .featureContent {
+	border-color: #2F323A;
+	pointer-events: none;
+	cursor: default;
+}
+
+.featureCircle .featureContent .featureContentTable {
+	display: table;
+    height: 100%;
+    width: 100%;
+}
+
+.featureCircle .featureContent .featureContentTable .featureContentCell {
+	display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 16px;
+    height: 100%;
+    width: 100%;
+}
+
+@media (max-width: 430px) {
+  .featureCircle .featureContent .featureContentTable .featureContentCell {
+    font-size: 10px;
+  }
+}

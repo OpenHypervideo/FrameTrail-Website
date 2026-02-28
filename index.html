@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>FrameTrail - Create, Annotate & Remix Interactive Videos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="css/style.css" media="screen">
+    <meta name="description" content="FrameTrail is an open source software that lets you experience, manage and edit interactive video directly in your web browser. It enables you to hyperlink filmic contents, include additional multimedia documents (e.g. text overlays, images or interactive maps) and to add supplementing materials (annotations) at specific points.">
+    <meta property="og:title" content="FrameTrail - Create, Annotate & Remix Interactive Videos" />
+    <meta property="og:url" content="http://frametrail.org" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="http://frametrail.org/images/frametrail-screenshot.png" />
+    <meta property="og:description" content="FrameTrail is an open source software that let's you experience, manage and edit interactive video directly in your web browser. It enables you to hyperlink filmic contents, include additional multimedia documents (e.g. text overlays, images or interactive maps) and to add supplementing materials (annotations) at specific points." />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@FrameTrail">
+    <meta name="twitter:title" content="FrameTrail - Create, Annotate & Remix Interactive Videos">
+    <meta name="twitter:description" content="FrameTrail is an open source software that let's you experience, manage and edit interactive video directly in your web browser. It enables you to hyperlink filmic contents, include additional multimedia documents (e.g. text overlays, images or interactive maps) and to add supplementing materials (annotations) at specific points.">
+    <meta name="twitter:image" content="http://frametrail.org/images/frametrail-screenshot.png">
+    <link rel="icon" type="image/png" href="favicon.png" />
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/custom.js"></script>
+  </head>
+  <body style="padding: 0px; background: linear-gradient(90deg, #ece9e6 10%, #ffffff 90%);">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+      <div class="container">
+        <a href="./" class="navbar-brand">FrameTrail</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-main" aria-controls="navbar-main" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-main">
+          <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Tutorials</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="installation.html">Installation</a></li>
+                    <li><a class="dropdown-item" href="tutorials-gettingstarted.html">Getting Started</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="tutorials-editing.html">Editing Hypervideos</a></li>
+                    <li><a class="dropdown-item" href="tutorials-resourcemanager.html">Managing Resources</a></li>
+                    <li><a class="dropdown-item" href="tutorials-usermanagement.html">User Management</a></li>
+                    <li><a class="dropdown-item" href="tutorials-advanced.html">Advanced Use</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="faq.html">FAQ</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Project</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="about-project.html">Background</a></li>
+                  </ul>
+                </li>
+          </ul>
+          <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="https://github.com/OpenHypervideo/FrameTrail" target="_blank">Documentation (Github)</a>
+                </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="teaserBackground">
+
+      <div class="container">
+
+        <div class="jumbotron">
+
+          <img id="logo" src="images/open-hypervideo-symbol.png"/>
+          <h1>FrameTrail</h1>
+          <h2 style="margin-top: 0px;">Create, Annotate & Remix Interactive Videos</h2>
+
+          <div class="row" style="margin-top: 40px;">
+
+            <div class="col-md-6">
+              <img alt="FrameTrail Screenshot" title="FrameTrail Screenshot" class="full-width" style="margin-top: 20px; margin-bottom: 30px;" src="images/frametrail-screenshot.png"/>
+            </div>
+            <div class="col-md-6" style="padding-top: 10px;">
+              <p><h4>FrameTrail is an open source software that lets you experience, manage and edit interactive video directly in your web browser.</h4></p>
+              <p><h4>It enables you to hyperlink filmic contents, include additional multimedia documents (e.g. text overlays, images or interactive maps) and to add supplementing materials (annotations) at specific points.</h4></p>
+              <div class="teaserButtons">
+                <a href="" target="_blank" class="btn btn-success disabled" style="background: #afafaf; color: #666; border-color: #afafaf;">Try Demo</a>
+                <a href="https://github.com/OpenHypervideo/FrameTrail/archive/v0.9.8-beta.zip" target="_blank" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg> Download Source (v0.9.8-beta)</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="alert alert-warning alert-dismissible" role="alert" style="margin-top: 8px; padding: 6px 35px 6px 10px;">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            Please get in touch via Twitter (<a href="http://twitter.com/FrameTrail" target="_blank">@FrameTrail</a>) or mail us at joscha.jaeger | at | filmicweb | dot | org if you need help setting up a FrameTrail project. We offer both technical assistance and consulting. If you have ideas for a joint project / collaboration that involves FrameTrail, let's talk!
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="container" id="featureLists">
+
+      <h2>Features</h2>
+
+        <div class="row">
+          <div class="col-md-6">
+
+            <div class="row">
+              <div class="col-md-6">
+                <h4>Timebased Documents</h4>
+                <p>Use any video file or even an empty video with a defined length as a basis for synchronization.</p>
+              </div>
+              <div class="col-md-6">
+                <h4>Linked Video Fragments</h4>
+                <p>Create non-linear networks of video fragments (Hypervideos) which can be freely navigated by the user.</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <h4>Interactive Overlays</h4>
+                <p>Place documents on top of the video (e.g. text, images, web pages or interactive maps) and decide how and when they should be displayed.</p>
+              </div>
+              <div class="col-md-6">
+                <h4>Multimedia Annotations</h4>
+                <p>Add supplementing materials at certain points of time and compare those with the annotation timelines of other users.</p>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-md-6">
+            <img class="full-width" style="margin-bottom: 30px; border: 1px solid #dfdfdf;" src="images/frametrail-ui.jpeg"/>
+          </div>
+        </div>
+
+        <a class="btn btn-primary collapsed" role="button" data-bs-toggle="collapse" href="#featureDetails" aria-expanded="false" aria-controls="featureDetails">Details</a>
+
+        <div class="collapse" id="featureDetails">
+
+          <div class="row">
+            <div class="col-md-4">
+              <h4>Editing</h4>
+              <ul>
+                <li>Use any <a href="faq.html#faq23">HTML5 Video</a> or even an empty video with a custom length as source</li>
+                <li>Add any resource as timebased Overlay or Annotation</li>
+                <li>Configure Overlay-Display (Opacity, etc.)</li>
+                <li>Synchronize Video Overlays with the main Video / Time Container (optional)</li>
+                <li>Add timebased Video Links to other (internal or external) Hypervideo Documents</li>
+                <li>View, compare and re-use Annotations of other users</li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4>Managing</h4>
+              <ul>
+                <li>Manage users (Access Rights, Activation)</li>
+                <li>Manage resources (Add / Upload, Edit, Delete)</li>
+                <ul>
+                  <li><a href="faq.html#faq23">HTML5 Video (MP4)</a></li>
+                  <li><a href="faq.html#faq26">Image (JPG, PNG, GIF)</a></li>
+                  <li>Wikipedia</li>
+                  <li>Location (Open Streetmap)</li>
+                  <li>Youtube Video</li>
+                  <li>Vimeo Video</li>
+                  <li>Any other Webpage URL</li>
+                </ul>
+                <li>Manage any number of Hypervideo Documents</li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4>Data Policy</h4>
+              <ul>
+                <li>All data is kept in files using a structured JSON format, there is no database. Yes, that means you can just copy and paste your entire FrameTrail instance (including all user data etc.) to another server and it will instantly work.</li>
+              </ul>
+              <h4>Browser Support</h4>
+              Desktop<br>
+              <ul>
+                <li>Latest Versions of Chrome and Firefox</li>
+                <li>Safari, Opera and Microsoft Edge if you're lucky (not tested)</li>
+                <li>Internet Explorer is not and won't be supported</li>
+              </ul>
+              Mobile<br>
+              <ul>
+                <li>Editing Features are disabled on mobile platforms, touch support is yet to be integrated.</li>
+              </ul>
+            </div>
+          </div>
+
+      </div>
+
+    </div>
+
+    <div class="container" id="usecases">
+
+    	<hr>
+
+        <h2>Use Cases</h2>
+
+        <div class="row">
+          <div class="col-md-3">
+            <h3>Journalism</h3>
+            <ul>
+            	<li>Fact Checking Formats</li>
+              <li>Investigative Reportages</li>
+              <li>Citizen Journalism</li>
+              <li>Parliamentary Debates</li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h3>Online Learning</h3>
+            <ul>
+            	<li>Annotated Lecture Videos</li>
+            	<li>Online Courses / MOOCs</li>
+              <li>Flipped Classroom Scenarios</li>
+              <li>Open Courseware Platforms</li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h3>Scientific Publishing</h3>
+            <ul>
+              <li>Self-contained Timebased Publications</li>
+              <li>Directly accessible sources / accompanying materials</li>
+            	<li>Citation of Video Fragments</li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h3>Interactive Storytelling</h3>
+            <ul>
+            	<li>Non-linear Film Formats</li>
+              <li>Web Documentaries</li>
+            	<li>Adaptive Narratives</li>
+              <li>Participatory Storytelling</li>
+            </ul>
+          </div>
+        </div>
+
+    </div>
+
+    <div class="container" id="principles">
+
+      <hr>
+
+        <h2>Principles</h2>
+        <blockquote>Film shall be "programmed" with Open Web Technologies, rather than rendered out of an editing interface</blockquote>
+        <div class="row">
+          <div class="col-md-4">
+            <h3>Openness & Fragmentation</h3>
+            <p>By "rendering" a film, we permanently seal it and "burn" all its fragments into it. FrameTrail is about preserving the openness of film that it has in production environments, so raw videos, cuts, text overlays, effects and included documents can be explicitly referenced, changed and remixed forever (and live!) beyond the frontiers of proprietary editing software and platforms.</p>
+          </div>
+           <div class="col-md-4">
+            <h3>Film as Architecture</h3>
+            <p>We want to re-imagine the organizational concept of hypertext for a film environment. Think of a World-Wide-Web, where all the interconnected text fragments are replaced by film. Instead of a scrollbar, a timeline becomes the controlling instance and spatio-temporal links the basis for document access. In other words: we want to include the web into hyperlinked film and not vice versa.</p>
+          </div>
+          <div class="col-md-4">
+            <h3>Simplicity</h3>
+            <p>In order to allow everyone to freely install, adjust and extend FrameTrail, we decided to use intentionally simple technology and self-contained formats. Everything is filebased (no database) and there are no complex build environments or media transcoding frameworks included. The drawback of this approach is that some things might not always work as easy as on a fully-fledged media platform.</p>
+          </div>
+        </div>
+
+        <h3>Dynamic Design</h3>
+
+        <div class="row">
+          <div class="col-4 col-md-2">
+            <img src="images/frametrail-layout-5.png" class="full-width" />
+          </div>
+          <div class="col-4 col-md-2">
+            <img src="images/frametrail-layout-6.png" class="full-width" />
+          </div>
+          <div class="col-4 col-md-2">
+            <img src="images/frametrail-layout-1.png" class="full-width" />
+          </div>
+          <div class="col-4 col-md-2">
+            <img src="images/frametrail-layout-2.png" class="full-width" />
+          </div>
+          <div class="col-4 col-md-2">
+            <img src="images/frametrail-layout-3.png" class="full-width" />
+          </div>
+          <div class="col-4 col-md-2">
+            <img src="images/frametrail-layout-4.png" class="full-width" />
+          </div>
+        </div>
+
+        <p style="margin-top: 16px;">The way you use, arrange and display the different components of FrameTrail is up to you and the affordances of your project. From just using FrameTrail as a full-site video player up to using it as a highly interactive hypervideo solution, everything is dynamically configurable (see also: <a href="tutorials-gettingstarted.html">Getting Started</a> > Layout Areas).</p>
+
+    </div>
+
+    <div class="container" id="tutorials">
+
+      <hr>
+
+        <h2>Tutorials</h2>
+
+        <div class="row" style="padding-bottom: 30px;">
+          <div class="col-md-6">
+            To help you get started we've put together several step-by-step tutorials on all aspects of FrameTrail. Just choose one of the links:
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 col-md-2">
+            <div class="featureCircle">
+              <a href="installation.html" class="featureContent">
+                <div class="featureContentTable">
+                  <div class="featureContentCell">Installation</div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-4 col-md-2">
+            <div class="featureCircle">
+              <a href="tutorials-gettingstarted.html" class="featureContent">
+                <div class="featureContentTable">
+                  <div class="featureContentCell">Getting Started</div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-4 col-md-2">
+            <div class="featureCircle">
+              <a href="tutorials-editing.html" class="featureContent">
+                <div class="featureContentTable">
+                  <div class="featureContentCell">Editing Hypervideos</div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-4 col-md-2">
+            <div class="featureCircle">
+              <a href="tutorials-resourcemanager.html" class="featureContent">
+                <div class="featureContentTable">
+                  <div class="featureContentCell">Managing Resources</div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-4 col-md-2">
+            <div class="featureCircle">
+              <a href="tutorials-usermanagement.html" class="featureContent">
+                <div class="featureContentTable">
+                  <div class="featureContentCell">User Management</div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-4 col-md-2">
+            <div class="featureCircle">
+              <a href="tutorials-advanced.html" class="featureContent">
+                <div class="featureContentTable">
+                  <div class="featureContentCell">Advanced Use</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+    </div>
+
+    <div class="invertedBackground">
+      <div class="container">
+
+          <h2>Contribute!</h2>
+          <div class="row">
+            <div class="col-md-6">
+              <h3>Join us on Github</h3>
+              <p>Are you a developer and want to remix / improve / extend this software? Please head over to the <a href="contributing.html">Contributors Guide</a> and the <a href="docs.html">API Documentation</a>.</p>
+              <h3>Contributors</h3>
+              <p><a href="http://filmicweb.org" style="color: #ccccd5" target="_blank">Joscha Jäger</a>, Michael J. Zeder, Michael Morgenstern, Olivier Aubert, Jacob Friedman</p>
+              <h3>Contact</h3>
+              <p>Twitter: <a href="https://twitter.com/FrameTrail">@FrameTrail</a><br>
+              Mail: joscha.jaeger | at | filmicweb | dot | org</p>
+            </div>
+            <div class="col-md-4 offset-md-2">
+              <h3>License</h3>
+              <p>FrameTrail is dual licensed under <a href="http://www.opensource.org/licenses/mit-license.php">MIT</a> and <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPL v3</a> Licenses. <br><br>
+              For more info check out the <a href="https://github.com/OpenHypervideo/FrameTrail/blob/master/LICENSE.md" target="_blank">License Details</a>.</p>
+              <a target="_blank" href="https://www.bmbf.de/en/index.html"><img src="images/logo_bmbf.png" style="width: 140px; margin-top: 30px;" /></a>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+  </body>
+</html>

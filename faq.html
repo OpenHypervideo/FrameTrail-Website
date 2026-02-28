@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>FrameTrail - FAQ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="css/style.css" media="screen">
+    <meta name="description" content="FrameTrail is an open source software that lets you experience, manage and edit interactive video directly in your web browser. It enables you to hyperlink filmic contents, include additional multimedia documents (e.g. text overlays, images or interactive maps) and to add supplementing materials (annotations) at specific points.">
+    <meta property="og:title" content="FrameTrail - Create, Annotate & Remix Interactive Videos" />
+    <meta property="og:url" content="http://frametrail.org" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="http://frametrail.org/images/frametrail-screenshot.png" />
+    <meta property="og:description" content="FrameTrail is an open source software that let's you experience, manage and edit interactive video directly in your web browser. It enables you to hyperlink filmic contents, include additional multimedia documents (e.g. text overlays, images or interactive maps) and to add supplementing materials (annotations) at specific points." />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@FrameTrail">
+    <meta name="twitter:title" content="FrameTrail - Create, Annotate & Remix Interactive Videos">
+    <meta name="twitter:description" content="FrameTrail is an open source software that let's you experience, manage and edit interactive video directly in your web browser. It enables you to hyperlink filmic contents, include additional multimedia documents (e.g. text overlays, images or interactive maps) and to add supplementing materials (annotations) at specific points.">
+    <meta name="twitter:image" content="http://frametrail.org/images/frametrail-screenshot.png">
+
+    <link rel="icon" type="image/png" href="favicon.png" />
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/custom.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+      <div class="container">
+        <a href="./" class="navbar-brand">FrameTrail</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-main" aria-controls="navbar-main" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-main">
+          <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Tutorials</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="installation.html">Installation</a></li>
+                    <li><a class="dropdown-item" href="tutorials-gettingstarted.html">Getting Started</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="tutorials-editing.html">Editing Hypervideos</a></li>
+                    <li><a class="dropdown-item" href="tutorials-resourcemanager.html">Managing Resources</a></li>
+                    <li><a class="dropdown-item" href="tutorials-usermanagement.html">User Management</a></li>
+                    <li><a class="dropdown-item" href="tutorials-advanced.html">Advanced Use</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="faq.html">FAQ</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Project</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="about-project.html">Background</a></li>
+                  </ul>
+                </li>
+          </ul>
+          <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="https://github.com/OpenHypervideo/FrameTrail" target="_blank">Documentation (Github)</a>
+                </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="container" id="faqContainer">
+
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="logoHeadline">Frequently asked questions (FAQ)</h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+
+          <h3>General Questions</h3>
+
+          <div class="accordion" id="accordion">
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="question1">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="false" aria-controls="faq1">
+                  What is a "hypervideo"?
+                </button>
+              </h2>
+              <div id="faq1" class="accordion-collapse collapse" aria-labelledby="question1">
+                <div class="accordion-body">
+                  While hypertext systems like the World-Wide-Web evolved out of a certain community, the origins of hypervideo systems are difficult to name and depend on incoherent definitions. As a result, particularly web-based implementations are entitled "hypervideos" because they consist of some kind of interactive film. Even though some existing applications fit partly into the different hypervideo definitions, most of them do not go beyond transferring the simplified concept of web hypertext to film. With FrameTrail, we aim to create a hypervideo environment that provides a filmic answer to functional intertextuality in the form of hyperlinked, non-linear video fragments. We are not there yet, but by using the term, we want to explicitly set foot on that path.<br>
+                  Read more on the <a href="http://www.open-hypervideo.org/thesis.html#chapter2-3" target="_blank">History and Definition</a> of the hypervideo concept.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="question2">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                  Why did you re-invent the wheel?
+                </button>
+              </h2>
+              <div id="faq2" class="accordion-collapse collapse" aria-labelledby="question2">
+                <div class="accordion-body">
+                  There are many great applications and frameworks which enable you to do similar or even more sophisticated things (<a href="http://popcornjs.org/" target="_blank">PopcornJS</a>, <a href="https://github.com/mozilla/popcorn-editor" target="_blank">Popcorn Editor</a> and the discontinued <a href="https://popcorn.webmaker.org/" target="_blank">Popcorn Maker</a> application, <a href="http://korsakow.org" target="_blank">Korsakov</a> or <a href="http://www.klynt.net/" target="_blank">Klynt</a>, just to name a few).<br>
+                  We do very much respect their efforts and encourage you to use these tools, but FrameTrail was built around a <a href="./#principles">different set of goals and principles</a>. We thoroughly thought about using the PopcornJS Library and some of its <a href="https://github.com/brianchirls/popcorn-inception" target="_blank">plugins</a> at least as a basis for synchronization, but decided to go with a custom implementation which incorporates the <a href="docs.html">simple module, type and state architecture</a> of FrameTrail.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="question3">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                  Why "FrameTrail"?
+                </button>
+              </h2>
+              <div id="faq3" class="accordion-collapse collapse" aria-labelledby="question3">
+                <div class="accordion-body">
+                  "Frames" are the <a href="https://en.wikipedia.org/wiki/Film_frame" target="_blank">most basic components of film</a> (moving images). A "Trail" is in this context the path these frames take when composed to a film sequence (a "trail of single frames" if you wish). The term stems from Vannevar Bushs groundbreaking essay <a href="http://www.theatlantic.com/magazine/archive/1945/07/as-we-may-think/303881/" target="_blank">"As We May Think"</a> (1945) and his description of <a href="https://en.wikipedia.org/wiki/Memex#Associative_trails" target="_blank">associative trails in the "memex" concept</a> (which laid the foundation for all future hypertext systems, including the World-Wide-Web).<br>
+                  By choosing this name, we want to pay tribute to the <a href="http://www.open-hypervideo.org/thesis.html#chapter2-2-1" target="_blank">original hypertext ideas</a> (which contained many great concepts from which only the simplest made it into the WWW) and set the longterm goal to re-invent some of them for film-based hypermedia.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+          <h3>Using FrameTrail</h3>
+
+          <div class="accordion" id="usingframetrail">
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="question21">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq21" aria-expanded="false" aria-controls="faq21">
+                  Why does [...] not work?
+                </button>
+              </h2>
+              <div id="faq21" class="accordion-collapse collapse" aria-labelledby="question21">
+                <div class="accordion-body">
+                  FrameTrail has been developed as a simple tool requiring only little knowledge and effort to set up and extend. On the contrary, you as a user have to take care of web-ready data formats and a suitable technical environment (i.e. small images, correctly encoded video files and a modern browser). If you think you did everything right and still experience problems, <a href="contributing.html">please inform us of bugs or any other issues you have</a>.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="question24">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq24" aria-expanded="false" aria-controls="faq24">
+                  Why is everything so slow?
+                </button>
+              </h2>
+              <div id="faq24" class="accordion-collapse collapse" aria-labelledby="question24">
+                <div class="accordion-body">
+                  You most likely added many webpage resources. While there is generally no limit, please keep in mind that every webpage you add as annotation or overlay needs to be fully loaded in the browser. So if you add 30 webpage resources to your hypervideo, this is similar to opening 30 websites at once in one browser window. <br>
+                  Some websites need more browser performance than others. Under extreme circumstances, a single website can be enough to crash the entire application. As we obviously don't have control over external webpages, just check if it get's better when you remove certain webpage resources from the hypervideo.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="question23">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq23" aria-expanded="false" aria-controls="faq23">
+                  How do I make these "mp4" files?
+                </button>
+              </h2>
+              <div id="faq23" class="accordion-collapse collapse" aria-labelledby="question23">
+                <div class="accordion-body">
+                  Converting your video file into the required format is fortunately very easy. Just get <a href="http://www.mirovideoconverter.com" target="_blank">Miro Video Converter</a>, drag your files into the application and covert them to "MP4". If you are using another tool, the recommended export settings for your video file are <b>MP4-H264 with 720p, 25fps and 3mbit Bitrate</b>. <br>
+                  In the FrameTrail upload interface you will also see a size limitation (depending on the server you are using). If your converted files are still too big, just play with the settings in Miro to try and get them smaller.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="question26">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq26" aria-expanded="false" aria-controls="faq26">
+                  What images can I upload?
+                </button>
+              </h2>
+              <div id="faq26" class="accordion-collapse collapse" aria-labelledby="question26">
+                <div class="accordion-body">
+                  You can use files with the ending: "jpg", "jpeg", "gif" and "png". In order to make your images "web-ready" (small filesize), please check out this great tutorial: <a href="http://digitalwriting101.net/content/how-to-make-an-image-web-ready/" target="_blank">HOW TO - Make Your Images Web-Ready</a>.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="question211">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq211" aria-expanded="false" aria-controls="faq211">
+                  What subtitle formats can I use?
+                </button>
+              </h2>
+              <div id="faq211" class="accordion-collapse collapse" aria-labelledby="question211">
+                <div class="accordion-body">
+                  For the subtitles, you have to use files in the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Video_Text_Tracks_Format" target="_blank">"WebVTT"</a> (.vtt) format. We might integrate parsers for other formats (like SRT) in the future, but for the moment you have to use this format or convert your existing SRT files to WebVTT. <br>
+                  There are a number of simple converters:<br>
+                  <a href="https://github.com/woollybogger/srt-to-vtt-converter" target="_blank">https://github.com/woollybogger/srt-to-vtt-converter</a><br>
+                  <a href="https://atelier.u-sub.net/srt2vtt/" target="_blank">https://atelier.u-sub.net/srt2vtt/</a><br>
+                  <a href="http://www.webvtt.org/" target="_blank">http://www.webvtt.org/</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="question27">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq27" aria-expanded="false" aria-controls="faq27">
+                  Where can I upload [Word (.docx), PowerPoint (.pptx), etc.] files?
+                </button>
+              </h2>
+              <div id="faq27" class="accordion-collapse collapse" aria-labelledby="question27">
+                <div class="accordion-body">
+                  FrameTrail is a web application. This means you can only work with files which are "web-ready" / can be displayed in a browser. Please stick with the formats offered within the upload interface.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="question25">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq25" aria-expanded="false" aria-controls="faq25">
+                  Why can I not login?
+                </button>
+              </h2>
+              <div id="faq25" class="accordion-collapse collapse" aria-labelledby="question25">
+                <div class="accordion-body">
+                  Did you login with the right credentials, but a warning message says: "User is not active. Please contact an admin!"?<br>
+                  This means that you have successfully been registered, but a security setting requires that your account is activated by an administrator before you can actually login.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="question210">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq210" aria-expanded="false" aria-controls="faq210">
+                  What happens when I "fork" a Hypervideo?
+                </button>
+              </h2>
+              <div id="faq210" class="accordion-collapse collapse" aria-labelledby="question210">
+                <div class="accordion-body">
+                  Hypervideos are managed by their authors, thus a normal user can only "annotate" them but cannot change Overlays or Video Links. By forking a hypervideo, you create a copy for yourself that you completely own and are fully able to edit. As a reference is still kept to the "origin", forking is more than just copying or cloning. The term <a href="https://en.wikipedia.org/wiki/Fork_%28software_development%29" target="_blank">stems from open source software development</a>.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="question29">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq29" aria-expanded="false" aria-controls="faq29">
+                  Can I export a Hypervideo / entire project?
+                </button>
+              </h2>
+              <div id="faq29" class="accordion-collapse collapse" aria-labelledby="question29">
+                <div class="accordion-body">
+                  We are working on this functionality. The plan is to provide you with the means to export a standalone version of a single Hypervideo or even an entire project, which doesn't require a server to be accessed and can be imported again at any time into the application.<br>
+                  For the moment, you can export / share FrameTrail projects by just copying the "/_data" folder and pasting it into another FrameTrail instance. Everything, including the user accounts and settings will be included in that folder.
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+          <h3>Technical Questions</h3>
+
+          <div class="accordion" id="technicalquestions">
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="question32">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq32" aria-expanded="false" aria-controls="faq32">
+                  Where are the build environments, pre-processors or unit tests?
+                </button>
+              </h2>
+              <div id="faq32" class="accordion-collapse collapse" aria-labelledby="question32">
+                <div class="accordion-body">
+                  FrameTrail has been built with the aim to include users with very basic programming skills in the process of extending and remixing the application. Setting up tools like "Grunt", "bower" etc. is not just hard for some beginners, using them also results in two different code bases (source and build), which, even if you don't minify any code, introduces the concept of code compilation to web applications. We know these concepts are very useful for large scale web development, but think they are an unnecessary overkill for a tool like FrameTrail. <br>
+                  We are however thinking of integrating a CSS pre-processor to make style adjustments more easy.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="question33">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq33" aria-expanded="false" aria-controls="faq33">
+                  Why don't you use FFMPEG, ImageMagick / GD to convert and optimize media files?
+                </button>
+              </h2>
+              <div id="faq33" class="accordion-collapse collapse" aria-labelledby="question33">
+                <div class="accordion-body">
+                  To keep down the server requirements and administrative knowledge required to install FrameTrail. But we are thinking of integrating respective tools and libraries as extra modules, which you may or may not use based on your skills.
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+        <div class="col-md-3">
+          <h3>What if my question is not answered here?</h3>
+          <p>Ping us on Twitter (<a href="http://twitter.com/FrameTrail">@FrameTrail</a>).</p>
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+</html>
