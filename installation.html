@@ -71,37 +71,68 @@
         <div class="col-md-9">
           <h3>Deployment Modes</h3>
           <p>FrameTrail supports three different deployment modes — choose the one that fits your use case:</p>
-
-          <div class="card card-body">
-            <div class="row">
-              <div class="col-md-4">
-                <h4>Server Mode</h4>
-                <p>Full-featured multi-user setup with file uploads, user management, and collaborative editing.</p>
-                <ul>
-                  <li>PHP 7.4 or later</li>
-                  <li>Apache (recommended) or nginx with PHP-FPM</li>
-                  <li>Write permissions on the <code>_data/</code> directory</li>
-                </ul>
-              </div>
-              <div class="col-md-4">
-                <h4>Local Folder Mode</h4>
-                <p>Single-user editing directly from a local folder — no server required.</p>
-                <ul>
-                  <li>Chrome or Edge (requires File System Access API)</li>
-                  <li>Open <code>index.html</code> directly in the browser</li>
-                  <li>No transcoding or user management</li>
-                </ul>
-              </div>
-              <div class="col-md-4">
-                <h4>In-Memory Mode</h4>
-                <p>View and edit hypervideos in any browser without persistent storage.</p>
-                <ul>
-                  <li>All modern browsers (Firefox, Safari, Chrome, Edge)</li>
-                  <li>Export your work as JSON via "Save As"</li>
-                  <li>No file uploads; use URLs only</li>
-                </ul>
-              </div>
-            </div>
+          
+          <div class="table-responsive">
+            <table class="table table-bordered table-sm">
+              <thead class="table-dark">
+                <tr>
+                  <th></th>
+                  <th>Server mode</th>
+                  <th>Local folder mode</th>
+                  <th>In-memory mode</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>Requirements</b></td>
+                  <td>PHP 7.4+</td>
+                  <td>Chrome or Edge</td>
+                  <td>Any modern browser</td>
+                </tr>
+                <tr>
+                  <td><b>Edit hypervideos</b> <small class="text-muted">(overlays, annotations, code snippets, layout, theme)</small></td>
+                  <td>&#10003;</td>
+                  <td>&#10003;</td>
+                  <td>&#10003;</td>
+                </tr>
+                <tr>
+                  <td><b>Persistent saves</b></td>
+                  <td>&#10003;</td>
+                  <td>&#10003;</td>
+                  <td>&#8212; <small class="text-muted">(export via Save As)</small></td>
+                </tr>
+                <tr>
+                  <td><b>Manage hypervideos</b> <small class="text-muted">(add / edit / delete)</small></td>
+                  <td>&#10003;</td>
+                  <td>&#10003;</td>
+                  <td>&#8212;</td>
+                </tr>
+                <tr>
+                  <td><b>Manage resources</b> <small class="text-muted">(add / delete)</small></td>
+                  <td>&#10003;</td>
+                  <td>&#10003;</td>
+                  <td>&#8212;</td>
+                </tr>
+                <tr>
+                  <td><b>Thumbnail generation</b></td>
+                  <td>&#10003; <small class="text-muted">(server-side)</small></td>
+                  <td>&#10003; <small class="text-muted">(client-side)</small></td>
+                  <td>&#8212;</td>
+                </tr>
+                <tr>
+                  <td><b>Authentication &amp; multi-user accounts</b></td>
+                  <td>&#10003;</td>
+                  <td>&#8212;</td>
+                  <td>&#8212;</td>
+                </tr>
+                <tr>
+                  <td><b>Media transcoding</b></td>
+                  <td>&#10003;</td>
+                  <td>&#8212;</td>
+                  <td>&#8212;</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <h3>Server Setup (Recommended)</h3>
@@ -127,27 +158,7 @@
               <li>Enter a display name to identify yourself — no account or password is needed in this mode.</li>
             </ol>
           </div>
-
-          <h3>Adding your first hypervideo</h3>
-
-          <div class="card card-body">
-            <ol>
-              <li>Click the <b>Edit</b> button in the top right and log in with your administrator account (or enter a name in local mode).</li>
-              <li>In the titlebar, click <b>"New Hypervideo"</b> and follow the instructions to choose a video source (HTML5, YouTube, Vimeo, and more).</li>
-            </ol>
-          </div>
-
-          <h3>Adding resources</h3>
-
-          <div class="card card-body">
-            <ol>
-              <li>Click the <b>Edit</b> button and log in.</li>
-              <li>In the titlebar, click <b>"Manage Resources"</b> to open the Resource Manager.</li>
-              <li>Click <b>"Add Resource"</b> and either upload a file or paste a URL. FrameTrail supports a wide range of resource types including video, images, audio, PDFs, YouTube, Vimeo, maps, and more.</li>
-              <li>Once added, resources can be dragged onto the timeline as overlays or annotations.</li>
-            </ol>
-          </div>
-
+          
           <div class="card card-body">
             <h4>That's it! You might want to read the <a href="tutorials-gettingstarted.html">Getting Started</a> Tutorial now.</h4>
           </div>
