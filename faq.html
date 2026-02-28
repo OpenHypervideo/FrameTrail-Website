@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="css/style.css" media="screen">
-    <meta name="description" content="Frequently asked questions about FrameTrail — the open source hypervideo tool. Find answers on installation, usage, file formats, user accounts, forking, and technical questions.">
-    <meta name="keywords" content="FrameTrail FAQ, hypervideo questions, interactive video help, FrameTrail support, video formats, WebVTT subtitles">
+    <meta name="description" content="Frequently asked questions about FrameTrail — the open source hypervideo tool. Find answers on installation, deployment modes, video formats, FFmpeg, user accounts, forking, and technical questions.">
+    <meta name="keywords" content="FrameTrail FAQ, hypervideo questions, interactive video help, FrameTrail support, video formats, WebVTT subtitles, FFmpeg, deployment modes">
     <link rel="canonical" href="https://frametrail.org/faq.html" />
     <meta property="og:title" content="FrameTrail - Frequently Asked Questions" />
     <meta property="og:url" content="https://frametrail.org/faq.html" />
@@ -29,15 +29,31 @@
           "name": "What is a hypervideo?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A hypervideo is an interactive video that enables hyperlinked, non-linear video fragments. With FrameTrail, we aim to create a hypervideo environment providing a filmic answer to functional intertextuality in the form of hyperlinked, non-linear video fragments."
+            "text": "A hypervideo is an interactive video that enables hyperlinked, non-linear navigation between video fragments. With FrameTrail, we aim to create a hypervideo environment providing a filmic answer to functional intertextuality — think of a World-Wide-Web where interconnected text fragments are replaced by film."
           }
         },
         {
           "@type": "Question",
-          "name": "How do I make MP4 files for FrameTrail?",
+          "name": "What are the different deployment modes?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Use Miro Video Converter to convert your video files to MP4. The recommended export settings are MP4-H264 with 720p, 25fps and 3mbit Bitrate."
+            "text": "FrameTrail supports three deployment modes: Server mode (requires PHP 7.4+, supports all features including media transcoding and multi-user accounts), Local Folder mode (requires Chrome or Edge, no PHP needed, data saved to a local folder), and In-memory mode (any modern browser, no persistent saves — export via Save As)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does Local Folder mode require Chrome or Edge?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Local Folder mode uses the File System Access API to read and write files directly on your computer. This API is currently only supported by Chromium-based browsers (Chrome and Edge). Firefox does not support it. If you need Firefox support, use Server mode instead."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does video upload require a specific format?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In server mode with FFmpeg installed, FrameTrail transcodes uploaded videos automatically — you can upload most common formats. In local folder or in-memory mode, the browser plays the file directly, so MP4 with H.264 encoding is recommended for broadest compatibility."
           }
         },
         {
@@ -53,7 +69,7 @@
           "name": "What subtitle formats can I use?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "FrameTrail supports the WebVTT (.vtt) subtitle format. You can convert existing SRT files to WebVTT using online converters."
+            "text": "FrameTrail supports the WebVTT (.vtt) subtitle format. You can convert existing SRT files using FFmpeg: ffmpeg -i input.srt output.vtt"
           }
         },
         {
@@ -86,6 +102,14 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "You most likely added many webpage resources. Every webpage added as an annotation or overlay needs to be fully loaded in the browser, similar to opening multiple websites at once."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is FFmpeg required, and how do I install it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "FFmpeg is optional but required for server-side video transcoding and thumbnail generation in server mode. Without it, thumbnails are generated client-side instead. To check if it is installed, run 'ffmpeg -version' in a terminal. To install: on Debian/Ubuntu use 'sudo apt install ffmpeg', on macOS use 'brew install ffmpeg', or download from ffmpeg.org."
           }
         }
       ]
@@ -154,16 +178,8 @@
           <div class="card mb-3" id="faq1">
             <div class="card-body">
               <h5 class="card-title">What is a "hypervideo"?</h5>
-              While hypertext systems like the World-Wide-Web evolved out of a certain community, the origins of hypervideo systems are difficult to name and depend on incoherent definitions. As a result, particularly web-based implementations are entitled "hypervideos" because they consist of some kind of interactive film. Even though some existing applications fit partly into the different hypervideo definitions, most of them do not go beyond transferring the simplified concept of web hypertext to film. With FrameTrail, we aim to create a hypervideo environment that provides a filmic answer to functional intertextuality in the form of hyperlinked, non-linear video fragments. We are not there yet, but by using the term, we want to explicitly set foot on that path.<br>
+              A hypervideo is an interactive video that enables hyperlinked, non-linear navigation between video fragments. With FrameTrail, we aim to create a hypervideo environment that provides a filmic answer to functional intertextuality — think of a World-Wide-Web where interconnected text fragments are replaced by film. By using the term, we want to explicitly set foot on that path.<br>
               Read more on the <a href="http://www.open-hypervideo.org/thesis.html#chapter2-3" target="_blank">History and Definition</a> of the hypervideo concept.
-            </div>
-          </div>
-
-          <div class="card mb-3" id="faq2">
-            <div class="card-body">
-              <h5 class="card-title">Why did you re-invent the wheel?</h5>
-              There are many great applications and frameworks which enable you to do similar or even more sophisticated things (<a href="http://popcornjs.org/" target="_blank">PopcornJS</a>, <a href="https://github.com/mozilla/popcorn-editor" target="_blank">Popcorn Editor</a> and the discontinued <a href="https://popcorn.webmaker.org/" target="_blank">Popcorn Maker</a> application, <a href="http://korsakow.org" target="_blank">Korsakov</a> or <a href="http://www.klynt.net/" target="_blank">Klynt</a>, just to name a few).<br>
-              We do very much respect their efforts and encourage you to use these tools, but FrameTrail was built around a <a href="./#principles">different set of goals and principles</a>. We thoroughly thought about using the PopcornJS Library and some of its <a href="https://github.com/brianchirls/popcorn-inception" target="_blank">plugins</a> at least as a basis for synchronization, but decided to go with a custom implementation which incorporates the <a href="docs.html">simple module, type and state architecture</a> of FrameTrail.
             </div>
           </div>
 
@@ -172,6 +188,28 @@
               <h5 class="card-title">Why "FrameTrail"?</h5>
               "Frames" are the <a href="https://en.wikipedia.org/wiki/Film_frame" target="_blank">most basic components of film</a> (moving images). A "Trail" is in this context the path these frames take when composed to a film sequence (a "trail of single frames" if you wish). The term stems from Vannevar Bushs groundbreaking essay <a href="http://www.theatlantic.com/magazine/archive/1945/07/as-we-may-think/303881/" target="_blank">"As We May Think"</a> (1945) and his description of <a href="https://en.wikipedia.org/wiki/Memex#Associative_trails" target="_blank">associative trails in the "memex" concept</a> (which laid the foundation for all future hypertext systems, including the World-Wide-Web).<br>
               By choosing this name, we want to pay tribute to the <a href="http://www.open-hypervideo.org/thesis.html#chapter2-2-1" target="_blank">original hypertext ideas</a> (which contained many great concepts from which only the simplest made it into the WWW) and set the longterm goal to re-invent some of them for film-based hypermedia.
+            </div>
+          </div>
+
+
+          <h3>Installation &amp; Setup</h3>
+
+          <div class="card mb-3" id="faq_modes">
+            <div class="card-body">
+              <h5 class="card-title">What are the different deployment modes?</h5>
+              FrameTrail supports three deployment modes — see the <a href="installation.html">Installation guide</a> for the full comparison table:
+              <ul style="margin-top: 8px; margin-bottom: 0;">
+                <li><b>Server mode</b> — requires PHP 7.4+. Supports all features: persistent saves, multi-user accounts, media transcoding (with FFmpeg), and thumbnail generation.</li>
+                <li><b>Local Folder mode</b> — requires Chrome or Edge. No PHP or server needed. Data is saved directly to a folder on your computer.</li>
+                <li><b>In-memory mode</b> — works in any modern browser. No persistent saves (export via Save As). </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card mb-3" id="faq_chrome">
+            <div class="card-body">
+              <h5 class="card-title">Why does Local Folder mode require Chrome or Edge?</h5>
+              Local Folder mode uses the <a href="https://developer.mozilla.org/en-US/docs/Web/API/File_System_Access_API" target="_blank">File System Access API</a> to read and write files directly on your computer. This API is currently only supported by Chromium-based browsers (Chrome and Edge). Firefox does not support it. If you need Firefox support, use Server mode instead.
             </div>
           </div>
 
@@ -195,27 +233,28 @@
 
           <div class="card mb-3" id="faq23">
             <div class="card-body">
-              <h5 class="card-title">How do I make these "mp4" files?</h5>
-              Converting your video file into the required format is fortunately very easy. Just get <a href="http://www.mirovideoconverter.com" target="_blank">Miro Video Converter</a>, drag your files into the application and covert them to "MP4". If you are using another tool, the recommended export settings for your video file are <b>MP4-H264 with 720p, 25fps and 3mbit Bitrate</b>. <br>
-              In the FrameTrail upload interface you will also see a size limitation (depending on the server you are using). If your converted files are still too big, just play with the settings in Miro to try and get them smaller.
+              <h5 class="card-title">Does video upload require a specific format?</h5>
+              It depends on which deployment mode you are using:
+              <ul style="margin-top: 8px; margin-bottom: 0;">
+                <li><b>Server mode with FFmpeg:</b> FrameTrail transcodes uploaded videos automatically on the server, so you can upload most common formats (MP4, MOV, AVI, MKV, etc.).</li>
+                <li><b>Local Folder or In-memory mode:</b> The browser plays the file directly — no transcoding happens. Use <b>MP4 with H.264 encoding</b> for the broadest browser compatibility. Recommended settings: 720p, 25 fps, ~3 Mbit/s bitrate.</li>
+              </ul>
             </div>
           </div>
 
           <div class="card mb-3" id="faq26">
             <div class="card-body">
               <h5 class="card-title">What images can I upload?</h5>
-              You can use files with the ending: "jpg", "jpeg", "gif" and "png". In order to make your images "web-ready" (small filesize), please check out this great tutorial: <a href="http://digitalwriting101.net/content/how-to-make-an-image-web-ready/" target="_blank">HOW TO - Make Your Images Web-Ready</a>.
+              You can use files with the ending: "jpg", "jpeg", "gif" and "png". Keep file sizes small for smooth playback — images should generally be under 500 KB.
             </div>
           </div>
 
           <div class="card mb-3" id="faq211">
             <div class="card-body">
               <h5 class="card-title">What subtitle formats can I use?</h5>
-              For the subtitles, you have to use files in the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Video_Text_Tracks_Format" target="_blank">"WebVTT"</a> (.vtt) format. We might integrate parsers for other formats (like SRT) in the future, but for the moment you have to use this format or convert your existing SRT files to WebVTT. <br>
-              There are a number of simple converters:<br>
-              <a href="https://github.com/woollybogger/srt-to-vtt-converter" target="_blank">https://github.com/woollybogger/srt-to-vtt-converter</a><br>
-              <a href="https://atelier.u-sub.net/srt2vtt/" target="_blank">https://atelier.u-sub.net/srt2vtt/</a><br>
-              <a href="http://www.webvtt.org/" target="_blank">http://www.webvtt.org/</a>
+              For the subtitles, you have to use files in the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Video_Text_Tracks_Format" target="_blank">"WebVTT"</a> (.vtt) format. You can convert existing SRT files using FFmpeg:<br>
+              <code>ffmpeg -i input.srt output.vtt</code><br><br>
+              Or use an online converter if you prefer a graphical tool.
             </div>
           </div>
 
@@ -244,20 +283,26 @@
           <div class="card mb-3" id="faq29">
             <div class="card-body">
               <h5 class="card-title">Can I export a Hypervideo / entire project?</h5>
-              We are working on this functionality. The plan is to provide you with the means to export a standalone version of a single Hypervideo or even an entire project, which doesn't require a server to be accessed and can be imported again at any time into the application.<br>
-              For the moment, you can export / share FrameTrail projects by just copying the "/_data" folder and pasting it into another FrameTrail instance. Everything, including the user accounts and settings will be included in that folder.
+              You can export or share FrameTrail projects by copying the <code>/_data</code> folder and pasting it into another FrameTrail instance. Everything, including the user accounts and settings, will be included in that folder.
             </div>
           </div>
 
           <h3>Technical Questions</h3>
 
-          <div class="card mb-3" id="faq33">
+          <div class="card mb-3" id="faq_ffmpeg">
             <div class="card-body">
-              <h5 class="card-title">Why don't you use FFMPEG, ImageMagick / GD to convert and optimize media files?</h5>
-              To keep down the server requirements and administrative knowledge required to install FrameTrail. But we are thinking of integrating respective tools and libraries as extra modules, which you may or may not use based on your skills.
+              <h5 class="card-title">Is FFmpeg required, and how do I install it?</h5>
+              FFmpeg is <b>optional</b> but required for server-side video transcoding and thumbnail generation in server mode. Without it, FrameTrail still works — uploaded videos just need to be browser-compatible (MP4/H.264) and thumbnails will be generated client-side instead.<br><br>
+              <b>Check if FFmpeg is installed:</b><br>
+              <code>ffmpeg -version</code><br><br>
+              <b>Install FFmpeg:</b>
+              <ul style="margin-bottom: 0;">
+                <li><b>Debian / Ubuntu:</b> <code>sudo apt install ffmpeg</code></li>
+                <li><b>macOS (Homebrew):</b> <code>brew install ffmpeg</code></li>
+                <li><b>Windows:</b> Download from <a href="https://ffmpeg.org/download.html" target="_blank">ffmpeg.org/download.html</a> and add it to your PATH.</li>
+              </ul>
             </div>
           </div>
-
 
         </div>
 
