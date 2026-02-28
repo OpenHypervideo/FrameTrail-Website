@@ -13,6 +13,21 @@
 	src: url("../fonts/Titillium_Web/TitilliumWeb-Light.ttf") format("truetype");
 }
 
+/* Container widths from Bootstrap 3 */
+@media (min-width: 576px) {
+	.container, .container-sm { max-width: 100%; } 
+}
+@media (min-width: 768px) {
+	.container { max-width: 750px; }
+}
+@media (min-width: 992px) {
+	body { padding-top: 90px !important; }
+	.container { max-width: 970px; }
+}
+@media (min-width: 1200px) {
+  .container { max-width: 1170px; }
+}
+
 /* Generic Styles */
 
 body {
@@ -26,14 +41,14 @@ body {
 }
 
 /* Link color */
-a { color: #18bc9c; }
-a:hover, a:focus { color: #128f76; }
+a { color: #42a4c0; }
+a:hover, a:focus { color: #42a4c0; }
 
 /* Paragraph spacing: BS3 was 10px, BS5 is 1rem (16px) */
 p { margin-bottom: 10px; }
 
 /* HR: BS5 has opacity 0.25, BS3 was solid */
-hr { margin: 20px 0; border-top: 1px solid #eee; opacity: 1; }
+hr { margin: 20px 0; border-top: 1px solid #aeaeae; opacity: 1; }
 
 /* Blockquote: BS3 had a left border, BS5 is unstyled */
 blockquote {
@@ -47,11 +62,13 @@ blockquote {
 .navbar {
 	background-color: #2F323A;
 	border-color: transparent;
+	padding-top: 0px; 
+	padding-bottom: 0px;
 }
 .navbar-dark .navbar-brand { color: #fff; }
 .navbar-dark .navbar-brand:hover,
 .navbar-dark .navbar-brand:focus { color: #fff; opacity: 0.8; }
-.navbar-dark .navbar-nav .nav-link { color: #ccccd5; }
+.navbar-dark .navbar-nav .nav-link { color: #ccccd5; padding: 15px 20px; }
 .navbar-dark .navbar-nav .nav-link:hover,
 .navbar-dark .navbar-nav .nav-link:focus { color: #fff; background-color: transparent; }
 .navbar-dark .navbar-nav .nav-link.active,
@@ -104,18 +121,85 @@ blockquote {
    Override to display:block to match BS3 .panel behaviour. */
 .card {
 	display: block;
+	margin-bottom: 20px;
+}
+
+.card .card-title {
+	font-size: 22px;
+	margin-top: 0px;
+	margin-bottom: 15px;
 }
 
 .jumbotron {
-	padding: 110px 60px 40px 60px;
+	padding: 80px 0px 0px 0px;
 }
 .jumbotron p {
 	margin-bottom: 15px;
 	font-size: 21px;
 	font-weight: 200;
 }
+.jumbotron h1,
+.jumbotron .h1 {
+	color: inherit;
+}
 .jumbotron > hr {
 	border-top-color: #d5d5d5;
+}
+.container .jumbotron,
+.container-fluid .jumbotron {
+	border-radius: 6px;
+	border: 0px solid #DFDFDF;
+}
+.jumbotron .container {
+	max-width: 100%;
+}
+@media screen and (min-width: 768px) {
+	.jumbotron {
+		padding-top: 100px;
+	}
+	.container .jumbotron,
+	.container-fluid .jumbotron {
+		padding-left: 60px;
+		padding-right: 60px;
+	}
+	.jumbotron h1,
+	.jumbotron .h1 {
+		font-size: 68px;
+	}
+}
+
+/* Headings from Bootstrap 3 */
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: TitilliumWeb,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-weight: 100;
+	line-height: 1.1;
+	color: inherit;
+}
+h1, .h1, h2, .h2, h3, .h3 {
+	margin-top: 21px;
+	margin-bottom: 10.5px;
+}
+h4, .h4, h5, .h5, h6, .h6 {
+	margin-top: 10.5px;
+	margin-bottom: 10.5px;
+}
+h1, .h1 {
+	font-size: 39px;
+}
+h2, .h2 {
+	font-size: 32px;
+}
+h3, .h3 {
+	font-size: 22px;
+}
+h4,	.h4 {
+	font-size: 19px;
+}
+h5,	.h5 {
+	font-size: 15px;
+}
+h6,	.h6 {
+	font-size: 13px;
 }
 
 ul, ol {
@@ -247,7 +331,7 @@ ul, ol {
 #logo {
   float: right;
   width: 220px;
-  margin: -20px 0 0px 30px;
+  margin: 10px 0 0px 30px;
 }
 
 @media (max-width: 1200px) {
@@ -258,14 +342,14 @@ ul, ol {
 
 @media (max-width: 992px) {
 	#logo {
-		margin-top: 0px;
+		margin-top: 20px;
 		width: 200px;
 	}
 }
 
 @media (max-width: 530px) {
 	#logo {
-		margin-top: 0px;
+		margin-top: 20px;
 		margin-bottom: 10px;
 		width: 140px;
 	}
@@ -273,7 +357,7 @@ ul, ol {
 
 @media (max-width: 480px) {
 	#logo {
-		margin-top: -6px;
+		margin-top: 20px;
 		margin-bottom: 0px;
 		width: 140px;
 	}

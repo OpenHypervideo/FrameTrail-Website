@@ -140,7 +140,7 @@
         <div class="col-md-12">
           <h3>Timeline</h3>
           <div class="card card-body">
-            <div class="row">
+            <div class="row gy-3">
               <div class="col-sm-6 col-md-4 col-lg-3">
                 <h5>2010<br>Experiments: Video-based Archive</h5>
                 <img src="https://filmicweb.org/assets/vba-03-player.jpg" class="full-width"/>
@@ -151,19 +151,23 @@
                 <img src="https://filmicweb.org/assets/hypervideo-prototype-01.jpg" class="full-width"/>
                 <a target="_blank" href="http://filmicweb.org/projects/experiments/">More Info</a>
               </div>
-              <hr>
+              <!-- break at sm (2 cols): after 2nd item ends row 1 -->
+              <div class="w-100 d-none d-sm-block d-md-none"><hr></div>
               <div class="col-sm-6 col-md-4 col-lg-3">
                 <h5>2012<br>Use Case: Document Access</h5>
                 <img src="https://filmicweb.org/assets/hypervideo-01-hotspot.png" class="full-width"/>
                 <a target="_blank" href="http://www.open-hypervideo.org/use-cases.html#documentaccess">More Info</a>
               </div>
-              <hr>
+              <!-- break at md (3 cols): after 3rd item ends row 1 -->
+              <div class="w-100 d-none d-md-block d-lg-none"><hr></div>
               <div class="col-sm-6 col-md-4 col-lg-3">
                 <h5>2012<br>Use Case: Science Communication</h5>
                 <img src="https://filmicweb.org/assets/is-screenshot-8.png" class="full-width"/>
                 <a target="_blank" href="http://www.open-hypervideo.org/use-cases.html#sciencecommunication">More Info</a>
               </div>
-              <hr>
+              <!-- break at sm (4th item ends row 2) and lg (4 cols: 4th item ends row 1) -->
+              <div class="w-100 d-none d-sm-block d-md-none"><hr></div>
+              <div class="w-100 d-none d-lg-block"><hr></div>
               <div class="col-sm-6 col-md-4 col-lg-3">
                 <h5>2014<br>Use Case: Flipped Classroom</h5>
                 <img src="https://filmicweb.org/assets/hypervideo-ocwc-3.png" class="full-width"/>

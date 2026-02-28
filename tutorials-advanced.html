@@ -68,7 +68,7 @@
       <h2 class="logoHeadline">Tutorials - Advanced Use</h2>
 
       <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-6">
 
           <h3>Javascript Code Snippets</h3>
 
@@ -76,50 +76,46 @@
           <div class="card card-body">
             <label>(Continue) playing current Hypervideo</label>
             <div class="input-group">
-              <input class="form-control" type="text" value='FrameTrail.module("HypervideoController").play();' style="width: 100%;"/>
+              <input class="form-control" type="text" value='FrameTrail.module("HypervideoController").play();' readonly/>
               <button class="copyBtn btn btn-outline-secondary btn-sm" type="button">copy</button>
             </div>
             <hr>
             <label>Pause current Hypervideo</label>
             <div class="input-group">
-              <input class="form-control" type="text" value='FrameTrail.module("HypervideoController").pause();' style="width: 100%;"/>
+              <input class="form-control" type="text" value='FrameTrail.module("HypervideoController").pause();' readonly/>
               <button class="copyBtn btn btn-outline-secondary btn-sm" type="button">copy</button>
             </div>
             <hr>
             <label>Jump to time 20 seconds (timing are always seconds)</label>
             <div class="input-group">
-              <input class="form-control" type="text" value='FrameTrail.module("HypervideoController").currentTime = 20;
-  ' style="width: 100%;"/>
+              <input class="form-control" type="text" value='FrameTrail.module("HypervideoController").currentTime = 20;' readonly/>
               <button class="copyBtn btn btn-outline-secondary btn-sm" type="button">copy</button>
             </div>
             <hr>
-            <label>Go to different Hypervideo (the ID, so here 3, of the Hypervideo is in the URL</label>
+            <label>Go to different Hypervideo (the ID, so here 3, of the Hypervideo is in the URL)</label>
             <div class="input-group">
-              <input class="form-control" type="text" value='location = "#hypervideo=3";' style="width: 100%;"/>
+              <input class="form-control" type="text" value='location = "#hypervideo=3";' readonly/>
               <button class="copyBtn btn btn-outline-secondary btn-sm" type="button">copy</button>
             </div>
             <hr>
-            <label>Go to different Hypervideo and start at second 20 (the ID, so here 3, of the Hypervideo is in the URL</label>
+            <label>Go to different Hypervideo and start at second 20 (the ID, so here 3, of the Hypervideo is in the URL)</label>
             <div class="input-group">
-              <input class="form-control" type="text" value='location = "#hypervideo=3&t=20";' style="width: 100%;"/>
+              <input class="form-control" type="text" value='location = "#hypervideo=3&t=20";' readonly/>
               <button class="copyBtn btn btn-outline-secondary btn-sm" type="button">copy</button>
             </div>
+          </div>
+
         </div>
 
-        <div class="col-md-3">
-          <h3></h3>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-9">
-        <h3>CSS Code Snippets</h3>
+        <div class="col-md-6">
+
+          <h3>CSS Code Snippets</h3>
 
           <div class="card card-body">Select, copy snippet and paste into the "<b>Custom CSS</b>" fields</div>
           <div class="card card-body">
             <label>Animate overlays (optionally filtered by type) on mouseover</label>
             <div class="input-group">
-              <textarea class="form-control" style="width: 100%; height: 130px;">
+              <textarea class="form-control" style="height: 130px;" readonly>
 .overlayElement .resourceDetail[data-type="image"]:hover {
   cursor: pointer;
   transform: scale(1.3);
@@ -131,7 +127,7 @@
             <label>Change size of right (or left) layout area to 50% width</label>
             <div style="margin-bottom: 10px;">see <a href="tutorials-gettingstarted.html" class="featureContent">Getting Started</a> > Layout Areas</div>
             <div class="input-group">
-              <textarea class="form-control" style="width: 100%; height: 110px;">
+              <textarea class="form-control" style="height: 110px;" readonly>
 .areaRightContainer[data-size="large"]:not(.closed) {
   flex: 0 0 50%;
   min-width: 50%;
@@ -142,7 +138,7 @@
             <label>Change size of top (or bottom) layout area to 25% height</label>
             <div style="margin-bottom: 10px;">see <a href="tutorials-gettingstarted.html" class="featureContent">Getting Started</a> > Layout Areas</div>
             <div class="input-group">
-              <textarea class="form-control" style="width: 100%; height: 110px;">
+              <textarea class="form-control" style="height: 110px;" readonly>
 .areaTopContainer[data-size="large"]:not(.closed) {
   flex: 0 0 25%;
   min-height: 25%;
@@ -151,8 +147,156 @@
             </div>
             <hr>
           </div>
+
+        </div>
       </div>
-    </div>
+      <hr>
+    <div class="container">
+
+      <h3>Player Initialization</h3>
+      <p>The FrameTrail player can be initialized directly on your own page in several ways. See the <a href="https://github.com/OpenHypervideo/FrameTrail/tree/main/examples" target="_blank">examples folder on GitHub</a> for working implementations of all options below.</p>
+
+      <div class="row">
+        <div class="col-md-12">
+
+          <h4>Option 1: Adopt an existing <code>&lt;video&gt;</code> element</h4>
+          <div class="card card-body">
+            <p>Point FrameTrail at a <code>&lt;video&gt;</code> tag already on your page. FrameTrail wraps it and takes control of playback.</p>
+            <div class="input-group">
+              <textarea class="form-control" style="height: 200px;" readonly>&lt;video id="my-video"
+       src="https://example.com/video.mp4"
+       style="width: 900px; height: 600px; display: block;"
+       playsinline=""&gt;
+&lt;/video&gt;
+
+&lt;script&gt;
+document.addEventListener('DOMContentLoaded', function() {
+    FrameTrail.init({
+        videoElement: '#my-video',
+        annotations:  'annotations.json',
+        language:     'en-US',
+        config:       { autohideControls: true }
+    }, 'PlayerLauncher');
+});
+&lt;/script&gt;</textarea>
+              <button class="copyBtn btn btn-outline-secondary btn-sm" type="button">copy</button>
+            </div>
+          </div>
+
+          <h4>Option 2: Explicit container with video URL</h4>
+          <div class="card card-body">
+            <p>Provide an empty <code>&lt;div&gt;</code> container and pass the video URL directly as an init option.</p>
+            <div class="input-group">
+              <textarea class="form-control" style="height: 170px;" readonly>&lt;div id="player" style="width: 900px; height: 600px;"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+document.addEventListener('DOMContentLoaded', function() {
+    FrameTrail.init({
+        target:      '#player',
+        videoSource: 'https://example.com/video.mp4',
+        annotations: 'annotations.json',
+        language:    'en-US'
+    }, 'PlayerLauncher');
+});
+&lt;/script&gt;</textarea>
+              <button class="copyBtn btn btn-outline-secondary btn-sm" type="button">copy</button>
+            </div>
+          </div>
+
+          <h4>Option 3: Data-attribute auto-init</h4>
+          <div class="card card-body">
+            <p>Decorate one or more <code>&lt;video&gt;</code> elements with <code>data-frametrail</code> attributes and call <code>FrameTrail.autoInit()</code> once. Useful when rendering multiple players on a single page.</p>
+            <div class="input-group">
+              <textarea class="form-control" style="height: 185px;" readonly>&lt;video data-frametrail
+       data-frametrail-annotations="annotations.json"
+       data-frametrail-language="en-US"
+       data-frametrail-config='{"autohideControls": true}'
+       src="https://example.com/video.mp4"
+       playsinline=""&gt;&lt;/video&gt;
+
+&lt;script&gt;
+document.addEventListener('DOMContentLoaded', function() {
+    FrameTrail.autoInit();
+    // Scope to a specific element: FrameTrail.autoInit(document.getElementById('article'));
+});
+&lt;/script&gt;</textarea>
+              <button class="copyBtn btn btn-outline-secondary btn-sm" type="button">copy</button>
+            </div>
+            <p style="margin-top: 10px;">Supported data attributes:</p>
+            <ul>
+              <li><code>data-frametrail</code> — marks the element for auto-initialization</li>
+              <li><code>data-frametrail-annotations</code> — URL of a W3C annotations JSON file</li>
+              <li><code>data-frametrail-language</code> — language code, e.g. <code>en-US</code></li>
+              <li><code>data-frametrail-config</code> — inline JSON configuration object</li>
+            </ul>
+          </div>
+
+          <h3>Initialization Options Reference</h3>
+          <div class="card card-body">
+            <table class="table table-sm" style="margin-bottom: 0;">
+              <thead><tr><th>Option</th><th>Purpose</th></tr></thead>
+              <tbody>
+                <tr><td><code>target</code></td><td>Container selector or DOM element to render the player into</td></tr>
+                <tr><td><code>videoElement</code></td><td>Selector of an existing <code>&lt;video&gt;</code> element to adopt</td></tr>
+                <tr><td><code>videoSource</code></td><td>Direct video URL (MP4, HLS, YouTube, Vimeo, …)</td></tr>
+                <tr><td><code>annotations</code></td><td>URL string, array of URLs, or inline W3C annotation objects</td></tr>
+                <tr><td><code>language</code></td><td>Language code for the UI (e.g. <code>en-US</code>, <code>de-DE</code>)</td></tr>
+                <tr><td><code>config</code></td><td>Configuration object — theme, <code>autohideControls</code>, layout defaults, etc.</td></tr>
+                <tr><td><code>serverPath</code></td><td>Path to the FrameTrail installation when the page is in a subdirectory or on a different host</td></tr>
+                <tr><td><code>startID</code></td><td>ID of the hypervideo to open on load</td></tr>
+                <tr><td><code>contents</code></td><td>Array of inline hypervideo and annotation data (bypasses <code>_data/</code> entirely)</td></tr>
+                <tr><td><code>resources</code></td><td>Array of inline resource definitions</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>Using <code>serverPath</code></h4>
+          <div class="card card-body">
+            <p>When the embedding page is in a subdirectory or on a different host than the FrameTrail installation, set <code>serverPath</code> so AJAX calls resolve correctly. This avoids needing a <code>&lt;base href&gt;</code> tag.</p>
+            <div class="input-group">
+              <textarea class="form-control" style="height: 110px;" readonly>// Page is one level below the FrameTrail install:
+FrameTrail.init({ serverPath: '../',   startID: 'abc123' }, 'PlayerLauncher');
+
+// FrameTrail is on a different host entirely:
+FrameTrail.init({ serverPath: 'https://frametrail.example.com/', startID: 'abc123' }, 'PlayerLauncher');</textarea>
+              <button class="copyBtn btn btn-outline-secondary btn-sm" type="button">copy</button>
+            </div>
+          </div>
+
+          <h4>Inline data — no server required</h4>
+          <div class="card card-body">
+            <p>Pass the complete hypervideo and resource data directly as init options. FrameTrail never touches the <code>_data/</code> directory, making this approach work in all three storage modes — including in-memory and local folder mode. Useful for publishing a single self-contained hypervideo.</p>
+            <div class="input-group">
+              <textarea class="form-control" style="height: 310px;" readonly>FrameTrail.init({
+    target:  '#container',
+    startID: '0',
+    config:  { theme: 'dark' },
+    contents: [{
+        hypervideo: {
+            meta:    { name: 'My Video', creator: 'Anonymous',
+                       creatorId: 'anon', created: Date.now(), lastchanged: Date.now() },
+            config:  { layoutArea: {}, hidden: false },
+            clips:   [{ resourceId: 'my-video', duration: 120, start: 0, end: 120 }],
+            contents: [], subtitles: {}, globalEvents: {}, customCSS: ''
+        },
+        annotations: []
+    }],
+    resources: [{
+        label: 'Inline resources',
+        type:  'frametrail',
+        data:  {
+            'my-video': { name: 'Main Video', type: 'youtube', src: 'dQw4w9WgXcQ' }
+        }
+    }]
+}, 'PlayerLauncher');</textarea>
+              <button class="copyBtn btn btn-outline-secondary btn-sm" type="button">copy</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /container -->
 
       <hr>
 

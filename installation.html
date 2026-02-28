@@ -69,26 +69,62 @@
 
       <div class="row">
         <div class="col-md-9">
-          <h3>Need help?</h3>
+          <h3>Deployment Modes</h3>
+          <p>FrameTrail supports three different deployment modes — choose the one that fits your use case:</p>
+
           <div class="card card-body">
-            <p>Please get in touch via Twitter (<a href="http://twitter.com/FrameTrail">@FrameTrail</a>) or mail us at joscha.jaeger | at | filmicweb | dot | org  if you need help setting up a FrameTrail project. We offer both technical assistance and consulting. If you have ideas for a joint project / collaboration that involves FrameTrail, let's talk! </p>
+            <div class="row">
+              <div class="col-md-4">
+                <h4>Server Mode</h4>
+                <p>Full-featured multi-user setup with file uploads, user management, and collaborative editing.</p>
+                <ul>
+                  <li>PHP 7.4 or later</li>
+                  <li>Apache (recommended) or nginx with PHP-FPM</li>
+                  <li>Write permissions on the <code>_data/</code> directory</li>
+                </ul>
+              </div>
+              <div class="col-md-4">
+                <h4>Local Folder Mode</h4>
+                <p>Single-user editing directly from a local folder — no server required.</p>
+                <ul>
+                  <li>Chrome or Edge (requires File System Access API)</li>
+                  <li>Open <code>index.html</code> directly in the browser</li>
+                  <li>No transcoding or user management</li>
+                </ul>
+              </div>
+              <div class="col-md-4">
+                <h4>In-Memory Mode</h4>
+                <p>View and edit hypervideos in any browser without persistent storage.</p>
+                <ul>
+                  <li>All modern browsers (Firefox, Safari, Chrome, Edge)</li>
+                  <li>Export your work as JSON via "Save As"</li>
+                  <li>No file uploads; use URLs only</li>
+                </ul>
+              </div>
+            </div>
           </div>
 
-          <h3>Prerequisites</h3>
-          <p class="card card-body">Apache Web Server (2.2.29 +) with PHP (5.6.2 +)<br>
-          (any other configuration might also be fine, but this one has been tested)<br>
-          <br>
-          If you don't have a server you can try FrameTrail locally using the tools <a target="_blank" href="https://www.apachefriends.org/download.html">XAMPP</a> or <a target="_blank" href="https://www.mamp.info/en/downloads/">MAMP</a>.<br><br>
-          Please note that you can use FrameTrail "read-only" locally without any server, as long as your browser supports local Ajax requests (there are known issues with Chrome, but Firefox should work in most cases). Of course you won't be able to use the editing features.<br><br>
-          More information about how to use FrameTrail as a "stand-alone" app without a server will be provided soon in the <a href="tutorials-advanced.html">Advanced Use</a> tutorial.</p>
-
-          <h3>Setup</h3>
+          <h3>Server Setup (Recommended)</h3>
           <div class="card card-body">
-            <p>Installing FrameTrail basically means copying the downloaded package to your server and follow the instructions on the screen. However, a little knowledge of server architectures is helpful, as you might need to change things like file and folder permissions.</p>
+            <p>Installing FrameTrail on a server gives you the full feature set including multi-user collaboration, file uploads, and media processing.</p>
             <ol>
-              <li><code>git clone https://github.com/OpenHypervideo/FrameTrail</code> or <b><a href="https://github.com/OpenHypervideo/FrameTrail/archive/v0.9.8-beta.zip">Download ZIP</a></b> to your <b>server directory</b> (i.e. <code>https://example.com/DIRECTORY-NAME</code> or <code>https://localhost/DIRECTORY-NAME</code> if you're using XAMMP, MAMP etc. for a local setup).</li>
-              <li>Open your <b>server directory</b> in your favourite browser.</li>
-              <li>Follow the instructions to define an administrator account and configure your FrameTrail instance.</li>
+              <li><b><a href="https://github.com/OpenHypervideo/FrameTrail/releases/latest" target="_blank">Download the latest release ZIP</a></b> (or <code>git clone https://github.com/OpenHypervideo/FrameTrail</code>) and extract it to your web server directory.</li>
+              <li>Set the correct permissions so your web server can write to the directory:<br>
+                <code>chmod -R 775 frametrail/ &amp;&amp; chown -R www-data:www-data frametrail/</code>
+              </li>
+              <li>Open the directory in your browser and follow the <b>Setup Wizard</b> to create an administrator account. FrameTrail will automatically create the <code>_data/</code> folder.</li>
+              <li>For a quick local test without Apache, run <code>php -S localhost:8080</code> from the extracted folder and open <code>http://localhost:8080</code>.</li>
+            </ol>
+            <p><b>nginx users:</b> Add a deny rule for the <code>_data/</code> directory to prevent direct access to your data files. The included <code>.htaccess</code> handles this automatically for Apache.</p>
+          </div>
+
+          <h3>Local Folder Setup</h3>
+          <div class="card card-body">
+            <ol>
+              <li><b><a href="https://github.com/OpenHypervideo/FrameTrail/releases/latest" target="_blank">Download the latest release ZIP</a></b> and extract it anywhere on your computer.</li>
+              <li>Open <code>index.html</code> directly in <b>Chrome or Edge</b>.</li>
+              <li>When prompted, select an existing <code>_data</code> folder or create a new one. FrameTrail will use this folder to store all your data.</li>
+              <li>Enter a display name to identify yourself — no account or password is needed in this mode.</li>
             </ol>
           </div>
 
@@ -96,8 +132,8 @@
 
           <div class="card card-body">
             <ol>
-              <li>Click the <b>Edit</b> Button on the top right and login with your administrator account details.</li>
-              <li>In the titlebar, click "New Hypervideo" and follow the instructions</li>
+              <li>Click the <b>Edit</b> button in the top right and log in with your administrator account (or enter a name in local mode).</li>
+              <li>In the titlebar, click <b>"New Hypervideo"</b> and follow the instructions to choose a video source (HTML5, YouTube, Vimeo, and more).</li>
             </ol>
           </div>
 
@@ -105,10 +141,10 @@
 
           <div class="card card-body">
             <ol>
-              <li>Click the <b>Edit</b> Button on the top right and login with your administrator account details.</li>
-              <li>In the titlebar, click "Manage Resources" to open the <b>Resource Manager</b></li>
-              <li>Click "Add Resource" and follow the instructions</li>
-              <li>When your resource has been added, you and other users can use it as basis for new Hypervideos or for Overlays & Annotations</li>
+              <li>Click the <b>Edit</b> button and log in.</li>
+              <li>In the titlebar, click <b>"Manage Resources"</b> to open the Resource Manager.</li>
+              <li>Click <b>"Add Resource"</b> and either upload a file or paste a URL. FrameTrail supports a wide range of resource types including video, images, audio, PDFs, YouTube, Vimeo, maps, and more.</li>
+              <li>Once added, resources can be dragged onto the timeline as overlays or annotations.</li>
             </ol>
           </div>
 
@@ -121,8 +157,18 @@
         <div class="col-md-3">
           <h3>Updates</h3>
           <p class="card card-body">
-            To update your FrameTrail instance, download the latest release and copy / replace it on your server. Just make sure you don't overwrite the <code>/_data</code> folder, as that contains your personal settings and project data.
+            To update your FrameTrail instance, download the latest release and copy / replace it on your server. Make sure you do <b>not</b> overwrite the <code>_data/</code> folder — it contains all your accounts, hypervideos, and project data.
           </p>
+
+          <h3>Data & Backup</h3>
+          <p class="card card-body">
+            All data is stored as JSON files in the <code>_data/</code> directory — there is no database. To back up your project, simply copy the entire <code>_data/</code> folder. To migrate to a new server, copy it across — everything works immediately.
+          </p>
+
+          <h3>Need help?</h3>
+          <div class="card card-body">
+            <p>Found a bug or have a question? Open an issue on <a href="https://github.com/OpenHypervideo/FrameTrail/issues" target="_blank">GitHub</a>.</p>
+          </div>
         </div>
       </div>
 

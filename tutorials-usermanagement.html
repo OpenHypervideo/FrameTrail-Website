@@ -70,7 +70,114 @@
       <div class="row">
         <div class="col-md-9">
 
-          <div class="card card-body" style="margin-top: 20px;">Sorry, this tutorial has not been written yet. Please come back later.</div>
+          <h3>User Roles</h3>
+          <div class="card card-body">
+            <p>FrameTrail has two built-in user roles that control what each user can do:</p>
+
+            <div class="row" style="margin-top: 10px;">
+              <div class="col-md-6">
+                <h4>Admin</h4>
+                <ul>
+                  <li>Create, edit, and delete <b>any</b> hypervideo</li>
+                  <li>Add, edit, and delete <b>overlays</b> and <b>code snippets</b> (which are shared across all users)</li>
+                  <li>Manage resources in the Resource Manager</li>
+                  <li>Create and manage user accounts</li>
+                  <li>Change project-wide settings (theme, layout defaults, collaboration options)</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <h4>User</h4>
+                <ul>
+                  <li>Create and edit <b>their own</b> hypervideos</li>
+                  <li>Add and edit <b>their own annotations</b> on any hypervideo</li>
+                  <li>Browse and reuse annotations created by other users</li>
+                  <li>Upload and link resources to the Resource Manager</li>
+                  <li><b>Cannot</b> edit overlays, code snippets, or other users' hypervideos</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-3">
+          <h3>Quick Links</h3>
+          <div class="card card-body">
+            <ul>
+              <li><a href="tutorials-gettingstarted.html">Overlays vs. Annotations</a></li>
+              <li><a href="installation.html">Deployment Modes</a></li>
+            </ul>
+          </div>
+
+          <h3>Note on Modes</h3>
+          <div class="card card-body">
+            <p>User accounts and roles only apply in <b>Server Mode</b>. In Local Folder and In-Memory modes, identity is name-only and there is no access control.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+
+          <h3>Logging In</h3>
+          <div class="card card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <h4>Server Mode</h4>
+                <p>Click the <b>Edit</b> button in the top-right corner of the player. A login dialog will appear — enter your <b>username</b> and <b>password</b>. After logging in, you will enter edit mode with the permissions associated with your role.</p>
+              </div>
+              <div class="col-md-4">
+                <h4>Local Folder Mode</h4>
+                <p>Click <b>Edit</b>. You will be prompted for a <b>display name</b> only — no password. This name is used to identify your annotations, but there is no authentication or access control.</p>
+              </div>
+              <div class="col-md-4">
+                <h4>In-Memory / Guest Mode</h4>
+                <p>Click <b>Edit</b> and log in as a <b>guest</b>. You can view and edit content, but changes are not saved automatically — use <b>Save As</b> to export a JSON snapshot.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: #e9ecef; border: 2px dashed #adb5bd; border-radius: 4px; padding: 40px; text-align: center; color: #6c757d; margin: 10px 0;">
+            [ Screenshot: The login dialog with username and password fields ]
+          </div>
+
+          <h3>Creating User Accounts (Admin only)</h3>
+          <div class="card card-body">
+            <p>As an administrator, you can create and manage accounts for other users through the <b>User Management</b> panel.</p>
+            <ol>
+              <li>Log in with your admin account.</li>
+              <li>In the titlebar, open <b>Settings</b> and navigate to <b>User Management</b>.</li>
+              <li>Click <b>"Add User"</b> and fill in a username, password, and role (<b>admin</b> or <b>user</b>).</li>
+              <li>Confirm to create the account. The new user can now log in with their credentials.</li>
+            </ol>
+          </div>
+
+          <div style="background: #e9ecef; border: 2px dashed #adb5bd; border-radius: 4px; padding: 40px; text-align: center; color: #6c757d; margin: 10px 0;">
+            [ Screenshot: The User Management panel showing a list of users with their roles ]
+          </div>
+
+          <h3>Editing and Deleting Users (Admin only)</h3>
+          <div class="card card-body">
+            <p>In the User Management panel, click any user to:</p>
+            <ul>
+              <li>Change their <b>username</b> or <b>password</b></li>
+              <li>Promote them to <b>admin</b> or demote to <b>user</b></li>
+              <li><b>Delete</b> the account — note that their annotations and hypervideos remain in the project</li>
+            </ul>
+            <p>You cannot delete or demote your own admin account while logged in.</p>
+          </div>
+
+          <h3>Project Configuration (Admin only)</h3>
+          <div class="card card-body">
+            <p>The project-wide runtime configuration is stored in <code>_data/config.json</code>. Admins can adjust several settings through the <b>Settings</b> panel in the editor, including:</p>
+            <ul>
+              <li><b>Color theme</b> and default layout</li>
+              <li>Whether <b>user registration</b> is open or invite-only</li>
+              <li>Whether <b>login is required</b> to view hypervideos (or if they are publicly accessible)</li>
+              <li>Upload permissions — which roles can upload files</li>
+              <li>Collaboration settings for annotation sharing</li>
+            </ul>
+          </div>
 
         </div>
       </div>
