@@ -42,6 +42,14 @@
         },
         {
           "@type": "Question",
+          "name": "The Setup Wizard shows a permission error — what do I do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Setup Wizard checks that FrameTrail can write to its directory and the _data/ folder. If it reports a permission error, make the directory writable: chmod -R 755 /path/to/frametrail. On shared hosting, use your control panel or contact your provider."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Why does Local Folder mode require Chrome or Edge?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -203,6 +211,15 @@
                 <li><b>Local Folder mode</b> — requires Chrome or Edge. No PHP or server needed. Data is saved directly to a folder on your computer.</li>
                 <li><b>In-memory mode</b> — works in any modern browser. No persistent saves (export via Save As). </li>
               </ul>
+            </div>
+          </div>
+
+          <div class="card mb-3" id="faq_permissions">
+            <div class="card-body">
+              <h5 class="card-title">The Setup Wizard shows a permission error — what do I do?</h5>
+              The Setup Wizard checks that FrameTrail can write to its own directory and the <code>_data/</code> folder. If it reports a permission error, make the directory writable by the web server:<br><br>
+              <code>chmod -R 755 /path/to/frametrail</code><br><br>
+              On shared hosting, you may need to set this via your hosting control panel or contact your provider.
             </div>
           </div>
 
