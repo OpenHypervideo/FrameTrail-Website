@@ -11,12 +11,21 @@
   <loc>http://frametrail.org/installation.html</loc>
 </url>
 <url>
+  <loc>http://frametrail.org/about-project.html</loc>
+</url>
+<url>
   <loc>http://frametrail.org/tutorials-gettingstarted.html</loc>
 </url>
 <url>
-  <loc>http://frametrail.org/docs.html</loc>
+  <loc>http://frametrail.org/tutorials-editing.html</loc>
 </url>
 <url>
-  <loc>http://frametrail.org/about-project.html</loc>
+  <loc>http://frametrail.org/tutorials-resourcemanager.html</loc>
+</url>
+<url>
+  <loc>http://frametrail.org/tutorials-usermanagement.html</loc>
+</url>
+<url>
+  <loc>http://frametrail.org/tutorials-advanced.html</loc>
 </url>
 </urlset>
