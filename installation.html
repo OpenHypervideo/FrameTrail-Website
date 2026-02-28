@@ -90,44 +90,44 @@
                   <td>Any modern browser</td>
                 </tr>
                 <tr>
-                  <td><b>Edit hypervideos</b> <small class="text-muted">(overlays, annotations, code snippets, layout, theme)</small></td>
-                  <td>&#10003;</td>
-                  <td>&#10003;</td>
-                  <td>&#10003;</td>
+                  <td><b>Edit hypervideos</b> <br>(overlays, annotations, code snippets, layout, theme)</td>
+                  <td>✅</td>
+                  <td>✅</td>
+                  <td>✅</td>
                 </tr>
                 <tr>
                   <td><b>Persistent saves</b></td>
-                  <td>&#10003;</td>
-                  <td>&#10003;</td>
-                  <td>&#8212; <small class="text-muted">(export via Save As)</small></td>
+                  <td>✅</td>
+                  <td>✅</td>
+                  <td>&#8212; (export via Save As)</td>
                 </tr>
                 <tr>
-                  <td><b>Manage hypervideos</b> <small class="text-muted">(add / edit / delete)</small></td>
-                  <td>&#10003;</td>
-                  <td>&#10003;</td>
+                  <td><b>Manage hypervideos</b> <br>(add / delete)</td>
+                  <td>✅</td>
+                  <td>✅</td>
                   <td>&#8212;</td>
                 </tr>
                 <tr>
-                  <td><b>Manage resources</b> <small class="text-muted">(add / delete)</small></td>
-                  <td>&#10003;</td>
-                  <td>&#10003;</td>
+                  <td><b>Manage resources</b> <br>(add / delete)</td>
+                  <td>✅</td>
+                  <td>✅</td>
                   <td>&#8212;</td>
                 </tr>
                 <tr>
                   <td><b>Thumbnail generation</b></td>
-                  <td>&#10003; <small class="text-muted">(server-side)</small></td>
-                  <td>&#10003; <small class="text-muted">(client-side)</small></td>
+                  <td>✅ (server-side)</td>
+                  <td>✅ (client-side)</td>
                   <td>&#8212;</td>
                 </tr>
                 <tr>
                   <td><b>Authentication &amp; multi-user accounts</b></td>
-                  <td>&#10003;</td>
+                  <td>✅</td>
                   <td>&#8212;</td>
                   <td>&#8212;</td>
                 </tr>
                 <tr>
                   <td><b>Media transcoding</b></td>
-                  <td>&#10003;</td>
+                  <td>✅</td>
                   <td>&#8212;</td>
                   <td>&#8212;</td>
                 </tr>
@@ -135,30 +135,25 @@
             </table>
           </div>
 
-          <h3>Server Setup (Recommended)</h3>
+          <h3>Server Setup</h3>
           <div class="card card-body">
-            <p>Installing FrameTrail on a server gives you the full feature set including multi-user collaboration, file uploads, and media processing.</p>
             <ol>
-              <li><b><a href="https://github.com/OpenHypervideo/FrameTrail/releases/latest" target="_blank">Download the latest release ZIP</a></b> (or <code>git clone https://github.com/OpenHypervideo/FrameTrail</code>) and extract it to your web server directory.</li>
-              <li>Set the correct permissions so your web server can write to the directory:<br>
-                <code>chmod -R 775 frametrail/ &amp;&amp; chown -R www-data:www-data frametrail/</code>
-              </li>
-              <li>Open the directory in your browser and follow the <b>Setup Wizard</b> to create an administrator account. FrameTrail will automatically create the <code>_data/</code> folder.</li>
-              <li>For a quick local test without Apache, run <code>php -S localhost:8080</code> from the extracted folder and open <code>http://localhost:8080</code>.</li>
+              <li><b><a href="https://github.com/OpenHypervideo/FrameTrail/releases/latest" target="_blank">Download the latest release</a></b> and extract it to any directory.</li>
+              <li>In that directory, run: <code>php -S localhost:8080</code></li>
+              <li>Open <code>http://localhost:8080</code> and follow the <b>Setup Wizard</b>.</li>
             </ol>
-            <p><b>nginx users:</b> Add a deny rule for the <code>_data/</code> directory to prevent direct access to your data files. The included <code>.htaccess</code> handles this automatically for Apache.</p>
+            <p class="mb-0">For production use, Apache (with the included <code>.htaccess</code>) or nginx with PHP-FPM are recommended. No PHP installed? Use <a href="https://www.apachefriends.org/" target="_blank">XAMPP</a> (Windows) or <a href="https://www.mamp.info/" target="_blank">MAMP</a> (Mac/Windows).</p>
           </div>
 
           <h3>Local Folder Setup</h3>
           <div class="card card-body">
             <ol>
-              <li><b><a href="https://github.com/OpenHypervideo/FrameTrail/releases/latest" target="_blank">Download the latest release ZIP</a></b> and extract it anywhere on your computer.</li>
-              <li>Open <code>index.html</code> directly in <b>Chrome or Edge</b>.</li>
-              <li>When prompted, select an existing <code>_data</code> folder or create a new one. FrameTrail will use this folder to store all your data.</li>
-              <li>Enter a display name to identify yourself — no account or password is needed in this mode.</li>
+              <li><b><a href="https://github.com/OpenHypervideo/FrameTrail/releases/latest" target="_blank">Download the latest release</a></b> and extract it anywhere on your computer.</li>
+              <li>Open <code>index.html</code> in <b>Chrome or Edge</b>.</li>
+              <li>When prompted, select or create a <code>_data</code> folder on your computer.</li>
             </ol>
           </div>
-          
+
           <div class="card card-body">
             <h4>That's it! You might want to read the <a href="tutorials-gettingstarted.html">Getting Started</a> Tutorial now.</h4>
           </div>

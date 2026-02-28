@@ -50,6 +50,10 @@ p { margin-bottom: 10px; }
 /* HR: BS5 has opacity 0.25, BS3 was solid */
 hr { margin: 20px 0; border-top: 1px solid #aeaeae; opacity: 1; }
 
+th {
+	background-color: #2F323A !important;
+}
+
 /* Blockquote: BS3 had a left border, BS5 is unstyled */
 blockquote {
 	padding: 10px 20px;
