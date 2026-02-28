@@ -378,7 +378,7 @@ ul, ol {
 .teaserBackground {
 	box-shadow: 0 0 1px 1px #94979f inset;
 	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGUlEQVQImWO4f//+f3TMcP/+/f8M6IAyQQB6jiB98TkSjQAAAABJRU5ErkJggg==") repeat scroll -1px -1px;
-	margin-top: 50px;
+	margin-top: -38px;
 	padding-top: 0px;
 	padding-bottom: 30px;
 	background-color: #d7cfc3;
