@@ -72,17 +72,11 @@
 
           <h3>Entering Edit Mode</h3>
           <div class="card card-body">
-            To start editing, click the <b>Edit</b> button in the top-right corner of the player. Depending on how FrameTrail is deployed:
-            <ul style="margin-top: 10px;">
-              <li><b>Server mode:</b> Log in with your username and password.</li>
-              <li><b>Local folder mode:</b> Enter a display name — no password required.</li>
-              <li><b>Guest mode (in-memory):</b> Log in as a guest. Changes can be exported as JSON but are not saved automatically.</li>
-            </ul>
-            Once in edit mode, the interface expands to show the timeline editor below the video player.
+            To start editing, click the <b>Edit</b> button in the top-right corner of the player. How you authenticate depends on the deployment mode — see <a href="tutorials-usermanagement.html#logging-in">Logging In</a> for details. Once authenticated, a sidebar opens with the different edit modes.
           </div>
 
           <div style="background: #e9ecef; border: 2px dashed #adb5bd; border-radius: 4px; padding: 40px; text-align: center; color: #6c757d; margin: 10px 0;">
-            [ Screenshot: The FrameTrail player with the Edit button visible in the top-right corner ]
+            [ Screenshot: The FrameTrail player with the Edit button and the three edit mode tabs visible ]
           </div>
 
         </div>
@@ -123,30 +117,19 @@
             [ Screenshot: The "New Hypervideo" dialog with video source options ]
           </div>
 
-          <h3>The Timeline Editor</h3>
+          <h3>Edit Modes</h3>
           <div class="card card-body">
-            <p>The timeline editor appears below the video player in edit mode. It shows tracks for each type of content you can add:</p>
-            <ul>
-              <li><b>Overlays</b> — elements placed on top of the video at a specific time and position</li>
-              <li><b>Code Snippets</b> — JavaScript code triggered at a specific timestamp</li>
-              <li><b>Annotations</b> — supporting materials shown alongside (not on top of) the video</li>
-              <li><b>Subtitles</b> — VTT subtitle tracks synchronized with the video</li>
-            </ul>
-            <p>To add a resource to the timeline, drag it from the <b>Resource Panel</b> on the left onto the appropriate track. You can then resize and reposition items by dragging their handles.</p>
+            <p>The sidebar exposes three edit modes — <b>Overlays</b>, <b>Annotations</b>, and <b>Code Snippets</b> — each with its own timeline. Switch between them using the tabs at the top of the sidebar. For a conceptual overview of the differences, see <a href="tutorials-gettingstarted.html">Getting Started</a>.</p>
           </div>
 
-          <div style="background: #e9ecef; border: 2px dashed #adb5bd; border-radius: 4px; padding: 40px; text-align: center; color: #6c757d; margin: 10px 0;">
-            [ Screenshot: The timeline editor with overlays and annotation tracks visible ]
-          </div>
-
-          <h3>Working with Overlays</h3>
+          <h3>Overlays Edit Mode</h3>
           <div class="card card-body">
-            <p>Overlays are placed <b>on top of the video</b> and are visible to all users. Only users with the <b>admin</b> role can add or edit overlays.</p>
+            <p>Overlays are placed <b>on top of the video</b> and are visible to all users. Only <a href="tutorials-usermanagement.html#user-roles">admin users</a> can add or edit overlays.</p>
 
             <h4>Adding an Overlay</h4>
             <ol>
-              <li>Open the <b>Overlays</b> tab in the editor panel.</li>
-              <li>Drag a resource from the Resource Panel onto the overlay track in the timeline, or click <b>"Add Overlay"</b> and select a resource.</li>
+              <li>Switch to the <b>Overlays</b> edit mode.</li>
+              <li>Drag a resource from the Resource Panel onto the overlay timeline, or click <b>"Add Overlay"</b> and select a resource.</li>
               <li>Set the <b>start time</b> and <b>duration</b> by dragging the item's edges on the timeline.</li>
               <li>In the video area, drag the overlay to its <b>position</b> and resize it as needed.</li>
             </ol>
@@ -154,43 +137,42 @@
             <h4>Custom HTML Overlays</h4>
             <p>In the "Custom HTML" tab, you can create overlays containing any HTML markup — useful for styled text, buttons, or embedded content not covered by built-in resource types.</p>
 
-            <h4>Video Links</h4>
-            <p>A special overlay type — <b>Video Links</b> — creates a clickable area on the video that navigates to another hypervideo project when clicked. This allows you to build branching or interconnected hypervideo experiences.</p>
+            <h4>Hotspot / Link</h4>
+            <p>The <b>Hotspot / Link</b> overlay type defines a clickable area on the video that links to a point of time in another hypervideo. This allows you to build branching narratives.</p>
           </div>
 
           <div style="background: #e9ecef; border: 2px dashed #adb5bd; border-radius: 4px; padding: 40px; text-align: center; color: #6c757d; margin: 10px 0;">
-            [ Screenshot: An overlay positioned on top of the video, with the position/size handles visible ]
+            [ Screenshot: The Overlays edit mode with an overlay positioned on the video and its timeline below ]
           </div>
 
-          <h3>Working with Annotations</h3>
+          <h3>Annotations Edit Mode</h3>
           <div class="card card-body">
             <p>Annotations are user-specific supporting materials displayed <b>outside the video area</b> in the Layout Areas. Every user manages their own set of annotations independently.</p>
             <ol>
-              <li>Open the <b>Annotations</b> tab in the editor panel.</li>
-              <li>Drag a resource from the Resource Panel onto the annotation track, or click <b>"Add Annotation"</b>.</li>
+              <li>Switch to the <b>Annotations</b> edit mode.</li>
+              <li>Drag a resource from the Resource Panel onto the annotations timeline, or click <b>"Add Annotation"</b>.</li>
               <li>Set the start time and duration on the timeline.</li>
             </ol>
             <p>You can also browse and reuse annotations created by other users: open the <b>"Annotations of other Users"</b> tab for an overview of all annotation sets for the current hypervideo.</p>
           </div>
 
-          <h3>Code Snippets</h3>
+          <h3>Code Snippets Edit Mode</h3>
           <div class="card card-body">
-            <p>Code Snippets let you define <b>JavaScript code</b> that is executed automatically at a specific point in the video timeline. This allows advanced interactions such as controlling the page, triggering external APIs, or dynamically modifying the FrameTrail interface.</p>
+            <p>Code Snippets let you define <b>JavaScript code</b> that is executed automatically at a specific point in the video. Switch to the <b>Code Snippets</b> edit mode, then:</p>
             <ol>
-              <li>Open the <b>Code Snippets</b> tab.</li>
               <li>Click <b>"Add Code Snippet"</b> and set the timestamp at which it should fire.</li>
               <li>Write your JavaScript in the built-in code editor.</li>
             </ol>
-            <p>Code Snippets are shared across all users (like Overlays) and can only be added or edited by <b>admin</b> users.</p>
+            <p>Code Snippets are shared across all users and can only be added or edited by <a href="tutorials-usermanagement.html#user-roles">admin users</a>. See <a href="tutorials-advanced.html">Advanced Use</a> for ready-to-use code snippet examples.</p>
           </div>
 
           <h3>Subtitles</h3>
           <div class="card card-body">
-            <p>FrameTrail supports subtitle tracks in <b>WebVTT (.vtt)</b> format, synchronized with the video.</p>
+            <p>FrameTrail supports subtitle tracks in <b>WebVTT (.vtt)</b> format, synchronized with the video. See the <a href="faq.html#faq211">FAQ on subtitle formats</a> for converters from SRT and other formats.</p>
             <ol>
-              <li>Open the <b>Subtitles</b> tab in the editor panel.</li>
-              <li>Upload a <code>.vtt</code> file or add one via URL from the Resource Manager.</li>
-              <li>The subtitle track will appear on the timeline and be rendered as an interactive transcript in the Layout Area if configured.</li>
+              <li>Open the <b>Edit Hypervideo</b> dialog.</li>
+              <li>Under subtitles, upload a <code>.vtt</code> file and specify the language.</li>
+              <li>The subtitle track will appear in the player and be rendered as an interactive transcript in the Layout Area if configured.</li>
             </ol>
           </div>
 
@@ -199,7 +181,7 @@
             <div class="row">
               <div class="col-md-4">
                 <h4>Server Mode</h4>
-                <p>Click <b>Save</b> in the titlebar. Changes are written directly to the server's <code>_data/</code> directory.</p>
+                <p>Click <b>Save</b> in the sidebar. Changes are written directly to the server's <code>_data/</code> directory.</p>
               </div>
               <div class="col-md-4">
                 <h4>Local Folder Mode</h4>
@@ -217,7 +199,6 @@
             <p>Once saved, you can share your hypervideo in two ways:</p>
             <ul>
               <li><b>Direct URL:</b> Copy the URL from the browser — it contains a deep link to the specific hypervideo.</li>
-              <li><b>Embed:</b> Use the embed button in the player to get an <code>&lt;iframe&gt;</code> snippet you can paste into any webpage.</li>
             </ul>
           </div>
 

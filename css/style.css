@@ -457,3 +457,21 @@ img.full-width {
     font-size: 10px;
   }
 }
+
+.resource-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 14px;
+}
+
+.resource-tag {
+  display: inline-block;
+  padding: 2px 9px;
+  border: 1px solid #adb5bd;
+  border-radius: 12px;
+  font-size: 13px;
+  color: #495057;
+  background: #f8f9fa;
+  white-space: nowrap;
+}
