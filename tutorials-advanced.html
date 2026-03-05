@@ -253,7 +253,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <tr><td><code>annotations</code></td><td>URL string, array of URLs, or inline W3C annotation objects</td></tr>
                 <tr><td><code>language</code></td><td>Language code for the UI (e.g. <code>en-US</code>, <code>de-DE</code>)</td></tr>
                 <tr><td><code>config</code></td><td>Configuration object — theme, <code>autohideControls</code>, layout defaults, etc.</td></tr>
-                <tr><td><code>serverPath</code></td><td>Path to the FrameTrail installation when the page is in a subdirectory or on a different host</td></tr>
+                <tr><td><code>dataPath</code></td><td>Base URL for the <code>_data/</code> directory (e.g. <code>'../_data/'</code> or a CDN URL); auto-detected when omitted</td></tr>
+                <tr><td><code>server</code></td><td>Base URL for the <code>_server/</code> PHP backend; omit to disable server features (static/CDN mode)</td></tr>
                 <tr><td><code>startID</code></td><td>ID of the hypervideo to open on load</td></tr>
                 <tr><td><code>contents</code></td><td>Array of inline hypervideo and annotation data (bypasses <code>_data/</code> entirely)</td></tr>
                 <tr><td><code>resources</code></td><td>Array of inline resource definitions</td></tr>
@@ -261,22 +262,25 @@ document.addEventListener('DOMContentLoaded', function() {
             </table>
           </div>
 
-          <h4>Using <code>serverPath</code></h4>
+          <h4>Using <code>dataPath</code> and <code>server</code></h4>
           <div class="card card-body">
-            <p>When the embedding page is in a subdirectory or on a different host than the FrameTrail installation, set <code>serverPath</code> so AJAX calls resolve correctly. This avoids needing a <code>&lt;base href&gt;</code> tag.</p>
+            <p>When the embedding page is in a subdirectory or on a different host than the FrameTrail installation, set <code>dataPath</code> and <code>server</code> explicitly so requests resolve correctly. If both are omitted, FrameTrail auto-detects by probing the default <code>_server/</code> path. Providing <code>dataPath</code> without <code>server</code> enables static/CDN mode — read-only access to data without a PHP backend.</p>
             <div class="input-group">
-              <textarea class="form-control" style="height: 110px;" readonly>// Page is one level below the FrameTrail install:
-FrameTrail.init({ serverPath: '../',   startID: 'abc123' }, 'PlayerLauncher');
+              <textarea class="form-control" style="height: 170px;" readonly>// Page is one level below the FrameTrail install:
+FrameTrail.init({ dataPath: '../_data/', server: '../_server/', startID: 'abc123' }, 'PlayerLauncher');
 
 // FrameTrail is on a different host entirely:
-FrameTrail.init({ serverPath: 'https://frametrail.example.com/', startID: 'abc123' }, 'PlayerLauncher');</textarea>
+FrameTrail.init({ dataPath: 'https://frametrail.example.com/_data/', server: 'https://frametrail.example.com/_server/', startID: 'abc123' }, 'PlayerLauncher');
+
+// Static/CDN mode — no PHP backend, read-only (requires CORS: Access-Control-Allow-Origin: *):
+FrameTrail.init({ dataPath: 'https://cdn.example.com/project/_data/' }, 'PlayerLauncher');</textarea>
               <button class="copyBtn btn btn-outline-secondary btn-sm" type="button">copy</button>
             </div>
           </div>
 
           <h4>Inline data — no server required</h4>
           <div class="card card-body">
-            <p>Pass the complete hypervideo and resource data directly as init options. FrameTrail never touches the <code>_data/</code> directory, making this approach work in all three storage modes — including in-memory and local folder mode. Useful for publishing a single self-contained hypervideo.</p>
+            <p>Pass the complete hypervideo and resource data directly as init options. FrameTrail never touches the <code>_data/</code> directory, making this approach work in all four storage modes — including in-memory, local folder, and static/CDN mode. Useful for publishing a single self-contained hypervideo.</p>
             <div class="input-group">
               <textarea class="form-control" style="height: 310px;" readonly>FrameTrail.init({
     target:  '#container',
