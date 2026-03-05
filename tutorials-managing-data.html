@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>FrameTrail - Tutorials - Managing Data</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="css/style.css" media="screen">
+    <meta name="description" content="Learn how FrameTrail stores, saves, exports, and shares hypervideo data across its four storage modes: server, local folder, in-memory, and static/CDN.">
+    <meta name="keywords" content="FrameTrail data management, save hypervideo, export data, Save As, ZIP download, standalone HTML, data backup, storage modes">
+    <link rel="canonical" href="https://frametrail.org/tutorials-managing-data.html" />
+    <meta property="og:title" content="FrameTrail - Managing Data Tutorial" />
+    <meta property="og:url" content="https://frametrail.org/tutorials-managing-data.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://frametrail.org/images/frametrail-screenshot.png" />
+    <meta property="og:description" content="Learn how FrameTrail stores, saves, exports, and shares hypervideo data across its four storage modes: server, local folder, in-memory, and static/CDN." />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@FrameTrail">
+    <meta name="twitter:title" content="FrameTrail - Managing Data Tutorial">
+    <meta name="twitter:description" content="Learn how FrameTrail stores, saves, exports, and shares hypervideo data across its four storage modes: server, local folder, in-memory, and static/CDN.">
+    <meta name="twitter:image" content="https://frametrail.org/images/frametrail-screenshot.png">
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://frametrail.org/" },
+        { "@type": "ListItem", "position": 2, "name": "Managing Data", "item": "https://frametrail.org/tutorials-managing-data.html" }
+      ]
+    }
+    </script>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/custom.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+      <div class="container">
+        <a href="./" class="navbar-brand">FrameTrail</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-main" aria-controls="navbar-main" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-main">
+          <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button">Tutorials</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="installation.html">Installation</a></li>
+                    <li><a class="dropdown-item" href="tutorials-gettingstarted.html">Getting Started</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="tutorials-editing.html">Editing Hypervideos</a></li>
+                    <li><a class="dropdown-item" href="tutorials-resourcemanager.html">Managing Resources</a></li>
+                    <li><a class="dropdown-item active" href="tutorials-managing-data.html">Managing Data</a></li>
+                    <li><a class="dropdown-item" href="tutorials-usermanagement.html">User Management</a></li>
+                    <li><a class="dropdown-item" href="tutorials-advanced.html">Advanced Use</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="faq.html">FAQ</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Project</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="about-project.html">Background</a></li>
+                  </ul>
+                </li>
+          </ul>
+          <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="https://github.com/OpenHypervideo/FrameTrail" target="_blank">Documentation (Github)</a>
+                </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="container">
+      <h2 class="logoHeadline">Tutorials - Managing Data</h2>
+
+      <div class="row">
+        <div class="col-md-9">
+
+          <h3>How FrameTrail Stores Data</h3>
+          <div class="card card-body">
+            <p>FrameTrail stores all project data as <b>portable JSON files</b> — there is no database. Hypervideos, annotations, resources, user accounts, and configuration all live in a structured <code>_data/</code> directory. This makes it easy to back up, migrate, and share entire projects by simply copying files.</p>
+            <p>How and where data is persisted depends on which <b>storage mode</b> FrameTrail is running in. Each mode determines whether saves are persistent, whether export is needed, and which additional capabilities (like file upload or multi-user accounts) are available.</p>
+          </div>
+
+        </div>
+
+        <div class="col-md-3">
+          <h3>Quick Links</h3>
+          <div class="card card-body">
+            <ul>
+              <li><a href="installation.html">Deployment Modes</a></li>
+              <li><a href="tutorials-editing.html">Editing Hypervideos</a></li>
+              <li><a href="tutorials-usermanagement.html">User Management</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+
+          <h3>Storage Modes</h3>
+          <div class="card card-body">
+            <p>FrameTrail automatically selects the appropriate storage mode based on how it is deployed. See the <a href="installation.html">Installation</a> page for a full comparison table.</p>
+
+            <div class="row" style="margin-top: 10px;">
+              <div class="col-md-4">
+                <h4>Server Mode</h4>
+                <p>When FrameTrail is served with its PHP backend, all reads and writes go through the server. The <b>Save</b> button writes changes directly to the <code>_data/</code> directory on the server. This mode supports persistent saves, file uploads, user authentication, and media transcoding.</p>
+              </div>
+              <div class="col-md-4">
+                <h4>Local Folder Mode</h4>
+                <p>In Chrome or Edge, FrameTrail can use the <a href="https://developer.mozilla.org/en-US/docs/Web/API/File_System_Access_API" target="_blank">File System Access API</a> to read and write directly to a folder on your computer. The <b>Save</b> button writes changes to disk immediately. If you pick an empty folder, FrameTrail creates the project structure for you automatically.</p>
+              </div>
+              <div class="col-md-4">
+                <h4>In-Memory Mode</h4>
+                <p>When no server or local folder is available (e.g. in Firefox or Safari without a PHP backend), FrameTrail keeps all data <b>in memory only</b>. Edits are not persisted automatically — if you close the browser tab, changes are lost. The <b>Save</b> button is disabled; use <b>Save As</b> to export your work.</p>
+              </div>
+            </div>
+          </div>
+
+          <h3>Saving your Work</h3>
+          <div class="card card-body">
+            <p>The <b>Save</b> button in the editor sidebar persists all changes to the current hypervideo — including overlays, annotations, code snippets, layout configuration, custom CSS, and subtitles.</p>
+            <p>In <b>Server</b> and <b>Local Folder</b> mode, Save writes directly to the <code>_data/</code> directory (on the server or on your disk, respectively). Each user's annotations are stored in a separate file (<code>annotations/{userID}.json</code>), enabling parallel contributions without conflicts.</p>
+            <p>In <b>In-Memory</b> mode, the Save button is disabled because there is no persistent storage backend. Use <b>Save As</b> to export your work as a downloadable file (see below).</p>
+          </div>
+
+          <h3>Save As — Exporting Data</h3>
+          <div class="card card-body">
+            <p>The <b>Save As</b> button is available in every storage mode — even when FrameTrail is running on a server. It opens a dialog with three columns representing the three possible destinations:</p>
+
+            <div class="row" style="margin-top: 10px;">
+              <div class="col-md-4">
+                <h5>Save to Server</h5>
+                <p>Connects to the PHP backend and saves all data to the server's <code>_data/</code> directory. Only available when a server backend is reachable.</p>
+              </div>
+              <div class="col-md-4">
+                <h5>Save to Local Folder</h5>
+                <p>Uses the <a href="https://developer.mozilla.org/en-US/docs/Web/API/File_System_Access_API" target="_blank">File System Access API</a> to write directly to a folder on your computer. Only available in Chrome and Edge.</p>
+              </div>
+              <div class="col-md-4">
+                <h5>Download as Files</h5>
+                <p>Downloads data as files to your computer. Always available, regardless of storage mode. This is the primary way to export data when no persistent storage backend is active.</p>
+              </div>
+            </div>
+
+            <h4 style="margin-top: 16px;">Download Options</h4>
+            <p>The <b>Download as Files</b> column offers a scope toggle and format options:</p>
+            <ul>
+              <li><b>Current Hypervideo</b> (default) — exports only the hypervideo you are currently editing. You can choose the format:
+                <ul>
+                  <li><b>JSON</b> — a single <code>.json</code> file named after the hypervideo, containing the complete hypervideo data (metadata, clips, contents, subtitles, annotations).</li>
+                  <li><b>HTML</b> — a self-contained HTML file that plays the hypervideo in any browser without a server. It loads the FrameTrail player from <b>jsDelivr CDN</b> and embeds the data inline. You can optionally set a <b>Resource base URL</b> to resolve uploaded media files (images, videos, etc.).</li>
+                </ul>
+              </li>
+              <li><b>All Data</b> — exports all hypervideos, resources, and configuration as a <code>frametrail-export.zip</code> with the proper <code>_data/</code> directory structure inside. ZIP compression is performed client-side using the <b>fflate</b> library. If a server is available, you can check <b>"Include media files"</b> to download a full server-side ZIP archive including all uploaded media.</li>
+            </ul>
+          </div>
+
+          <div style="background: #e9ecef; border: 2px dashed #adb5bd; border-radius: 4px; padding: 40px; text-align: center; color: #6c757d; margin: 10px 0;">
+            [ Screenshot: The Save As dialog with three destination columns: Save to Server, Save to Local Folder, and Download as Files ]
+          </div>
+
+          <h3>The _data/ Directory Structure</h3>
+          <div class="card card-body">
+            <p>Understanding the data directory layout helps with manual backup, migration, and debugging. A typical FrameTrail project looks like this:</p>
+<pre style="background: #f8f9fa; padding: 16px; border-radius: 4px; margin-top: 8px;">_data/
+  config.json                    Project-wide settings
+  users.json                     User accounts (server mode only)
+  resources/
+    _index.json                  Resource library metadata
+  hypervideos/
+    _index.json                  Index of all hypervideos
+    {id}/
+      hypervideo.json            Hypervideo data (clips, overlays, contents, subtitles, CSS)
+      annotations/
+        {userID}.json            Per-user annotation files</pre>
+            <p style="margin-top: 12px;">Each hypervideo's data follows the <b>W3C Web Annotation</b> model: contents use media fragment selectors (<code>t=start,end</code>) for timing and spatial selectors (<code>xywh=percent:x,y,w,h</code>) for positioning.</p>
+          </div>
+
+          <h3>Backup and Migration</h3>
+          <div class="card card-body">
+            <p>To <b>back up</b> your project, copy the entire <code>_data/</code> folder — there is no database to dump. To <b>migrate</b> to a new server or switch to local folder mode, simply copy that folder across. See <a href="installation.html">Installation</a> for more on updates and data safety.</p>
+            <p>To <b>import</b> previously exported data, extract a ZIP export into a FrameTrail installation's <code>_data/</code> directory, or place individual JSON files into the appropriate locations.</p>
+          </div>
+
+          <h3>Sharing Hypervideos</h3>
+          <div class="card card-body">
+            <p>There are several ways to share FrameTrail hypervideos with others:</p>
+            <ul>
+              <li><b>Direct URL:</b> Copy the URL from the browser — it contains a deep link to the specific hypervideo. Anyone with access to your FrameTrail instance can open it.</li>
+              <li><b>Standalone HTML:</b> Export a self-contained HTML file and send it to anyone. They can open it in any browser — no server needed.</li>
+              <li><b>ZIP Export:</b> Download a ZIP of the project and share it. The recipient extracts it into their own FrameTrail installation to continue editing.</li>
+              <li><b>Copy the _data/ folder:</b> For full project transfers between servers, simply copy the data directory.</li>
+              <li><b>Static / CDN hosting:</b> Upload the <code>_data/</code> folder to any static file host or CDN and point FrameTrail at it using the <code>dataPath</code> init option. Viewers can browse and even edit the data in-memory, then export their changes via Save As.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row" id="tutorials">
+        <div class="col-4 col-md">
+          <div class="featureCircle">
+            <a href="installation.html" class="featureContent">
+              <div class="featureContentTable">
+                <div class="featureContentCell">Installation</div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-4 col-md">
+          <div class="featureCircle">
+            <a href="tutorials-gettingstarted.html" class="featureContent">
+              <div class="featureContentTable">
+                <div class="featureContentCell">Getting Started</div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-4 col-md">
+          <div class="featureCircle">
+            <a href="tutorials-editing.html" class="featureContent">
+              <div class="featureContentTable">
+                <div class="featureContentCell">Editing Hypervideos</div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-4 col-md">
+          <div class="featureCircle">
+            <a href="tutorials-resourcemanager.html" class="featureContent">
+              <div class="featureContentTable">
+                <div class="featureContentCell">Managing Resources</div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-4 col-md">
+          <div class="featureCircle active">
+            <a href="tutorials-managing-data.html" class="featureContent">
+              <div class="featureContentTable">
+                <div class="featureContentCell">Managing Data</div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-4 col-md">
+          <div class="featureCircle">
+            <a href="tutorials-usermanagement.html" class="featureContent">
+              <div class="featureContentTable">
+                <div class="featureContentCell">User Management</div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-4 col-md">
+          <div class="featureCircle">
+            <a href="tutorials-advanced.html" class="featureContent">
+              <div class="featureContentTable">
+                <div class="featureContentCell">Advanced Use</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+</html>
