@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <tr><td><code>language</code></td><td>Language code for the UI (e.g. <code>en-US</code>, <code>de-DE</code>)</td></tr>
                 <tr><td><code>config</code></td><td>Configuration object — theme, <code>autohideControls</code>, layout defaults, etc.</td></tr>
                 <tr><td><code>dataPath</code></td><td>Base URL for the <code>_data/</code> directory (e.g. <code>'../_data/'</code> or a CDN URL); auto-detected when omitted</td></tr>
-                <tr><td><code>server</code></td><td>Base URL for the <code>_server/</code> PHP backend; omit to disable server features (static/CDN mode)</td></tr>
+                <tr><td><code>server</code></td><td>Base URL for the <code>_server/</code> PHP backend; auto-detected when omitted (set <code>dataPath</code> without this to force static/CDN mode)</td></tr>
                 <tr><td><code>startID</code></td><td>ID of the hypervideo to open on load</td></tr>
                 <tr><td><code>contents</code></td><td>Array of inline hypervideo and annotation data (bypasses <code>_data/</code> entirely)</td></tr>
                 <tr><td><code>resources</code></td><td>Array of inline resource definitions</td></tr>
