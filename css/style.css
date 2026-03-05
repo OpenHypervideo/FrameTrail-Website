@@ -81,13 +81,9 @@ blockquote {
 .navbar-dark .navbar-toggler:hover,
 .navbar-dark .navbar-toggler:focus { background-color: #1a242f; }
 
-/* Dropdown: match BS3 custom theme */
 .dropdown-menu {
-	border-radius: 4px;
 	box-shadow: 0 6px 12px rgba(0,0,0,.175);
-	font-size: 14px;
 }
-.dropdown-item { padding: 3px 20px; color: #333; }
 .dropdown-item:hover,
 .dropdown-item:focus { background-color: #2F323A; color: #fff; }
 .dropdown-item.active,
