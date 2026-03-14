@@ -59,12 +59,6 @@
                 <li class="nav-item">
                   <a class="nav-link" href="faq.html">FAQ</a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Project</a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="about-project.html">Background</a></li>
-                  </ul>
-                </li>
           </ul>
           <ul class="navbar-nav">
                 <li class="nav-item">
@@ -106,69 +100,65 @@
 
           <h3>Resource Types</h3>
           <div class="card card-body">
-            <p>FrameTrail supports a wide range of content types across several categories:</p>
+            <div class="row align-items-start">
+              <div class="col-lg-5">
+                <p>FrameTrail supports a wide range of content types across several categories:</p>
 
-            <div class="row" style="margin-top: 10px;">
-              <div class="col-md-4">
-                <h4>Media Files</h4>
-                <div class="resource-tags">
-                  <span class="resource-tag">Video (HTML5 / HLS stream)</span>
-                  <span class="resource-tag">Images (JPG, PNG, GIF, SVG, …)</span>
-                  <span class="resource-tag">Audio files</span>
-                  <span class="resource-tag">PDF documents</span>
-                </div>
+                <div class="row" style="margin-top: 10px;">
+                  <div class="col-sm-6">
+                    <h4>Media Files</h4>
+                    <div class="resource-tags">
+                      <span class="resource-tag">Video (HTML5 / HLS stream)</span>
+                      <span class="resource-tag">Images (JPG, PNG, GIF, SVG, …)</span>
+                      <span class="resource-tag">Audio files</span>
+                      <span class="resource-tag">PDF documents</span>
+                    </div>
 
-                <h4>Video Platforms</h4>
-                <div class="resource-tags">
-                  <span class="resource-tag">YouTube</span>
-                  <span class="resource-tag">Vimeo</span>
-                  <span class="resource-tag">Wistia</span>
-                  <span class="resource-tag">Loom</span>
-                  <span class="resource-tag">Twitch</span>
+                    <h4>Video Platforms</h4>
+                    <div class="resource-tags">
+                      <span class="resource-tag">YouTube</span>
+                      <span class="resource-tag">Vimeo</span>
+                      <span class="resource-tag">Wistia</span>
+                      <span class="resource-tag">Loom</span>
+                      <span class="resource-tag">Twitch</span>
+                    </div>
+
+                    <h4>Social Networks</h4>
+                    <div class="resource-tags">
+                      <span class="resource-tag">Mastodon</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <h4>Audio Services</h4>
+                    <div class="resource-tags">
+                      <span class="resource-tag">SoundCloud</span>
+                      <span class="resource-tag">Spotify</span>
+                    </div>
+
+                    <h4>Presentations &amp; Tools</h4>
+                    <div class="resource-tags">
+                      <span class="resource-tag">Figma</span>
+                      <span class="resource-tag">Codepen</span>
+                    </div>
+
+                    <h4>Rich &amp; Interactive Content</h4>
+                    <div class="resource-tags">
+                      <span class="resource-tag">Rich HTML text</span>
+                      <span class="resource-tag">Wikipedia article</span>
+                      <span class="resource-tag">Embedded webpage (iframe)</span>
+                      <span class="resource-tag">URL preview (link card)</span>
+                      <span class="resource-tag">Quiz</span>
+                      <span class="resource-tag">Hotspot</span>
+                      <span class="resource-tag">Location / Map (OpenStreetMap)</span>
+                      <span class="resource-tag">Linked Data entity</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="col-md-4">
-                <h4>Social Networks</h4>
-                <div class="resource-tags">
-                  <span class="resource-tag">X / Twitter</span>
-                  <span class="resource-tag">Bluesky</span>
-                  <span class="resource-tag">Mastodon</span>
-                  <span class="resource-tag">TikTok</span>
-                  <span class="resource-tag">Reddit</span>
-                  <span class="resource-tag">Flickr</span>
-                </div>
-
-                <h4>Audio Services</h4>
-                <div class="resource-tags">
-                  <span class="resource-tag">SoundCloud</span>
-                  <span class="resource-tag">Spotify</span>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <h4>Presentations &amp; Tools</h4>
-                <div class="resource-tags">
-                  <span class="resource-tag">Slideshare</span>
-                  <span class="resource-tag">Figma</span>
-                  <span class="resource-tag">Codepen</span>
-                </div>
-
-                <h4>Rich &amp; Interactive Content</h4>
-                <div class="resource-tags">
-                  <span class="resource-tag">Rich HTML text</span>
-                  <span class="resource-tag">Wikipedia article</span>
-                  <span class="resource-tag">Embedded webpage (iframe)</span>
-                  <span class="resource-tag">URL preview (link card)</span>
-                  <span class="resource-tag">Quiz</span>
-                  <span class="resource-tag">Hotspot</span>
-                  <span class="resource-tag">Location / Map (OpenStreetMap)</span>
-                  <span class="resource-tag">Linked Data entity</span>
-                </div>
+              <div class="col-lg-7" style="margin-top: 20px;">
+                <img class="full-width" style="border: 1px solid #dfdfdf;" src="images/frametrail-manage-resources.png"/>
               </div>
             </div>
-          </div>
-
-          <div style="background: #e9ecef; border: 2px dashed #adb5bd; border-radius: 4px; padding: 40px; text-align: center; color: #6c757d; margin: 10px 0;">
-            [ Screenshot: The Resource Manager interface showing a list of existing resources with their type icons ]
           </div>
 
           <h3>Opening the Resource Manager</h3>
@@ -193,14 +183,11 @@
             <h4>Option 2: Add by URL</h4>
             <ol>
               <li>Click <b>"Add Resource"</b> and select <b>"Add by URL"</b>.</li>
-              <li>Paste the URL (YouTube video, Vimeo URL, image URL, social post URL, etc.).</li>
+              <li>Paste the URL (YouTube video, Vimeo URL, image URL, etc.).</li>
               <li>FrameTrail detects the type automatically and fetches metadata (title, thumbnail) where available.</li>
               <li>Confirm to add it to your resource library.</li>
             </ol>
-          </div>
-
-          <div style="background: #e9ecef; border: 2px dashed #adb5bd; border-radius: 4px; padding: 40px; text-align: center; color: #6c757d; margin: 10px 0;">
-            [ Screenshot: The "Add Resource" dialog with the URL input field and type detection result ]
+            <p><em>Note: If the target site does not allow direct embedding, FrameTrail will automatically save it as a <b>URL preview card</b> with a clickable link instead of an inline embed.</em></p>
           </div>
 
           <h3>Using Resources in your Hypervideo</h3>

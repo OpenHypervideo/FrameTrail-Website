@@ -59,12 +59,6 @@
                 <li class="nav-item">
                   <a class="nav-link" href="faq.html">FAQ</a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Project</a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="about-project.html">Background</a></li>
-                  </ul>
-                </li>
           </ul>
           <ul class="navbar-nav">
                 <li class="nav-item">
@@ -135,7 +129,7 @@
           <h3>Save As — Exporting Data</h3>
           <div class="card card-body">
             <p>The <b>Save As</b> button is available in every storage mode — even when FrameTrail is running on a server. It opens a dialog with three columns representing the three possible destinations:</p>
-
+            <p>The <b>Save As</b> button is available in every storage mode — even when FrameTrail is running on a server. It opens a dialog with three columns representing the three possible destinations:</p>
             <div class="row" style="margin-top: 10px;">
               <div class="col-md-4">
                 <h5>Save to Server</h5>
@@ -150,6 +144,12 @@
                 <p>Downloads data as files to your computer. Always available, regardless of storage mode. This is the primary way to export data when no persistent storage backend is active.</p>
               </div>
             </div>
+            
+            <div class="row justify-content-center">
+              <div class="col-md-9 col-lg-8">
+                <img class="full-width" style="margin-top: 20px; border: 1px solid #dfdfdf;" src="images/frametrail-save-as.png"/>
+              </div>
+            </div>
 
             <h4 style="margin-top: 16px;">Download Options</h4>
             <p>The <b>Download as Files</b> column offers a scope toggle and format options:</p>
@@ -162,10 +162,6 @@
               </li>
               <li><b>All Data</b> — exports all hypervideos, resources, and configuration as a <code>frametrail-export.zip</code> with the proper <code>_data/</code> directory structure inside. ZIP compression is performed client-side using the <b>fflate</b> library. If a server is available, you can check <b>"Include media files"</b> to download a full server-side ZIP archive including all uploaded media.</li>
             </ul>
-          </div>
-
-          <div style="background: #e9ecef; border: 2px dashed #adb5bd; border-radius: 4px; padding: 40px; text-align: center; color: #6c757d; margin: 10px 0;">
-            [ Screenshot: The Save As dialog with three destination columns: Save to Server, Save to Local Folder, and Download as Files ]
           </div>
 
           <h3>The _data/ Directory Structure</h3>

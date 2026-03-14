@@ -392,12 +392,12 @@ ul, ol {
 	color: #ccccd5;
 }
 
-img.full-width {
+img.full-width, video.full-width {
 	width: 100%;
 }
 
 @media (max-width: 992px) {
-	img.full-width {
+	img.full-width, video.full-width {
 		margin-bottom: 26px;
 	}
 }

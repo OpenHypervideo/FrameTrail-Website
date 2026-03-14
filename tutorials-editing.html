@@ -59,12 +59,6 @@
                 <li class="nav-item">
                   <a class="nav-link" href="faq.html">FAQ</a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Project</a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="about-project.html">Background</a></li>
-                  </ul>
-                </li>
           </ul>
           <ul class="navbar-nav">
                 <li class="nav-item">
@@ -80,28 +74,13 @@
       <h2 class="logoHeadline">Tutorials - Editing Hypervideos</h2>
 
       <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-12">
 
           <h3>Entering Edit Mode</h3>
           <div class="card card-body">
             To start editing, click the <b>Edit</b> button in the top-right corner of the player. How you authenticate depends on the deployment mode — see <a href="tutorials-usermanagement.html#logging-in">Logging In</a> for details. Once authenticated, a sidebar opens with the different edit modes.
           </div>
 
-          <div style="background: #e9ecef; border: 2px dashed #adb5bd; border-radius: 4px; padding: 40px; text-align: center; color: #6c757d; margin: 10px 0;">
-            [ Screenshot: The FrameTrail player with the Edit button and the three edit mode tabs visible ]
-          </div>
-
-        </div>
-
-        <div class="col-md-3">
-          <h3>Quick Links</h3>
-          <div class="card card-body">
-            <ul>
-              <li><a href="tutorials-gettingstarted.html">What are Overlays &amp; Annotations?</a></li>
-              <li><a href="tutorials-resourcemanager.html">Managing Resources</a></li>
-              <li><a href="tutorials-usermanagement.html">User Roles</a></li>
-            </ul>
-          </div>
         </div>
       </div>
 
@@ -110,23 +89,26 @@
 
           <h3>Creating a New Hypervideo</h3>
           <div class="card card-body">
-            <ol>
-              <li>In edit mode, click <b>"New Hypervideo"</b> in the titlebar.</li>
-              <li>Give your hypervideo a title and description.</li>
-              <li>Choose a <b>video source</b>. FrameTrail supports:
-                <ul>
-                  <li><b>HTML5 video</b> — upload a file or link to a direct video URL (MP4, HLS)</li>
-                  <li><b>YouTube</b> — paste a YouTube URL</li>
-                  <li><b>Vimeo</b> — paste a Vimeo URL</li>
-                  <li><b>Time-based container</b> — a virtual video with a set duration but no video source, useful for purely annotation-driven content</li>
-                </ul>
-              </li>
-              <li>Click <b>Create</b>. FrameTrail will open the new hypervideo in the editor.</li>
-            </ol>
-          </div>
-
-          <div style="background: #e9ecef; border: 2px dashed #adb5bd; border-radius: 4px; padding: 40px; text-align: center; color: #6c757d; margin: 10px 0;">
-            [ Screenshot: The "New Hypervideo" dialog with video source options ]
+            <div class="row align-items-center">
+              <div class="col-md-6">
+                <ol>
+                  <li>In edit mode, click <b>"New Hypervideo"</b> in the titlebar.</li>
+                  <li>Give your hypervideo a title and description.</li>
+                  <li>Choose a <b>video source</b>. FrameTrail supports:
+                    <ul>
+                      <li><b>HTML5 video</b> — upload a file or link to a direct video URL (MP4, HLS)</li>
+                      <li><b>YouTube</b> — paste a YouTube URL</li>
+                      <li><b>Vimeo</b> — paste a Vimeo URL</li>
+                      <li><b>Time-based container</b> — a virtual video with a set duration but no video source, useful for purely annotation-driven content</li>
+                    </ul>
+                  </li>
+                  <li>Click <b>Create</b>. FrameTrail will open the new hypervideo in the editor.</li>
+                </ol>
+              </div>
+              <div class="col-md-6">
+                <img class="full-width" src="images/frametrail-create-hypervideo.png"/>
+              </div>
+            </div>
           </div>
 
           <h3>Edit Modes</h3>
@@ -151,10 +133,6 @@
 
             <h4>Hotspot / Link</h4>
             <p>The <b>Hotspot / Link</b> overlay type defines a clickable area on the video that links to a point of time in another hypervideo. This allows you to build branching narratives.</p>
-          </div>
-
-          <div style="background: #e9ecef; border: 2px dashed #adb5bd; border-radius: 4px; padding: 40px; text-align: center; color: #6c757d; margin: 10px 0;">
-            [ Screenshot: The Overlays edit mode with an overlay positioned on the video and its timeline below ]
           </div>
 
           <h3>Annotations Edit Mode</h3>
