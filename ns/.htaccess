@@ -1,0 +1,40 @@
+# FrameTrail Namespace — Content Negotiation
+# Place this file at the document root of frametrail.org/ns/
+#
+# Behaviour:
+#   Accept: application/ld+json  →  context.jsonld
+#   Accept: application/json     →  context.jsonld
+#   Everything else (browsers)   →  index.html
+#
+# The http:// → https:// redirect should be handled at the
+# vhost or top-level .htaccess level (not repeated here).
+
+RewriteEngine On
+
+# ── JSON-LD context requests ──────────────────────────────
+# Match requests for the directory itself (not context.jsonld directly)
+# that ask for JSON-LD or plain JSON.
+RewriteCond %{REQUEST_URI} ^/ns/?$
+RewriteCond %{HTTP_ACCEPT} application/ld\+json [OR]
+RewriteCond %{HTTP_ACCEPT} application/json
+RewriteRule ^$ /ns/context.jsonld [L,T=application/ld+json]
+
+# ── Serve the context file with the correct Content-Type ──
+<FilesMatch "context\.jsonld$">
+    <IfModule mod_headers.c>
+        Header set Content-Type "application/ld+json; charset=utf-8"
+        Header set Access-Control-Allow-Origin "*"
+        Header set Cache-Control "public, max-age=86400"
+    </IfModule>
+</FilesMatch>
+
+# ── CORS for the HTML page too (for fetch from other origins) ──
+<FilesMatch "index\.html$">
+    <IfModule mod_headers.c>
+        Header set Access-Control-Allow-Origin "*"
+    </IfModule>
+</FilesMatch>
+
+# ── Ensure trailing-slash-less /ns also works ─────────────
+RewriteCond %{REQUEST_URI} ^/ns$
+RewriteRule ^$ /ns/ [R=301,L]

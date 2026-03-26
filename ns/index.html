@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FrameTrail Namespace — http://frametrail.org/ns/</title>
+    <meta name="description" content="FrameTrail vocabulary namespace: extension terms for the W3C Web Annotation Data Model used in hypervideo annotations, overlays, and code snippets.">
+    <link rel="canonical" href="http://frametrail.org/ns/">
+    <style>
+        /* ── Colors from FrameTrail (variables.css) ───────── */
+        /* --primary-bg-color:  #2F323A                       */
+        /* --highlight-color:   #D8D3AD                       */
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; scroll-behavior: smooth; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.65;
+            color: #2F323A;
+            background: #fff;
+        }
+
+        .page-header {
+            background: #2F323A;
+            color: #ddd;
+            padding: 2.5rem 2rem 2rem;
+        }
+        .page-header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: .35rem;
+        }
+        .page-header .subtitle {
+            font-size: .95rem;
+            color: #aaa;
+        }
+        .page-header .ns-uri {
+            display: inline-block;
+            margin-top: .75rem;
+            padding: .35rem .75rem;
+            background: rgba(255,255,255,.08);
+            border: 1px solid rgba(255,255,255,.15);
+            font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+            font-size: .85rem;
+            color: #D8D3AD;
+        }
+
+        .container {
+            max-width: 52rem;
+            margin: 0 auto;
+            padding: 2.5rem 2rem 4rem;
+        }
+
+        section { margin-bottom: 3rem; }
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: .75rem;
+            padding-bottom: .35rem;
+            border-bottom: 1px solid #ddd;
+        }
+        h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin: 1.5rem 0 .5rem;
+        }
+        p { margin-bottom: 1rem; }
+        a { color: #2F323A; text-decoration: underline; }
+        a:hover { color: #000; }
+
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0 1.5rem;
+            font-size: .9rem;
+        }
+        .vocab-table thead th {
+            text-align: left;
+            font-weight: 600;
+            font-size: .75rem;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            padding: .5rem .75rem;
+            border-bottom: 2px solid #2F323A;
+        }
+        .vocab-table tbody td {
+            padding: .6rem .75rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        .term-name {
+            font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+            font-size: .85rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .term-iri {
+            font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+            font-size: .78rem;
+            color: #888;
+            word-break: break-all;
+        }
+        .term-values {
+            font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+            font-size: .78rem;
+            color: #666;
+        }
+
+        pre {
+            background: #2F323A;
+            color: #ddd;
+            padding: 1.25rem 1.5rem;
+            overflow-x: auto;
+            font-size: .82rem;
+            line-height: 1.55;
+            margin: 1rem 0 1.5rem;
+        }
+        pre .comment { color: #888; }
+        pre .key     { color: #D8D3AD; }
+        pre .string  { color: #ccc; }
+        code {
+            font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+            font-size: .85em;
+            background: #f0f0f0;
+            padding: .15em .35em;
+        }
+        pre code { background: none; padding: 0; }
+
+        .info-box {
+            border-left: 3px solid #D8D3AD;
+            padding: 1rem 1.25rem;
+            margin: 1rem 0 1.5rem;
+            font-size: .9rem;
+        }
+        .info-box p:last-child { margin-bottom: 0; }
+
+        .enum-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .35rem;
+            margin: .35rem 0;
+        }
+        .enum-list span {
+            display: inline-block;
+            padding: .15rem .5rem;
+            background: #f0f0f0;
+            font-family: 'SFMono-Regular', 'Consolas', monospace;
+            font-size: .78rem;
+        }
+
+        .toc {
+            border: 1px solid #ddd;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .toc h2 { border: none; margin-bottom: .5rem; font-size: 1rem; }
+        .toc ol {
+            list-style: none;
+            counter-reset: toc-counter;
+            padding: 0;
+        }
+        .toc li {
+            counter-increment: toc-counter;
+            padding: .2rem 0;
+        }
+        .toc li::before {
+            content: counter(toc-counter) ". ";
+            color: #999;
+            font-size: .85rem;
+        }
+        .toc a { font-size: .9rem; }
+
+        .page-footer {
+            text-align: center;
+            padding: 2rem;
+            color: #999;
+            font-size: .8rem;
+            border-top: 1px solid #eee;
+        }
+
+        @media (max-width: 640px) {
+            .page-header { padding: 1.5rem 1rem; }
+            .container { padding: 1.5rem 1rem 3rem; }
+            .vocab-table { font-size: .8rem; }
+            .vocab-table thead th,
+            .vocab-table tbody td { padding: .4rem .5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="page-header">
+    <h1>FrameTrail Vocabulary</h1>
+    <div class="subtitle">Extension terms for the W3C Web Annotation Data Model</div>
+    <div class="ns-uri">http://frametrail.org/ns/</div>
+</header>
+
+<main class="container">
+
+    <!-- ── Table of Contents ──────────────────────────── -->
+    <nav class="toc">
+        <h2>Contents</h2>
+        <ol>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#context">JSON-LD Context</a></li>
+            <li><a href="#vocabulary">Vocabulary</a></li>
+            <li><a href="#type-values">Controlled Values for <code>frametrail:type</code></a></li>
+            <li><a href="#attributes">The <code>frametrail:attributes</code> Object</a></li>
+            <li><a href="#examples">Complete Examples</a></li>
+            <li><a href="#content-negotiation">Content Negotiation</a></li>
+        </ol>
+    </nav>
+
+
+    <!-- ── 1. Overview ────────────────────────────────── -->
+    <section id="overview">
+        <h2>1. Overview</h2>
+        <p>
+            <a href="https://frametrail.org">FrameTrail</a> is an open-source
+            hypervideo platform for creating interactive, annotated videos with
+            overlays, annotations, code snippets, and linked resources.
+        </p>
+        <p>
+            FrameTrail's data model extends the
+            <a href="https://www.w3.org/TR/annotation-model/">W3C Web Annotation Data Model</a>
+            with additional properties needed to describe hypervideo-specific
+            concepts: spatial positioning of overlays, resource typing, thumbnail
+            references, licensing metadata, timed code execution, and
+            type-specific attribute bags.
+        </p>
+        <p>
+            This namespace — <code>http://frametrail.org/ns/</code> — defines
+            those extension terms. It is intended to be used alongside the
+            W3C annotation context
+            (<code>http://www.w3.org/ns/anno.jsonld</code>) as shown in the
+            examples below.
+        </p>
+
+    </section>
+
+
+    <!-- ── 2. JSON-LD Context ─────────────────────────── -->
+    <section id="context">
+        <h2>2. JSON-LD Context</h2>
+        <p>
+            A JSON-LD context document is available at
+            <a href="http://frametrail.org/ns/context.jsonld"><code>http://frametrail.org/ns/context.jsonld</code></a>.
+            It can be included in the <code>@context</code> array of any
+            Web Annotation document:
+        </p>
+        <pre><code>{
+  <span class="key">"@context"</span>: [
+    <span class="string">"http://www.w3.org/ns/anno.jsonld"</span>,
+    <span class="string">"http://frametrail.org/ns/context.jsonld"</span>
+  ],
+  <span class="key">"type"</span>: <span class="string">"Annotation"</span>,
+  <span class="comment">…</span>
+}</code></pre>
+        <p>
+            Alternatively, the prefix can be declared inline (this is the
+            pattern currently used in FrameTrail's codebase):
+        </p>
+        <pre><code>{
+  <span class="key">"@context"</span>: [
+    <span class="string">"http://www.w3.org/ns/anno.jsonld"</span>,
+    { <span class="key">"frametrail"</span>: <span class="string">"http://frametrail.org/ns/"</span> }
+  ],
+  <span class="comment">…</span>
+}</code></pre>
+
+        <p>
+            When this namespace URL is requested with
+            <code>Accept: application/ld+json</code>, the server returns the
+            context document directly (see
+            <a href="#content-negotiation">Content Negotiation</a>).
+        </p>
+    </section>
+
+
+    <!-- ── 3. Vocabulary ──────────────────────────────── -->
+    <section id="vocabulary">
+        <h2>3. Vocabulary</h2>
+        <p>
+            All terms are properties in the
+            <code>http://frametrail.org/ns/</code> namespace. The
+            <strong>Context</strong> column indicates where in a Web
+            Annotation object the property appears.
+        </p>
+
+        <table class="vocab-table">
+            <thead>
+                <tr>
+                    <th>Term</th>
+                    <th>IRI</th>
+                    <th>Context</th>
+                    <th>Expected&nbsp;Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="term-type">
+                    <td class="term-name">frametrail:type</td>
+                    <td class="term-iri">…ns/type</td>
+                    <td>Annotation&nbsp;/ Body</td>
+                    <td>String</td>
+                    <td>
+                        Classifies the FrameTrail item. On the
+                        <strong>annotation level</strong>, values are
+                        <code>Annotation</code>, <code>Overlay</code>, or
+                        <code>CodeSnippet</code>. On the
+                        <strong>body level</strong>, values identify the
+                        resource subtype (see
+                        <a href="#type-values">§4</a>).
+                    </td>
+                </tr>
+                <tr id="term-name">
+                    <td class="term-name">frametrail:name</td>
+                    <td class="term-iri">…ns/name</td>
+                    <td>Body</td>
+                    <td>String</td>
+                    <td>Human-readable display name or title of the resource body.</td>
+                </tr>
+                <tr id="term-tags">
+                    <td class="term-name">frametrail:tags</td>
+                    <td class="term-iri">…ns/tags</td>
+                    <td>Annotation</td>
+                    <td>Array of Strings</td>
+                    <td>Set of free-text tags assigned to the annotation or overlay.</td>
+                </tr>
+                <tr id="term-uri">
+                    <td class="term-name">frametrail:uri</td>
+                    <td class="term-iri">…ns/uri</td>
+                    <td>Annotation</td>
+                    <td>IRI (String)</td>
+                    <td>Optional dereferenceable URI associated with the item — for example, a Linked Data entity IRI.</td>
+                </tr>
+                <tr id="term-thumb">
+                    <td class="term-name">frametrail:thumb</td>
+                    <td class="term-iri">…ns/thumb</td>
+                    <td>Body</td>
+                    <td>String (URL or path)</td>
+                    <td>Thumbnail image for the resource body. May be a relative path within the FrameTrail data directory or an absolute URL.</td>
+                </tr>
+                <tr id="term-resourceId">
+                    <td class="term-name">frametrail:resourceId</td>
+                    <td class="term-iri">…ns/resourceId</td>
+                    <td>Body</td>
+                    <td>String</td>
+                    <td>Reference to a resource entry in FrameTrail's <code>resources/_index.json</code>. Links the annotation body to a managed resource record.</td>
+                </tr>
+                <tr id="term-attributes">
+                    <td class="term-name">frametrail:attributes</td>
+                    <td class="term-iri">…ns/attributes</td>
+                    <td>Body</td>
+                    <td>JSON Object</td>
+                    <td>
+                        Type-specific key–value bag. Structure varies by
+                        <code>frametrail:type</code> — see
+                        <a href="#attributes">§5</a>.
+                    </td>
+                </tr>
+                <tr id="term-licenseType">
+                    <td class="term-name">frametrail:licenseType</td>
+                    <td class="term-iri">…ns/licenseType</td>
+                    <td>Body</td>
+                    <td>String</td>
+                    <td>
+                        License identifier for the resource body. Common values:
+                        <code>cc-by</code>, <code>cc-by-sa</code>,
+                        <code>cc-by-nc</code>, <code>cc-by-nd</code>,
+                        <code>cc-by-nc-sa</code>, <code>cc-by-nc-nd</code>,
+                        <code>cc0</code>, <code>public-domain</code>.
+                    </td>
+                </tr>
+                <tr id="term-licenseAttribution">
+                    <td class="term-name">frametrail:licenseAttribution</td>
+                    <td class="term-iri">…ns/licenseAttribution</td>
+                    <td>Body</td>
+                    <td>String</td>
+                    <td>Free-text attribution string for the resource body's license.</td>
+                </tr>
+                <tr id="term-events">
+                    <td class="term-name">frametrail:events</td>
+                    <td class="term-iri">…ns/events</td>
+                    <td>Annotation (Overlay)</td>
+                    <td>JSON Object</td>
+                    <td>
+                        JavaScript event handlers for overlay lifecycle events.
+                        Keys: <code>onReady</code>, <code>onPlay</code>,
+                        <code>onPause</code>, <code>onEnded</code>. Values
+                        are JavaScript code strings.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+
+    <!-- ── 4. Type Values ─────────────────────────────── -->
+    <section id="type-values">
+        <h2>4. Controlled Values for <code>frametrail:type</code></h2>
+
+        <h3>4.1 Annotation-Level Types</h3>
+        <p>
+            When <code>frametrail:type</code> appears on the annotation
+            object itself, it classifies the FrameTrail item kind:
+        </p>
+        <div class="enum-list">
+            <span>Annotation</span>
+            <span>Overlay</span>
+            <span>CodeSnippet</span>
+        </div>
+        <p>
+            <strong>Annotation</strong> items appear in the sidebar timeline
+            and are grouped per user. <strong>Overlay</strong> items are
+            spatially positioned over the video using a
+            <code>xywh=percent:</code> fragment selector on the target.
+            <strong>CodeSnippet</strong> items contain timed JavaScript
+            that executes during playback.
+        </p>
+
+        <h3>4.2 Body-Level Types (Resource Subtypes)</h3>
+        <p>
+            When <code>frametrail:type</code> appears on the <code>body</code>
+            object, it identifies the kind of embedded or linked resource:
+        </p>
+        <div class="enum-list">
+            <span>text</span>
+            <span>image</span>
+            <span>audio</span>
+            <span>video</span>
+            <span>pdf</span>
+            <span>youtube</span>
+            <span>vimeo</span>
+            <span>wistia</span>
+            <span>loom</span>
+            <span>twitch</span>
+            <span>soundcloud</span>
+            <span>spotify</span>
+            <span>webpage</span>
+            <span>wikipedia</span>
+            <span>entity</span>
+            <span>location</span>
+            <span>quiz</span>
+            <span>hotspot</span>
+            <span>codesnippet</span>
+            <span>urlpreview</span>
+            <span>mastodon</span>
+            <span>codepen</span>
+            <span>figma</span>
+        </div>
+
+        <p>
+            Each body-level type determines how the
+            <code>frametrail:attributes</code> object is structured and which
+            W3C <code>body.type</code> and <code>body.format</code> values
+            are used. See <a href="#attributes">§5</a> for details.
+        </p>
+    </section>
+
+
+    <!-- ── 5. Attributes ──────────────────────────────── -->
+    <section id="attributes">
+        <h2>5. The <code>frametrail:attributes</code> Object</h2>
+        <p>
+            The <code>frametrail:attributes</code> property carries
+            type-specific metadata as an opaque JSON object. Its internal
+            structure depends on the body-level
+            <code>frametrail:type</code>:
+        </p>
+
+        <table class="vocab-table">
+            <thead>
+                <tr>
+                    <th>Body Type</th>
+                    <th>Typical Keys</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="term-name">text</td>
+                    <td class="term-values">text</td>
+                    <td>HTML string (duplicated in <code>body.value</code>)</td>
+                </tr>
+                <tr>
+                    <td class="term-name">location</td>
+                    <td class="term-values">lat, lon, boundingBox</td>
+                    <td>Geographic coordinates (WGS 84) and optional bounding box</td>
+                </tr>
+                <tr>
+                    <td class="term-name">wikipedia</td>
+                    <td class="term-values">extract</td>
+                    <td>Plain-text extract from the Wikipedia article</td>
+                </tr>
+                <tr>
+                    <td class="term-name">quiz</td>
+                    <td class="term-values">text</td>
+                    <td>HTML-encoded quiz markup</td>
+                </tr>
+                <tr>
+                    <td class="term-name">entity</td>
+                    <td class="term-values">embed</td>
+                    <td>Embeddability flag (<code>"forbidden"</code> if the entity IRI blocks embedding)</td>
+                </tr>
+                <tr>
+                    <td class="term-name">image, video, audio, pdf</td>
+                    <td class="term-values"><em>(empty or custom)</em></td>
+                    <td>May contain custom metadata added by FrameTrail extensions</td>
+                </tr>
+                <tr>
+                    <td class="term-name">youtube, vimeo, …</td>
+                    <td class="term-values"><em>(empty or custom)</em></td>
+                    <td>Platform-specific metadata may be added by extensions</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="info-box">
+            <p>
+                The attributes object is deliberately open-ended. FrameTrail
+                extensions and custom resource types may add arbitrary keys.
+                Consumers should treat unknown keys gracefully.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- ── 6. Examples ────────────────────────────────── -->
+    <section id="examples">
+        <h2>6. Complete Examples</h2>
+
+        <h3>6.1 Text Annotation</h3>
+        <pre><code>{
+  <span class="key">"@context"</span>: [
+    <span class="string">"http://www.w3.org/ns/anno.jsonld"</span>,
+    { <span class="key">"frametrail"</span>: <span class="string">"http://frametrail.org/ns/"</span> }
+  ],
+  <span class="key">"type"</span>: <span class="string">"Annotation"</span>,
+  <span class="key">"frametrail:type"</span>: <span class="string">"Annotation"</span>,
+  <span class="key">"creator"</span>: {
+    <span class="key">"nickname"</span>: <span class="string">"jbach"</span>,
+    <span class="key">"type"</span>: <span class="string">"Person"</span>,
+    <span class="key">"id"</span>: <span class="string">"user-42"</span>
+  },
+  <span class="key">"created"</span>: <span class="string">"2025-03-12T10:00:00Z"</span>,
+  <span class="key">"target"</span>: {
+    <span class="key">"type"</span>: <span class="string">"Video"</span>,
+    <span class="key">"source"</span>: <span class="string">"https://example.com/lecture.mp4"</span>,
+    <span class="key">"selector"</span>: {
+      <span class="key">"type"</span>: <span class="string">"FragmentSelector"</span>,
+      <span class="key">"conformsTo"</span>: <span class="string">"http://www.w3.org/TR/media-frags/"</span>,
+      <span class="key">"value"</span>: <span class="string">"t=120,180"</span>
+    }
+  },
+  <span class="key">"body"</span>: {
+    <span class="key">"type"</span>: <span class="string">"TextualBody"</span>,
+    <span class="key">"frametrail:type"</span>: <span class="string">"text"</span>,
+    <span class="key">"format"</span>: <span class="string">"text/html"</span>,
+    <span class="key">"value"</span>: <span class="string">"&lt;p&gt;Key argument about open video.&lt;/p&gt;"</span>,
+    <span class="key">"frametrail:name"</span>: <span class="string">"Open Video Argument"</span>,
+    <span class="key">"frametrail:thumb"</span>: null,
+    <span class="key">"frametrail:resourceId"</span>: null,
+    <span class="key">"frametrail:attributes"</span>: {
+      <span class="key">"text"</span>: <span class="string">"&lt;p&gt;Key argument about open video.&lt;/p&gt;"</span>
+    }
+  },
+  <span class="key">"frametrail:tags"</span>: [<span class="string">"open-video"</span>, <span class="string">"lecture"</span>]
+}</code></pre>
+
+        <h3>6.2 Image Overlay with Spatial Position</h3>
+        <pre><code>{
+  <span class="key">"@context"</span>: [
+    <span class="string">"http://www.w3.org/ns/anno.jsonld"</span>,
+    { <span class="key">"frametrail"</span>: <span class="string">"http://frametrail.org/ns/"</span> }
+  ],
+  <span class="key">"type"</span>: <span class="string">"Annotation"</span>,
+  <span class="key">"frametrail:type"</span>: <span class="string">"Overlay"</span>,
+  <span class="key">"creator"</span>: { <span class="key">"nickname"</span>: <span class="string">"editor"</span>, <span class="key">"type"</span>: <span class="string">"Person"</span>, <span class="key">"id"</span>: <span class="string">"editor-1"</span> },
+  <span class="key">"created"</span>: <span class="string">"2025-03-12T10:05:00Z"</span>,
+  <span class="key">"target"</span>: {
+    <span class="key">"type"</span>: <span class="string">"Video"</span>,
+    <span class="key">"source"</span>: <span class="string">"https://example.com/lecture.mp4"</span>,
+    <span class="key">"selector"</span>: {
+      <span class="key">"type"</span>: <span class="string">"FragmentSelector"</span>,
+      <span class="key">"conformsTo"</span>: <span class="string">"http://www.w3.org/TR/media-frags/"</span>,
+      <span class="key">"value"</span>: <span class="string">"t=30,60&amp;xywh=percent:10,15,30,30"</span>
+    }
+  },
+  <span class="key">"body"</span>: {
+    <span class="key">"type"</span>: <span class="string">"Image"</span>,
+    <span class="key">"frametrail:type"</span>: <span class="string">"image"</span>,
+    <span class="key">"format"</span>: <span class="string">"image/png"</span>,
+    <span class="key">"source"</span>: <span class="string">"diagram.png"</span>,
+    <span class="key">"frametrail:name"</span>: <span class="string">"Architecture Diagram"</span>,
+    <span class="key">"frametrail:thumb"</span>: <span class="string">"diagram_thumb.jpg"</span>,
+    <span class="key">"frametrail:resourceId"</span>: <span class="string">"res-diagram-01"</span>,
+    <span class="key">"frametrail:licenseType"</span>: <span class="string">"cc-by-sa"</span>,
+    <span class="key">"frametrail:licenseAttribution"</span>: <span class="string">"J. Bach, 2025"</span>,
+    <span class="key">"frametrail:attributes"</span>: {}
+  },
+  <span class="key">"frametrail:events"</span>: {
+    <span class="key">"onReady"</span>: <span class="string">""</span>,
+    <span class="key">"onPlay"</span>: <span class="string">""</span>,
+    <span class="key">"onPause"</span>: <span class="string">""</span>,
+    <span class="key">"onEnded"</span>: <span class="string">""</span>
+  },
+  <span class="key">"frametrail:tags"</span>: [<span class="string">"diagram"</span>]
+}</code></pre>
+
+        <h3>6.3 Location Annotation</h3>
+        <pre><code>{
+  <span class="key">"@context"</span>: [
+    <span class="string">"http://www.w3.org/ns/anno.jsonld"</span>,
+    { <span class="key">"frametrail"</span>: <span class="string">"http://frametrail.org/ns/"</span> }
+  ],
+  <span class="key">"type"</span>: <span class="string">"Annotation"</span>,
+  <span class="key">"frametrail:type"</span>: <span class="string">"Annotation"</span>,
+  <span class="key">"creator"</span>: { <span class="key">"nickname"</span>: <span class="string">"geo-editor"</span>, <span class="key">"type"</span>: <span class="string">"Person"</span>, <span class="key">"id"</span>: <span class="string">"geo-1"</span> },
+  <span class="key">"created"</span>: <span class="string">"2025-03-12T11:00:00Z"</span>,
+  <span class="key">"target"</span>: {
+    <span class="key">"type"</span>: <span class="string">"Video"</span>,
+    <span class="key">"source"</span>: <span class="string">"https://example.com/documentary.mp4"</span>,
+    <span class="key">"selector"</span>: {
+      <span class="key">"type"</span>: <span class="string">"FragmentSelector"</span>,
+      <span class="key">"conformsTo"</span>: <span class="string">"http://www.w3.org/TR/media-frags/"</span>,
+      <span class="key">"value"</span>: <span class="string">"t=200,260"</span>
+    }
+  },
+  <span class="key">"body"</span>: {
+    <span class="key">"type"</span>: <span class="string">"Dataset"</span>,
+    <span class="key">"frametrail:type"</span>: <span class="string">"location"</span>,
+    <span class="key">"format"</span>: <span class="string">"application/x-frametrail-location"</span>,
+    <span class="key">"frametrail:name"</span>: <span class="string">"Filming Location"</span>,
+    <span class="key">"frametrail:thumb"</span>: null,
+    <span class="key">"frametrail:resourceId"</span>: null,
+    <span class="key">"frametrail:attributes"</span>: {
+      <span class="key">"lat"</span>: 52.5200,
+      <span class="key">"lon"</span>: 13.4050,
+      <span class="key">"boundingBox"</span>: <span class="string">"13.088,52.338,13.761,52.675"</span>
+    }
+  },
+  <span class="key">"frametrail:tags"</span>: [<span class="string">"berlin"</span>, <span class="string">"location"</span>]
+}</code></pre>
+    </section>
+
+
+    <!-- ── 7. Content Negotiation ─────────────────────── -->
+    <section id="content-negotiation">
+        <h2>7. Content Negotiation</h2>
+        <p>
+            The namespace URL <code>http://frametrail.org/ns/</code>
+            supports HTTP content negotiation. Clients requesting
+            <code>application/ld+json</code> or
+            <code>application/json</code> receive the
+            <a href="context.jsonld">JSON-LD context document</a>. All
+            other requests (including browsers) receive this HTML page.
+        </p>
+        <pre><code><span class="comment"># Fetch the JSON-LD context</span>
+curl -H "Accept: application/ld+json" http://frametrail.org/ns/
+
+<span class="comment"># Fetch the HTML documentation</span>
+curl -H "Accept: text/html" http://frametrail.org/ns/</code></pre>
+    </section>
+
+</main>
+
+<footer class="page-footer">
+    <p>
+        FrameTrail is open source, dual-licensed under
+        <a href="https://opensource.org/licenses/MIT">MIT</a> and
+        <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPL v3</a>.
+    </p>
+    <p>
+        &copy; FrameTrail Contributors.
+        Namespace documentation last updated 2026-03-12.
+    </p>
+</footer>
+
+</body>
+</html>

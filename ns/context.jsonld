@@ -1,0 +1,16 @@
+{
+  "@context": {
+    "frametrail": "http://frametrail.org/ns/",
+
+    "type":                { "@id": "frametrail:type" },
+    "name":                { "@id": "frametrail:name" },
+    "tags":                { "@id": "frametrail:tags",               "@container": "@set" },
+    "uri":                 { "@id": "frametrail:uri",                "@type": "@id" },
+    "thumb":               { "@id": "frametrail:thumb" },
+    "resourceId":          { "@id": "frametrail:resourceId" },
+    "attributes":          { "@id": "frametrail:attributes",         "@type": "@json" },
+    "licenseType":         { "@id": "frametrail:licenseType" },
+    "licenseAttribution":  { "@id": "frametrail:licenseAttribution" },
+    "events":              { "@id": "frametrail:events",             "@type": "@json" }
+  }
+}
