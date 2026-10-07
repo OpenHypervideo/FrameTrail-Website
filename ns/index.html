@@ -207,6 +207,7 @@
             <li><a href="#vocabulary">Vocabulary</a></li>
             <li><a href="#type-values">Controlled Values for <code>frametrail:type</code></a></li>
             <li><a href="#attributes">The <code>frametrail:attributes</code> Object</a></li>
+            <li><a href="#motion">Box Motion and Rotation</a></li>
             <li><a href="#examples">Complete Examples</a></li>
             <li><a href="#content-negotiation">Content Negotiation</a></li>
         </ol>
@@ -234,7 +235,16 @@
             those extension terms. It is intended to be used alongside the
             W3C annotation context
             (<code>http://www.w3.org/ns/anno.jsonld</code>) as shown in the
-            examples below.
+            examples below. The namespace IRI stays <code>http://</code>: it is
+            an identifier, and every term's IRI is built from it.
+        </p>
+        <p>
+            The complete data model — every file FrameTrail stores, with JSON
+            Schemas for each of them and for every
+            <code>frametrail:attributes</code> object — is documented in
+            <a href="https://github.com/OpenHypervideo/FrameTrail/blob/main/docs/DATA-MODEL.md">docs/DATA-MODEL.md</a>
+            and <a href="https://github.com/OpenHypervideo/FrameTrail/tree/main/schemas">schemas/</a>
+            in the FrameTrail repository.
         </p>
 
     </section>
@@ -245,29 +255,52 @@
         <h2>2. JSON-LD Context</h2>
         <p>
             A JSON-LD context document is available at
-            <a href="http://frametrail.org/ns/context.jsonld"><code>http://frametrail.org/ns/context.jsonld</code></a>.
-            It can be included in the <code>@context</code> array of any
-            Web Annotation document:
+            <a href="https://frametrail.org/ns/context.jsonld"><code>https://frametrail.org/ns/context.jsonld</code></a>.
+            FrameTrail items carry it after the W3C annotation context:
         </p>
         <pre><code>{
   <span class="key">"@context"</span>: [
     <span class="string">"http://www.w3.org/ns/anno.jsonld"</span>,
-    <span class="string">"http://frametrail.org/ns/context.jsonld"</span>
+    <span class="string">"https://frametrail.org/ns/context.jsonld"</span>
   ],
   <span class="key">"type"</span>: <span class="string">"Annotation"</span>,
   <span class="comment">…</span>
 }</code></pre>
         <p>
-            Alternatively, the prefix can be declared inline (this is the
-            pattern currently used in FrameTrail's codebase):
+            The context document declares the <code>frametrail</code> prefix and
+            types the terms FrameTrail writes, in their prefixed form:
+            <code>frametrail:attributes</code>, <code>frametrail:events</code> and
+            <code>frametrail:keyframes</code> hold JSON and are typed
+            <code>@json</code>, so a JSON-LD processor keeps their contents;
+            <code>frametrail:uri</code> is an IRI; <code>frametrail:tags</code> is
+            a set. It defines no unprefixed terms, so it never changes what
+            <code>type</code>, <code>id</code> or <code>name</code> mean in the
+            W3C context. <code>@json</code> requires a JSON-LD 1.1 processor.
         </p>
         <pre><code>{
-  <span class="key">"@context"</span>: [
-    <span class="string">"http://www.w3.org/ns/anno.jsonld"</span>,
-    { <span class="key">"frametrail"</span>: <span class="string">"http://frametrail.org/ns/"</span> }
-  ],
-  <span class="comment">…</span>
+  <span class="key">"@context"</span>: {
+    <span class="key">"@version"</span>: 1.1,
+    <span class="key">"frametrail"</span>: <span class="string">"http://frametrail.org/ns/"</span>,
+    <span class="key">"frametrail:attributes"</span>: { <span class="key">"@type"</span>: <span class="string">"@json"</span> },
+    <span class="key">"frametrail:events"</span>:     { <span class="key">"@type"</span>: <span class="string">"@json"</span> },
+    <span class="key">"frametrail:keyframes"</span>:  { <span class="key">"@type"</span>: <span class="string">"@json"</span> },
+    <span class="key">"frametrail:tags"</span>:       { <span class="key">"@container"</span>: <span class="string">"@set"</span> },
+    <span class="key">"frametrail:uri"</span>:        { <span class="key">"@type"</span>: <span class="string">"@id"</span> }
+  }
 }</code></pre>
+
+        <div class="info-box">
+            <p>
+                Older FrameTrail files declare only the prefix inline:
+                <code>["http://www.w3.org/ns/anno.jsonld", { "frametrail": "http://frametrail.org/ns/" }]</code>.
+                That is enough for FrameTrail, which does not read
+                <code>@context</code>, but a JSON-LD processor then drops the
+                contents of <code>frametrail:attributes</code>,
+                <code>frametrail:events</code> and
+                <code>frametrail:keyframes</code>. To process such a file as
+                JSON-LD, replace its <code>@context</code> with the one above.
+            </p>
+        </div>
 
         <p>
             When this namespace URL is requested with
@@ -386,11 +419,92 @@
                     <td>Annotation (Overlay)</td>
                     <td>JSON Object</td>
                     <td>
-                        JavaScript event handlers for overlay lifecycle events.
-                        Keys: <code>onReady</code>, <code>onPlay</code>,
-                        <code>onPause</code>, <code>onEnded</code>. Values
-                        are JavaScript code strings.
+                        JavaScript run on overlay events. Keys:
+                        <code>onReady</code> (rendered), <code>onStart</code>
+                        (playback enters the overlay's time span),
+                        <code>onEnd</code> (playback leaves it),
+                        <code>onClick</code>. Values are JavaScript code
+                        strings.
                     </td>
+                </tr>
+                <tr id="term-keyframes">
+                    <td class="term-name">frametrail:keyframes</td>
+                    <td class="term-iri">…ns/keyframes</td>
+                    <td>Selector (Overlay)</td>
+                    <td>JSON Array</td>
+                    <td>
+                        Box motion of an overlay: an array of
+                        <code>{ t, xywh, r?, ease? }</code> sorted by
+                        <code>t</code>. See <a href="#motion">§6</a>.
+                    </td>
+                </tr>
+                <tr id="term-rotation">
+                    <td class="term-name">frametrail:rotation</td>
+                    <td class="term-iri">…ns/rotation</td>
+                    <td>Selector (Overlay)</td>
+                    <td>Number</td>
+                    <td>
+                        Static rotation of an overlay's box in degrees,
+                        clockwise around its centre. Omitted when 0 and when
+                        the overlay has keyframes, which carry the rotation
+                        themselves. See <a href="#motion">§6</a>.
+                    </td>
+                </tr>
+                <tr id="term-graphdata">
+                    <td class="term-name">frametrail:graphdata</td>
+                    <td class="term-iri">…ns/graphdata</td>
+                    <td>Annotation</td>
+                    <td>String</td>
+                    <td>
+                        Numbers between 0 and 100, separated by spaces, drawn
+                        under the annotation on its timeline.
+                    </td>
+                </tr>
+                <tr id="term-graphdatatype">
+                    <td class="term-name">frametrail:graphdatatype</td>
+                    <td class="term-iri">…ns/graphdatatype</td>
+                    <td>Annotation</td>
+                    <td>String</td>
+                    <td>
+                        How <code>frametrail:graphdata</code> is drawn:
+                        <code>soundwave</code> or <code>barchart</code>.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="legacy-terms">3.1 Legacy Terms</h3>
+        <p>
+            Older files use these terms. FrameTrail still reads them but no
+            longer writes them.
+        </p>
+        <table class="vocab-table">
+            <thead>
+                <tr>
+                    <th>Term</th>
+                    <th>IRI</th>
+                    <th>Context</th>
+                    <th>Replaced&nbsp;by</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="term-lat">
+                    <td class="term-name">frametrail:lat</td>
+                    <td class="term-iri">…ns/lat</td>
+                    <td>Body (location)</td>
+                    <td><code>lat</code> in <code>frametrail:attributes</code></td>
+                </tr>
+                <tr id="term-long">
+                    <td class="term-name">frametrail:long</td>
+                    <td class="term-iri">…ns/long</td>
+                    <td>Body (location)</td>
+                    <td><code>lon</code> in <code>frametrail:attributes</code></td>
+                </tr>
+                <tr id="term-boundingBox">
+                    <td class="term-name">frametrail:boundingBox</td>
+                    <td class="term-iri">…ns/boundingBox</td>
+                    <td>Body (location)</td>
+                    <td><code>boundingBox</code> in <code>frametrail:attributes</code></td>
                 </tr>
             </tbody>
         </table>
@@ -427,6 +541,7 @@
         </p>
         <div class="enum-list">
             <span>text</span>
+            <span>html</span>
             <span>image</span>
             <span>audio</span>
             <span>video</span>
@@ -443,12 +558,25 @@
             <span>entity</span>
             <span>location</span>
             <span>quiz</span>
-            <span>hotspot</span>
-            <span>codesnippet</span>
             <span>urlpreview</span>
             <span>mastodon</span>
             <span>codepen</span>
             <span>figma</span>
+        </div>
+        <p>
+            Overlays only:
+        </p>
+        <div class="enum-list">
+            <span>hotspot</span>
+            <span>cursor</span>
+            <span>counter</span>
+            <span>chart</span>
+        </div>
+        <p>
+            Code snippets only:
+        </p>
+        <div class="enum-list">
+            <span>codesnippet</span>
         </div>
 
         <p>
@@ -481,61 +609,141 @@
             <tbody>
                 <tr>
                     <td class="term-name">text</td>
+                    <td class="term-values">text, title, box</td>
+                    <td>Rich text (HTML, stored HTML-escaped), an optional plain-text title and an optional card style</td>
+                </tr>
+                <tr>
+                    <td class="term-name">html</td>
                     <td class="term-values">text</td>
-                    <td>HTML string (duplicated in <code>body.value</code>)</td>
-                </tr>
-                <tr>
-                    <td class="term-name">location</td>
-                    <td class="term-values">lat, lon, boundingBox</td>
-                    <td>Geographic coordinates (WGS 84) and optional bounding box</td>
-                </tr>
-                <tr>
-                    <td class="term-name">wikipedia</td>
-                    <td class="term-values">extract</td>
-                    <td>Plain-text extract from the Wikipedia article</td>
+                    <td>Custom HTML, stored HTML-escaped</td>
                 </tr>
                 <tr>
                     <td class="term-name">quiz</td>
-                    <td class="term-values">text</td>
-                    <td>HTML-encoded quiz markup</td>
+                    <td class="term-values">questionType, question, answers, onCorrectAnswer, onWrongAnswer, onAnswered, ratingScale</td>
+                    <td>Multiple choice, multi-select, free text or rating, with what happens after answering</td>
                 </tr>
                 <tr>
-                    <td class="term-name">entity</td>
-                    <td class="term-values">embed</td>
-                    <td>Embeddability flag (<code>"forbidden"</code> if the entity IRI blocks embedding)</td>
+                    <td class="term-name">hotspot</td>
+                    <td class="term-values">shape, color, borderWidth, borderRadius, backgroundColor, text, textColor, direction, curve, points, path, action, actionTarget, actionTargetTime</td>
+                    <td>A clickable shape or a drawn line (arrow, underline, freeform outline) and what a click does</td>
                 </tr>
                 <tr>
-                    <td class="term-name">image, video, audio, pdf</td>
-                    <td class="term-values"><em>(empty or custom)</em></td>
-                    <td>May contain custom metadata added by FrameTrail extensions</td>
+                    <td class="term-name">cursor</td>
+                    <td class="term-values">style, color, outlineColor, clicks</td>
+                    <td>A mouse pointer moved by box motion, with click ripples at the given seconds</td>
                 </tr>
                 <tr>
-                    <td class="term-name">youtube, vimeo, …</td>
-                    <td class="term-values"><em>(empty or custom)</em></td>
-                    <td>Platform-specific metadata may be added by extensions</td>
+                    <td class="term-name">counter</td>
+                    <td class="term-values">from, to, decimals, prefix, suffix, style, duration, ease, color, weight, align</td>
+                    <td>An animated number</td>
+                </tr>
+                <tr>
+                    <td class="term-name">chart</td>
+                    <td class="term-values">chartType, data, unit, color, textColor, highlight, showValues, duration</td>
+                    <td>An animated bar, line or donut chart or progress ring from <code>Label: value</code> lines</td>
+                </tr>
+                <tr>
+                    <td class="term-name">location</td>
+                    <td class="term-values">lat, lon, boundingBox, zoom, tileStyle, marker, controls</td>
+                    <td>A map centred on a coordinate (WGS 84); <code>boundingBox</code> is <code>[south, north, west, east]</code></td>
+                </tr>
+                <tr>
+                    <td class="term-name">wikipedia</td>
+                    <td class="term-values">articleUrl, wikiLang, dir, description, extract, extract_html</td>
+                    <td>Summary of the article</td>
+                </tr>
+                <tr>
+                    <td class="term-name">webpage, entity</td>
+                    <td class="term-values">embed, description / text</td>
+                    <td>Whether the page may be embedded (<code>allowed</code> or <code>forbidden</code>), and a description</td>
+                </tr>
+                <tr>
+                    <td class="term-name">urlpreview</td>
+                    <td class="term-values">originalType, html, photoUrl, description</td>
+                    <td>A link card, or the platform's own embed for posts from Bluesky, X, TikTok, SlideShare, Reddit and Flickr</td>
+                </tr>
+                <tr>
+                    <td class="term-name">soundcloud, spotify, mastodon</td>
+                    <td class="term-values">html, …</td>
+                    <td>Embed HTML from the provider's oEmbed answer</td>
+                </tr>
+                <tr>
+                    <td class="term-name">video, audio</td>
+                    <td class="term-values">autoPlay</td>
+                    <td>Overlays only: play in sync with the hypervideo</td>
+                </tr>
+                <tr>
+                    <td class="term-name">every overlay</td>
+                    <td class="term-values">opacity, hoverStyle, zIndex, animation</td>
+                    <td>Opacity, hover effect, stacking order, and entrance, emphasis, exit and text-reveal animations</td>
                 </tr>
             </tbody>
         </table>
 
         <div class="info-box">
             <p>
-                The attributes object is deliberately open-ended. FrameTrail
-                extensions and custom resource types may add arbitrary keys.
-                Consumers should treat unknown keys gracefully.
+                The complete definition of every attributes object — each key
+                with its type, default and meaning — is in the JSON Schemas
+                <a href="https://github.com/OpenHypervideo/FrameTrail/tree/main/schemas/attributes">schemas/attributes/</a>
+                of the FrameTrail repository. The attributes object is open:
+                consumers should ignore keys they do not know, and writers
+                should keep them.
             </p>
         </div>
     </section>
 
 
-    <!-- ── 6. Examples ────────────────────────────────── -->
-    <section id="examples">
-        <h2>6. Complete Examples</h2>
+    <!-- ── 6. Box Motion and Rotation ──────────────────── -->
+    <section id="motion">
+        <h2>6. Box Motion and Rotation</h2>
+        <p>
+            An overlay's box is given by the <code>xywh=percent:</code> part of
+            its <code>FragmentSelector</code>: left, top, width and height in
+            percent of the video frame. Media Fragments can express only one
+            static rectangle per time range, and no W3C or IIIF selector
+            describes a moving region, so a box that moves, resizes or rotates
+            adds FrameTrail terms to the selector:
+        </p>
+        <pre><code><span class="key">"selector"</span>: {
+  <span class="key">"type"</span>: <span class="string">"FragmentSelector"</span>,
+  <span class="key">"conformsTo"</span>: <span class="string">"http://www.w3.org/TR/media-frags/"</span>,
+  <span class="key">"value"</span>: <span class="string">"t=12.5,20&amp;xywh=percent:18.2,22.4,46.8,19.7"</span>,
+  <span class="key">"frametrail:keyframes"</span>: [
+    { <span class="key">"t"</span>: 12.5, <span class="key">"xywh"</span>: [18.2, 30.1, 15, 12] },
+    { <span class="key">"t"</span>: 15.0, <span class="key">"xywh"</span>: [40.6, 24.0, 16, 13], <span class="key">"r"</span>: 30, <span class="key">"ease"</span>: <span class="string">"easeInOut"</span> },
+    { <span class="key">"t"</span>: 18.0, <span class="key">"xywh"</span>: [50.0, 22.4, 15, 12], <span class="key">"ease"</span>: <span class="string">"hold"</span> }
+  ]
+}</code></pre>
+        <p>
+            <code>t</code> is a time in seconds of the video;
+            <code>xywh</code> the box in percent of the video frame, which may
+            lie outside 0–100; <code>r</code> the rotation in degrees,
+            clockwise around the box centre (missing: 0); <code>ease</code> the
+            easing of the segment to the next keyframe (missing: linear;
+            <code>hold</code> keeps the box until the next keyframe). Between
+            keyframes the box is interpolated; before the first and after the
+            last it holds.
+        </p>
+        <p>
+            The plain <code>xywh</code> in <code>value</code> is the union of
+            the moving box within the time span, clamped to 0–100 — what a
+            consumer that does not know these terms shows. It is always the
+            unrotated box. A box that rotates without moving has
+            <code>"frametrail:rotation"</code> (degrees) on the selector
+            instead; it is omitted when 0.
+        </p>
+    </section>
 
-        <h3>6.1 Text Annotation</h3>
+
+    <!-- ── 7. Examples ────────────────────────────────── -->
+    <section id="examples">
+        <h2>7. Complete Examples</h2>
+
+        <h3>7.1 Text Annotation</h3>
         <pre><code>{
   <span class="key">"@context"</span>: [
     <span class="string">"http://www.w3.org/ns/anno.jsonld"</span>,
-    { <span class="key">"frametrail"</span>: <span class="string">"http://frametrail.org/ns/"</span> }
+    <span class="string">"https://frametrail.org/ns/context.jsonld"</span>
   ],
   <span class="key">"type"</span>: <span class="string">"Annotation"</span>,
   <span class="key">"frametrail:type"</span>: <span class="string">"Annotation"</span>,
@@ -544,7 +752,7 @@
     <span class="key">"type"</span>: <span class="string">"Person"</span>,
     <span class="key">"id"</span>: <span class="string">"user-42"</span>
   },
-  <span class="key">"created"</span>: <span class="string">"2025-03-12T10:00:00Z"</span>,
+  <span class="key">"created"</span>: <span class="string">"2025-03-12T10:00:00.000Z"</span>,
   <span class="key">"target"</span>: {
     <span class="key">"type"</span>: <span class="string">"Video"</span>,
     <span class="key">"source"</span>: <span class="string">"https://example.com/lecture.mp4"</span>,
@@ -558,27 +766,27 @@
     <span class="key">"type"</span>: <span class="string">"TextualBody"</span>,
     <span class="key">"frametrail:type"</span>: <span class="string">"text"</span>,
     <span class="key">"format"</span>: <span class="string">"text/html"</span>,
-    <span class="key">"value"</span>: <span class="string">"&lt;p&gt;Key argument about open video.&lt;/p&gt;"</span>,
+    <span class="key">"value"</span>: <span class="string">""</span>,
     <span class="key">"frametrail:name"</span>: <span class="string">"Open Video Argument"</span>,
     <span class="key">"frametrail:thumb"</span>: null,
     <span class="key">"frametrail:resourceId"</span>: null,
     <span class="key">"frametrail:attributes"</span>: {
-      <span class="key">"text"</span>: <span class="string">"&lt;p&gt;Key argument about open video.&lt;/p&gt;"</span>
+      <span class="key">"text"</span>: <span class="string">"&amp;lt;p&amp;gt;Key argument about open video.&amp;lt;/p&amp;gt;"</span>
     }
   },
   <span class="key">"frametrail:tags"</span>: [<span class="string">"open-video"</span>, <span class="string">"lecture"</span>]
 }</code></pre>
 
-        <h3>6.2 Image Overlay with Spatial Position</h3>
+        <h3>7.2 Image Overlay with Spatial Position</h3>
         <pre><code>{
   <span class="key">"@context"</span>: [
     <span class="string">"http://www.w3.org/ns/anno.jsonld"</span>,
-    { <span class="key">"frametrail"</span>: <span class="string">"http://frametrail.org/ns/"</span> }
+    <span class="string">"https://frametrail.org/ns/context.jsonld"</span>
   ],
   <span class="key">"type"</span>: <span class="string">"Annotation"</span>,
   <span class="key">"frametrail:type"</span>: <span class="string">"Overlay"</span>,
   <span class="key">"creator"</span>: { <span class="key">"nickname"</span>: <span class="string">"editor"</span>, <span class="key">"type"</span>: <span class="string">"Person"</span>, <span class="key">"id"</span>: <span class="string">"editor-1"</span> },
-  <span class="key">"created"</span>: <span class="string">"2025-03-12T10:05:00Z"</span>,
+  <span class="key">"created"</span>: <span class="string">"2025-03-12T10:05:00.000Z"</span>,
   <span class="key">"target"</span>: {
     <span class="key">"type"</span>: <span class="string">"Video"</span>,
     <span class="key">"source"</span>: <span class="string">"https://example.com/lecture.mp4"</span>,
@@ -601,24 +809,21 @@
     <span class="key">"frametrail:attributes"</span>: {}
   },
   <span class="key">"frametrail:events"</span>: {
-    <span class="key">"onReady"</span>: <span class="string">""</span>,
-    <span class="key">"onPlay"</span>: <span class="string">""</span>,
-    <span class="key">"onPause"</span>: <span class="string">""</span>,
-    <span class="key">"onEnded"</span>: <span class="string">""</span>
+    <span class="key">"onStart"</span>: <span class="string">"FrameTrail.module('HypervideoController').pause();"</span>
   },
   <span class="key">"frametrail:tags"</span>: [<span class="string">"diagram"</span>]
 }</code></pre>
 
-        <h3>6.3 Location Annotation</h3>
+        <h3>7.3 Location Annotation</h3>
         <pre><code>{
   <span class="key">"@context"</span>: [
     <span class="string">"http://www.w3.org/ns/anno.jsonld"</span>,
-    { <span class="key">"frametrail"</span>: <span class="string">"http://frametrail.org/ns/"</span> }
+    <span class="string">"https://frametrail.org/ns/context.jsonld"</span>
   ],
   <span class="key">"type"</span>: <span class="string">"Annotation"</span>,
   <span class="key">"frametrail:type"</span>: <span class="string">"Annotation"</span>,
   <span class="key">"creator"</span>: { <span class="key">"nickname"</span>: <span class="string">"geo-editor"</span>, <span class="key">"type"</span>: <span class="string">"Person"</span>, <span class="key">"id"</span>: <span class="string">"geo-1"</span> },
-  <span class="key">"created"</span>: <span class="string">"2025-03-12T11:00:00Z"</span>,
+  <span class="key">"created"</span>: <span class="string">"2025-03-12T11:00:00.000Z"</span>,
   <span class="key">"target"</span>: {
     <span class="key">"type"</span>: <span class="string">"Video"</span>,
     <span class="key">"source"</span>: <span class="string">"https://example.com/documentary.mp4"</span>,
@@ -638,7 +843,9 @@
     <span class="key">"frametrail:attributes"</span>: {
       <span class="key">"lat"</span>: 52.5200,
       <span class="key">"lon"</span>: 13.4050,
-      <span class="key">"boundingBox"</span>: <span class="string">"13.088,52.338,13.761,52.675"</span>
+      <span class="key">"boundingBox"</span>: [52.338, 52.675, 13.088, 13.761],
+      <span class="key">"zoom"</span>: 11,
+      <span class="key">"tileStyle"</span>: <span class="string">"carto-light"</span>
     }
   },
   <span class="key">"frametrail:tags"</span>: [<span class="string">"berlin"</span>, <span class="string">"location"</span>]
@@ -646,9 +853,9 @@
     </section>
 
 
-    <!-- ── 7. Content Negotiation ─────────────────────── -->
+    <!-- ── 8. Content Negotiation ─────────────────────── -->
     <section id="content-negotiation">
-        <h2>7. Content Negotiation</h2>
+        <h2>8. Content Negotiation</h2>
         <p>
             The namespace URL <code>http://frametrail.org/ns/</code>
             supports HTTP content negotiation. Clients requesting
@@ -668,13 +875,12 @@ curl -H "Accept: text/html" http://frametrail.org/ns/</code></pre>
 
 <footer class="page-footer">
     <p>
-        FrameTrail is open source, dual-licensed under
-        <a href="https://opensource.org/licenses/MIT">MIT</a> and
-        <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPL v3</a>.
+        FrameTrail is open source, licensed under
+        <a href="https://opensource.org/licenses/MIT">MIT</a>.
     </p>
     <p>
         &copy; FrameTrail Contributors.
-        Namespace documentation last updated 2026-03-12.
+        Namespace documentation last updated 2026-10-06.
     </p>
 </footer>
 
