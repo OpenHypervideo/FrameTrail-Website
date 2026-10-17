@@ -25,4 +25,10 @@
 <url>
   <loc>http://frametrail.org/tutorials-advanced.html</loc>
 </url>
+<url>
+  <loc>http://frametrail.org/ns/</loc>
+</url>
+<url>
+  <loc>http://frametrail.org/schemas/1/</loc>
+</url>
 </urlset>

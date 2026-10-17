@@ -1,0 +1,23 @@
+# FrameTrail JSON Schemas
+# Place this folder at the document root of frametrail.org/schemas/
+#
+# schemas/1/ is written by scripts/publish-schemas.mjs in the FrameTrail
+# repository (the schemas byte for byte, plus index.html). Do not edit it here.
+#
+# Behaviour:
+#   /schemas/                 →  /schemas/1/ (302: a later version may list both)
+#   /schemas/1/               →  index.html
+#   /schemas/1/*.schema.json  →  the schema, as JSON, readable from any origin
+
+RewriteEngine On
+
+RewriteRule ^$ /schemas/1/ [R=302,L]
+
+# ── Serve the schemas as JSON, to browser-based validators too ──
+<FilesMatch "\.schema\.json$">
+    <IfModule mod_headers.c>
+        Header set Content-Type "application/json; charset=utf-8"
+        Header set Access-Control-Allow-Origin "*"
+        Header set Cache-Control "public, max-age=86400"
+    </IfModule>
+</FilesMatch>
