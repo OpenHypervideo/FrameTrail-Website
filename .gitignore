@@ -28,3 +28,6 @@ plans/
 node_modules/
 
 CLAUDE.md
+
+# Contains the private postal address; kept out of the public repo and uploaded to the server by hand
+imprint.html
