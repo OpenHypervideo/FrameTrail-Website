@@ -85,7 +85,14 @@
                         "showTranscriptSearch": { "description": "Not used by this view." },
                         "html": { "description": "Not used by this view." },
                         "filterAspect": { "description": "Not used by this view." },
-                        "zoomControls": { "description": "Not used by this view." }
+                        "zoomControls": { "description": "Not used by this view." },
+                        "ringGap": {
+                            "description": "In the circular area only: the pixels between the thumbnails of the ring around the video, between them and the video's block, and between the ring and the player's edges (its sides, the top and the controls). On narrow players it is the space around and between the thumbnails of the row below the video.",
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 100,
+                            "default": 6
+                        }
                     }
                 },
                 {
@@ -170,7 +177,8 @@
                         "transcriptSource": { "description": "Not used by this view." },
                         "showTranscriptSearch": { "description": "Not used by this view." },
                         "filterAspect": { "description": "Not used by this view." },
-                        "zoomControls": { "description": "Not used by this view." }
+                        "zoomControls": { "description": "Not used by this view." },
+                        "ringGap": { "description": "Not used by this view." }
                     }
                 },
                 {
@@ -263,7 +271,8 @@
                             "default": ""
                         },
                         "filterAspect": { "description": "Not used by this view." },
-                        "zoomControls": { "description": "Not used by this view." }
+                        "zoomControls": { "description": "Not used by this view." },
+                        "ringGap": { "description": "Not used by this view." }
                     }
                 },
                 {
@@ -345,6 +354,7 @@
                             "type": "boolean",
                             "default": false
                         },
+                        "ringGap": { "description": "Not used by this view." },
                         "transcriptSource": { "description": "Not used by this view." },
                         "showTranscriptSearch": { "description": "Not used by this view." },
                         "html": { "description": "Not used by this view." },
@@ -425,7 +435,8 @@
                         "html": { "description": "Not used by this view." },
                         "onClickContentItem": { "description": "Not used by this view." },
                         "filterAspect": { "description": "Not used by this view." },
-                        "zoomControls": { "description": "Not used by this view." }
+                        "zoomControls": { "description": "Not used by this view." },
+                        "ringGap": { "description": "Not used by this view." }
                     }
                 }
             ]
@@ -541,6 +552,13 @@
                             "description": "Views shown on a phone paired with the player (docs/PAIRING.md), and nowhere in the player itself. Medium views are laid out like the right area's; a large collection (TimedContent) shows the annotations at full size in a row that follows the playback and can be swiped through. A phone has no small size: a small view is shown, and saved, as medium. Empty or missing: the phone shows no views. Kept whether or not the instance has pairing set up.",
                             "type": "array",
                             "items": { "$ref": "#/$defs/contentView" },
+                            "default": []
+                        },
+                        "areaCircular": {
+                            "description": "One collection (TimedContent) shown as a grid of annotation thumbnails in rings around the video, clockwise in time from the cell left of the video's bottom edge; the video shrinks to make room for more rings. Small or medium; a large view is shown, and saved, as medium. A view of another type is not shown. At 768 px player width or less, and when the thumbnails do not fit around the video, they form a row below the video instead. Empty or missing: no ring.",
+                            "type": "array",
+                            "items": { "$ref": "#/$defs/contentView" },
+                            "maxItems": 1,
                             "default": []
                         }
                     }
@@ -676,7 +694,7 @@
             ]
         },
         "customCSS": {
-            "description": "CSS for this hypervideo.",
+            "description": "Deprecated. CSS for this hypervideo, applied while it is shown. FrameTrail no longer edits it: CSS belongs in the instance's custom.css.",
             "type": "string",
             "default": ""
         },
