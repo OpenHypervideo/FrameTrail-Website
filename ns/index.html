@@ -424,7 +424,24 @@
                         (playback enters the overlay's time span),
                         <code>onEnd</code> (playback leaves it),
                         <code>onClick</code>. Values are JavaScript code
-                        strings.
+                        strings. An <code>onStart</code> that only pauses the
+                        video (<code>FrameTrail.module('HypervideoController').pause();</code>)
+                        is the older form of <a href="#term-pause"><code>frametrail:pause</code></a>
+                        and is read as it.
+                    </td>
+                </tr>
+                <tr id="term-pause">
+                    <td class="term-name">frametrail:pause</td>
+                    <td class="term-iri">…ns/pause</td>
+                    <td>Annotation (Overlay, Annotation)</td>
+                    <td>Boolean</td>
+                    <td>
+                        Pause the video at the item's start: when playback
+                        crosses it, or starts at it. Seeking into the middle
+                        of the item's time span does not pause. An annotation
+                        pauses only while it is shown (in an open content view
+                        of the player, or on paired phones). A quiz asks its
+                        question there. Missing means <code>false</code>.
                     </td>
                 </tr>
                 <tr id="term-keyframes">
@@ -619,8 +636,8 @@
                 </tr>
                 <tr>
                     <td class="term-name">quiz</td>
-                    <td class="term-values">questionType, question, answers, onCorrectAnswer, onWrongAnswer, onAnswered, ratingScale</td>
-                    <td>Multiple choice, multi-select, free text or rating, with what happens after answering</td>
+                    <td class="term-values">questionType, question, answers (text, correct, action, actionTarget, actionTargetTime, feedback, default), onAnswered, ratingScale, countdown</td>
+                    <td>Multiple choice, multi-select, free text or rating, answered by the viewer or on paired phones; each multiple-choice answer says what happens when it is decided (<code>""</code> continue, <code>pause</code>, <code>openUrl</code>, <code>jumpToTime</code>, <code>jumpToHypervideo</code>), the other types say it in onAnswered. Older quizzes have onCorrectAnswer and onWrongAnswer instead</td>
                 </tr>
                 <tr>
                     <td class="term-name">hotspot</td>
@@ -808,9 +825,7 @@
     <span class="key">"frametrail:licenseAttribution"</span>: <span class="string">"J. Bach, 2025"</span>,
     <span class="key">"frametrail:attributes"</span>: {}
   },
-  <span class="key">"frametrail:events"</span>: {
-    <span class="key">"onStart"</span>: <span class="string">"FrameTrail.module('HypervideoController').pause();"</span>
-  },
+  <span class="key">"frametrail:pause"</span>: true,
   <span class="key">"frametrail:tags"</span>: [<span class="string">"diagram"</span>]
 }</code></pre>
 
@@ -880,7 +895,7 @@ curl -H "Accept: text/html" http://frametrail.org/ns/</code></pre>
     </p>
     <p>
         &copy; FrameTrail Contributors.
-        Namespace documentation last updated 2026-10-17.
+        Namespace documentation last updated 2026-10-23.
     </p>
 </footer>
 
