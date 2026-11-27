@@ -1,0 +1,136 @@
+name: Update schemas
+
+# Daily and by hand: publishes the JSON Schemas of FrameTrail's latest release (or of the ref given by hand) into schemas/1/ with FrameTrail's own scripts/publish-schemas.mjs, adds the site's head and footer to its index.html (dev/schemas-page.mjs), and when that changes anything opens a pull request "Update schemas to FrameTrail X.Y.Z". Merging it puts the schemas live at their $ids, https://frametrail.org/schemas/1/, once the server deploys main.
+#
+# - The latest release is npm's: FrameTrail publishes to npm last. Prereleases are left to a run by hand.
+# - Each FrameTrail version gets its own branch, frametrail/<git describe>. A run finds it there and stops, so it never overwrites what was pushed to it, nor reopens a pull request that was closed.
+# - dev/check-ns.mjs names frametrail: terms the schemas use that ns/index.html does not document; ns/ is written by hand, on the branch.
+# - The pull request is opened with GITHUB_TOKEN, which starts no workflows.
+
+on:
+  schedule:
+    - cron: '27 5 * * *'
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: FrameTrail tag, branch or commit (empty for the latest release)
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: frametrail-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Find the FrameTrail release
+        id: release
+        env:
+          REF: ${{ inputs.ref }}
+        run: |
+          if [ -z "$REF" ]; then
+            version=$(npm view @frametrail/frametrail dist-tags.latest)
+            case "$version" in
+              *-*) echo "The latest release, $version, is a prerelease: run this workflow by hand with its tag to publish it."; exit 0 ;;
+            esac
+            REF="v$version"
+          fi
+          echo "FrameTrail $REF"
+          echo "ref=$REF" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout FrameTrail
+        if: steps.release.outputs.ref
+        uses: actions/checkout@v4
+        with:
+          repository: OpenHypervideo/FrameTrail
+          ref: ${{ steps.release.outputs.ref }}
+          path: _frametrail
+          # The tags, for git describe; blobs only for the files checked out
+          fetch-depth: 0
+          filter: blob:none
+
+      - name: Publish the schemas
+        id: publish
+        if: steps.release.outputs.ref
+        run: |
+          node _frametrail/scripts/publish-schemas.mjs schemas/1
+          node dev/schemas-page.mjs
+          if [ -z "$(git status --porcelain -- schemas/1)" ]; then
+            echo "The published schemas are those of FrameTrail ${{ steps.release.outputs.ref }}: nothing to do." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          version=$(git -C _frametrail describe --tags)
+          branch="frametrail/$version"
+          if git ls-remote --exit-code --heads origin "$branch" > /dev/null; then
+            echo "The branch $branch exists already (its pull request is open or was closed): nothing to do." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "branch=$branch" >> "$GITHUB_OUTPUT"
+
+      - name: Check the namespace page
+        id: ns
+        if: steps.publish.outputs.branch
+        continue-on-error: true
+        run: node dev/check-ns.mjs 2>&1 | tee "$RUNNER_TEMP/ns.log"
+
+      - name: Open the pull request
+        if: steps.publish.outputs.branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.publish.outputs.version }}
+          BRANCH: ${{ steps.publish.outputs.branch }}
+          NS: ${{ steps.ns.outcome }}
+        run: |
+          commit=$(git -C _frametrail rev-parse HEAD)
+          case "$VERSION" in
+            v*-*-g*) title="Update schemas to FrameTrail $VERSION"; release="" ;;
+            v*)      title="Update schemas to FrameTrail ${VERSION#v}"; release="[Release notes](https://github.com/OpenHypervideo/FrameTrail/releases/tag/$VERSION) · " ;;
+            *)       title="Update schemas to FrameTrail $VERSION"; release="" ;;
+          esac
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git switch -c "$BRANCH"
+          git add --all -- schemas/1
+          git commit -m "$title"
+          git push origin "HEAD:refs/heads/$BRANCH"
+
+          body="$RUNNER_TEMP/body.md"
+          {
+            echo "The JSON Schemas of FrameTrail \`$VERSION\` (\`${commit:0:7}\`), published by the [Update schemas workflow]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID) with FrameTrail's \`scripts/publish-schemas.mjs\`; \`dev/schemas-page.mjs\` added the site's head and footer to \`schemas/1/index.html\`."
+            echo
+            echo "${release}[The schemas in FrameTrail](https://github.com/OpenHypervideo/FrameTrail/tree/$commit/schemas)"
+            echo
+            if [ "$NS" = success ]; then
+              echo "**Namespace:** \`ns/index.html\` documents every \`frametrail:\` term the schemas use."
+            else
+              echo "**Namespace:** $(cat "$RUNNER_TEMP/ns.log")"
+              echo
+              echo '- [ ] Add a row for each to `ns/index.html` (and to `ns/context.jsonld` when the term needs typing) on this branch.'
+            fi
+            echo
+            echo '```'
+            git show --stat --format= HEAD
+            echo '```'
+            echo
+            echo 'Merging puts the schemas live at `https://frametrail.org/schemas/1/` once the server deploys `main`.'
+          } > "$body"
+
+          gh pr create --head "$BRANCH" --title "$title" --body-file "$body"
+          echo "Opened a pull request for $BRANCH." >> "$GITHUB_STEP_SUMMARY"

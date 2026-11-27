@@ -2,7 +2,10 @@
 # Place this folder at the document root of frametrail.org/schemas/
 #
 # schemas/1/ is written by scripts/publish-schemas.mjs in the FrameTrail
-# repository (the schemas byte for byte, plus index.html). Do not edit it here.
+# repository (the schemas byte for byte, plus index.html), and
+# dev/schemas-page.mjs adds the site's head and footer to its index.html.
+# .github/workflows/update.yml does both daily for FrameTrail's latest
+# release and opens a pull request. Do not edit it here.
 #
 # Behaviour:
 #   /schemas/                 →  /schemas/1/ (302: a later version may list both)
