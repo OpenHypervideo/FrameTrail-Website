@@ -31,7 +31,7 @@
                             "default": ""
                         },
                         "contentSize": {
-                            "description": "Size of the view's items.",
+                            "description": "Size of the view's annotations: `small` a strip of icons, `medium` thumbnails with their titles, `large` the annotations in full (in the left and right areas the one that plays). A layout area is as large as the view shown in it (its active tab). The circular area has no `large` and a phone no `small`: such a view is shown, and saved, as `medium`.",
                             "type": "string",
                             "enum": ["small", "medium", "large"],
                             "default": "small"
@@ -92,7 +92,26 @@
                             "minimum": 0,
                             "maximum": 100,
                             "default": 6
-                        }
+                        },
+                        "openWhenActive": {
+                            "description": "The view's layout area is open only while one of the view's annotations is active: it opens when one starts and closes when the last one has ended (see openGap), and it starts closed unless one is active at the start. With several views in an area, only the view in the tab that is shown opens and closes it, and FrameTrail never changes the tab: the views in the other tabs neither open the area nor keep it open, nothing automatic happens while the shown tab's view does not have this option, and when the hypervideo loads the shown tab is the area's last view. What the viewer or event code opens or closes by hand, and a tab the viewer picks, stays until the annotations of the shown tab's view next want something else. Around the video and in the ring; not in the area for paired phones (areaCompanion). initClosed has no effect on such a view.",
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "openGap": {
+                            "description": "With openWhenActive: the seconds of video time between two annotations up to which the area stays open, while this view is the tab that is shown.",
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 600,
+                            "default": 3
+                        },
+                        "quizRows": { "description": "Not used by this view." },
+                        "showQuizScore": { "description": "Not used by this view." },
+                        "showQuizLegend": { "description": "Not used by this view." },
+                        "showQuizRestart": { "description": "Not used by this view." },
+                        "rememberQuizResults": { "description": "Not used by this view." },
+                        "chapterStyle": { "description": "Not used by this view." },
+                        "showChapterTime": { "description": "Not used by this view." }
                     }
                 },
                 {
@@ -119,7 +138,7 @@
                             "default": ""
                         },
                         "contentSize": {
-                            "description": "Size of the view's items.",
+                            "description": "Size of the view: that of an annotations view of this size (what is in it is the author's).",
                             "type": "string",
                             "enum": ["small", "medium", "large"],
                             "default": "small"
@@ -178,7 +197,16 @@
                         "showTranscriptSearch": { "description": "Not used by this view." },
                         "filterAspect": { "description": "Not used by this view." },
                         "zoomControls": { "description": "Not used by this view." },
-                        "ringGap": { "description": "Not used by this view." }
+                        "ringGap": { "description": "Not used by this view." },
+                        "openWhenActive": { "description": "Not used by this view." },
+                        "openGap": { "description": "Not used by this view." },
+                        "quizRows": { "description": "Not used by this view." },
+                        "showQuizScore": { "description": "Not used by this view." },
+                        "showQuizLegend": { "description": "Not used by this view." },
+                        "showQuizRestart": { "description": "Not used by this view." },
+                        "rememberQuizResults": { "description": "Not used by this view." },
+                        "chapterStyle": { "description": "Not used by this view." },
+                        "showChapterTime": { "description": "Not used by this view." }
                     }
                 },
                 {
@@ -205,7 +233,7 @@
                             "default": ""
                         },
                         "contentSize": {
-                            "description": "Size of the view's items.",
+                            "description": "Size of the view. In the top and bottom areas the text runs in columns and the area is as high as the text, up to 3 (`small`), 6 (`medium`) or 12 (`large`) lines; what does not fit goes on in columns to the right. In the left and right areas it is one column, `medium` or `large` wide: there is no `small` there (too narrow to read), such a view is shown, and saved, as `medium`.",
                             "type": "string",
                             "enum": ["small", "medium", "large"],
                             "default": "small"
@@ -272,7 +300,16 @@
                         },
                         "filterAspect": { "description": "Not used by this view." },
                         "zoomControls": { "description": "Not used by this view." },
-                        "ringGap": { "description": "Not used by this view." }
+                        "ringGap": { "description": "Not used by this view." },
+                        "openWhenActive": { "description": "Not used by this view." },
+                        "openGap": { "description": "Not used by this view." },
+                        "quizRows": { "description": "Not used by this view." },
+                        "showQuizScore": { "description": "Not used by this view." },
+                        "showQuizLegend": { "description": "Not used by this view." },
+                        "showQuizRestart": { "description": "Not used by this view." },
+                        "rememberQuizResults": { "description": "Not used by this view." },
+                        "chapterStyle": { "description": "Not used by this view." },
+                        "showChapterTime": { "description": "Not used by this view." }
                     }
                 },
                 {
@@ -299,7 +336,7 @@
                             "default": ""
                         },
                         "contentSize": {
-                            "description": "Size of the view's items.",
+                            "description": "Size of the view. In the top and bottom areas the area is as high as the view's rows, up to 2 (`small`), 4 (`medium`) or 8 (`large`) rows, and scrolls for more. In the left and right areas it is `medium` or `large` wide: there is no `small` there, such a view is shown, and saved, as `medium`.",
                             "type": "string",
                             "enum": ["small", "medium", "large"],
                             "default": "small"
@@ -355,10 +392,19 @@
                             "default": false
                         },
                         "ringGap": { "description": "Not used by this view." },
+                        "openWhenActive": { "description": "Not used by this view." },
+                        "openGap": { "description": "Not used by this view." },
                         "transcriptSource": { "description": "Not used by this view." },
                         "showTranscriptSearch": { "description": "Not used by this view." },
                         "html": { "description": "Not used by this view." },
-                        "onClickContentItem": { "description": "Not used by this view." }
+                        "onClickContentItem": { "description": "Not used by this view." },
+                        "quizRows": { "description": "Not used by this view." },
+                        "showQuizScore": { "description": "Not used by this view." },
+                        "showQuizLegend": { "description": "Not used by this view." },
+                        "showQuizRestart": { "description": "Not used by this view." },
+                        "rememberQuizResults": { "description": "Not used by this view." },
+                        "chapterStyle": { "description": "Not used by this view." },
+                        "showChapterTime": { "description": "Not used by this view." }
                     }
                 },
                 {
@@ -385,7 +431,7 @@
                             "default": ""
                         },
                         "contentSize": {
-                            "description": "Size of the view's items.",
+                            "description": "Size of the view. As cards: `small` one line per chapter, `medium` a thumbnail (where the video has a scrub sprite) with the start time and the title, `large` a larger thumbnail and the description. As steps: `small` the dots (in the top and bottom areas with their titles), `medium` start time, title and description, `large` the same in larger type; in the top and bottom areas the area is as high as the row of steps, at the sides a little wider at `large` than at `medium`. Cards have no `small` in the left and right areas (shown, and saved, as `medium`); steps have (the dots alone).",
                             "type": "string",
                             "enum": ["small", "medium", "large"],
                             "default": "small"
@@ -436,7 +482,101 @@
                         "onClickContentItem": { "description": "Not used by this view." },
                         "filterAspect": { "description": "Not used by this view." },
                         "zoomControls": { "description": "Not used by this view." },
-                        "ringGap": { "description": "Not used by this view." }
+                        "ringGap": { "description": "Not used by this view." },
+                        "openWhenActive": { "description": "Not used by this view." },
+                        "openGap": { "description": "Not used by this view." },
+                        "quizRows": { "description": "Not used by this view." },
+                        "showQuizScore": { "description": "Not used by this view." },
+                        "showQuizLegend": { "description": "Not used by this view." },
+                        "showQuizRestart": { "description": "Not used by this view." },
+                        "rememberQuizResults": { "description": "Not used by this view." },
+                        "chapterStyle": {
+                            "description": "How the chapters are displayed: \"cards\" (a card per chapter, with a thumbnail where the size has room, in a row whose widths follow the chapters' lengths at small and medium in the top and bottom areas) or \"steps\" (a progress indicator: a dot per chapter on a line, spread evenly over the area, the line filled up to the chapter that plays; no thumbnails).",
+                            "type": "string",
+                            "enum": ["cards", "steps"],
+                            "default": "cards"
+                        },
+                        "showChapterTime": {
+                            "description": "Show each chapter's start time.",
+                            "type": "boolean",
+                            "default": true
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "required": ["type"],
+                    "properties": {
+                        "type": {
+                            "description": "The hypervideo's questions and what was answered: its quiz overlays, and the quiz annotations a TimedContent view of the layout shows, each as a dot (open, right at the first try, right after the part was played again, not right yet, or answered where there is no right answer to tell). Not shown in the circular area.",
+                            "const": "QuizResults"
+                        },
+                        "name": {
+                            "description": "Title of the view (tab label).",
+                            "type": "string",
+                            "default": ""
+                        },
+                        "icon": {
+                            "description": "CSS class of an icon from the FrameTrail icon font.",
+                            "type": "string",
+                            "default": ""
+                        },
+                        "cssClass": {
+                            "description": "Extra CSS class(es) on the view.",
+                            "type": "string",
+                            "default": ""
+                        },
+                        "contentSize": {
+                            "description": "Size of the view's rows: `small` the dots (in the top and bottom areas with a line of text), `medium` every question with its text and its mark (below its chapter's title when the rows are chapters), `large` the same with larger marks and more air, and with a question's state in words when the rows are questions. In the top and bottom areas the area is as high as the rows and the summary need.",
+                            "type": "string",
+                            "enum": ["small", "medium", "large"],
+                            "default": "small"
+                        },
+                        "initClosed": {
+                            "description": "Start with the layout area collapsed.",
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "quizRows": {
+                            "description": "What a row is: \"chapters\" lists the chapters, each with the dots of the questions asked in it (without chapters: as \"questions\"); \"questions\" lists the questions, each with its text.",
+                            "type": "string",
+                            "enum": ["chapters", "questions"],
+                            "default": "chapters"
+                        },
+                        "showQuizScore": {
+                            "description": "Show the score: how many of the questions that have a right answer were right at the first try (without such questions: how many were answered).",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "showQuizLegend": {
+                            "description": "Show what the dots mean, where there is room (not at small).",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "showQuizRestart": {
+                            "description": "Show a button that forgets the results and jumps to the start of the video. On the player only, not on paired phones.",
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "rememberQuizResults": {
+                            "description": "Keep the results in the browser's storage, so that they survive a reload. The results are the hypervideo's: they are kept when any of its QuizResults views says so.",
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "description": {
+                            "description": "Not used.",
+                            "type": "string"
+                        },
+                        "collectionFilter": { "description": "Not used by this view." },
+                        "transcriptSource": { "description": "Not used by this view." },
+                        "showTranscriptSearch": { "description": "Not used by this view." },
+                        "html": { "description": "Not used by this view." },
+                        "onClickContentItem": { "description": "Not used by this view." },
+                        "filterAspect": { "description": "Not used by this view." },
+                        "zoomControls": { "description": "Not used by this view." },
+                        "ringGap": { "description": "Not used by this view." },
+                        "openWhenActive": { "description": "Not used by this view." },
+                        "openGap": { "description": "Not used by this view." }
                     }
                 }
             ]
@@ -502,6 +642,11 @@
                 },
                 "autohideControls": {
                     "description": "Hide the player controls while playing.",
+                    "type": "boolean",
+                    "default": false
+                },
+                "autoplay": {
+                    "description": "Start playing when the viewer comes to this hypervideo inside the page: after a jump from another hypervideo (once a transition between them is over, see config.json → hypervideoTransition) or when it is opened from the overview. Never on a freshly loaded page, where the browser would refuse sound before a click, and never while editing. Optional: written once it is switched on.",
                     "type": "boolean",
                     "default": false
                 },
@@ -636,6 +781,11 @@
                     },
                     "title": {
                         "description": "Title of the chapter.",
+                        "type": "string",
+                        "default": ""
+                    },
+                    "description": {
+                        "description": "Optional second line below the title, shown by Chapters views (e.g. a place, a scale, a speaker). Not written while empty.",
                         "type": "string",
                         "default": ""
                     }
