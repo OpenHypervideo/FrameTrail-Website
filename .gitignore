@@ -29,6 +29,7 @@ node_modules/
 
 CLAUDE.md
 .claude
+WEBSITE-UPDATE-INVENTORY.md
 
 # Contains the private postal address; kept out of the public repo and uploaded to the server by hand
 imprint.html
